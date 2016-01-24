@@ -20,6 +20,8 @@ author_image: "/assets/images/author.png"
 
 paginate: 5
 permalink: "/:year-:month-:day-:title/"
+kramdown:
+  input: GFM
 
 url: "http://blog.taian.su" # the base hostname & protocol for your site
 baseurl: ""
