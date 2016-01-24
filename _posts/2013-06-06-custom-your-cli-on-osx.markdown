@@ -46,9 +46,9 @@ oh-my-zsh 讓你可以不用再辛苦的手刻 config file，就內建一堆好�
 
 安裝 oh-my-zsh 的方式，就是打開剛剛裝好的 iTerm2 ( Terminal.app 也可以)，貼上這行指令:
 
-``` shell
+{% highlight bash %}
 curl -L http://install.ohmyz.sh | sh
-```
+{% endhighlight %}
 
 更多 Oh My ZSH 的設定可以參考 RailsCasts 的[影片](http://railscasts.com/episodes/308-oh-my-zsh)
 
@@ -62,13 +62,9 @@ curl -L http://install.ohmyz.sh | sh
 
 __提醒__：
 
-  * `~/.zshrc` 底下的 `plugins="(.....)"` 千萬要慎選。
+* `~/.zshrc` 底下的 `plugins="(.....)"` 千萬要慎選。看清楚 `~/.oh-my-zsh/plugins/` 裡的相應的檔案內容。我曾經被 bundler plugin 搞掉好幾個小時。
 
-    看清楚 `~/.oh-my-zsh/plugins/` 裡的相應的檔案內容。我曾經被 bundler plugin 搞掉好幾個小時。
-
-  * 指令上色是用 [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) 做的。
-
-    想要的話就參考連結裡的說明。
+* 指令上色是用 [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) 做的。 想要的話就參考連結裡的說明。
 
 ---
 
