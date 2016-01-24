@@ -1,0 +1,53 @@
+# Build settings
+gems:
+  - jemoji
+  - jekyll-paginate
+
+# Site settings
+title: "Tai-An Su"
+description: > # this means to ignore newlines until "email:"
+   So Wrong, It's Right.
+
+email: i@taian.su
+#blog logo
+logo: "/assets/images/logo.png"
+# blog cover
+cover: "/assets/images/header.jpg"
+
+name: 'Tai-An Su'
+author: 'taiansu'
+author_image: "/assets/images/author.png"
+
+paginate: 5
+permalink: "/:year-:month-:day-:title/"
+
+url: "http://blog.taian.su" # the base hostname & protocol for your site
+baseurl: ""
+#used to display twitter cards
+twitter_handle: '@taiansu'
+
+#fill in disqus shortname to use disqus
+disqus: taiansu
+
+# social icons and sharing options
+social:
+  - icon:	twitter
+    url:	https://twitter.com/taiansu
+    desc: Follow me on twitter
+    share_url: http://twitter.com/share
+    share_title: ?text=
+    share_link: "&amp;url="
+
+#  - icon:	facebook
+#    url:	https://facebook.com/???
+#    desc: Connect with me facebook
+#    share_url: https://www.facebook.com/sharer.php
+#    share_title: ?t=
+#    share_link: "&amp;u="
+
+  - icon:	github
+    url:	https://github.com/taiansu
+    desc:	Fork me on github
+    share_url:
+    share_title:
+    share_link:
