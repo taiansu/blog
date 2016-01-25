@@ -13,3 +13,7 @@ task :deploy do
   sh 's3_website push'
   puts "--- New post is online ---"
 end
+
+task :dev do
+  sh 'bundle exec jekyll serve'
+end
