@@ -4,3 +4,7 @@ source 'https://rubygems.org'
 gem 'github-pages'
 gem 'bourbon'
 gem 'jemoji'
+group :development do
+  gem 'rake'
+  gem 's3_website'
+end
