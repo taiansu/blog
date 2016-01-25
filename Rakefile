@@ -1,6 +1,8 @@
 require 'rake'
+require 'fileutils'
 
-task default: %w[build deploy]
+task default: :dev
+task deploy: %w[build push]
 
 desc "Build"
 task :build do
@@ -8,7 +10,7 @@ task :build do
   sh 'bundle exec jekyll build'
 end
 
-task :deploy do
+task :push do
   puts "Deploy to S3 bucket"
   sh 's3_website push'
   puts "--- New post is online ---"
