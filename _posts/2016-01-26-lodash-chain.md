@@ -5,10 +5,11 @@ date: 2016-01-26 02:35
 comments: true
 tags: Programming, JavaScript
 image: /assets/article_images/2016-01-26-lodash-chain/coffee-machine.png
+image2: /assets/article_images/2016-01-26-lodash-chain/coffee-machine-mobile.png
 ---
 
 不知道從什麼時候開始，愈來愈喜歡用 functional 的寫法來處理問題。在看完 [JavaScript
-Allonge](https://leanpub.com/javascriptallongesix) 之後更是一發不可收拾。上次的 [Elixir 文章](/2014-07-26-a_sip_of_elixir/)提到了可口的 `|>` Pipe operator。一直想著怎麼 JavaScript 沒有類似的東西，前陣子因[工作需要](#1)，認真的翻了 Lodash 文件，才發現真是踏破鐵鞋無覓處，主角就要接下來要介紹的 `_.chain()` 及 `_()`。找了一下中文世界似乎沒有什麼說明，寫個小心得看看是不是真的只有我 Lag 了 XD
+Allonge](https://leanpub.com/javascriptallongesix) 之後更是一發不可收拾。上次的 [Elixir 文章](/2014-07-26-a_sip_of_elixir/)提到了愉快的 `|>` Pipe operator。一直想著怎麼 JavaScript 沒有類似的東西，前陣子因[工作需要](#1)，認真的翻了 Lodash 文件，才發現真是踏破鐵鞋無覓處，那 function 就是接下來要介紹的 `_.chain()` 及 `_()`。找了一下中文世界似乎沒有什麼說明，寫個小心得看看是不是真的只有我 Lag 了 XD
 
 先從問題開始，手邊有如下的資料結構：
 {% highlight js %}
@@ -40,7 +41,7 @@ const result        = _.unique(poNumberParts)
 const result = _.unique(_.map(_.map(poData, 'poNumber'), num => num.split('-')[0]))
 {% endhighlight %}
 
-縮排一下，似乎也沒有好太多。
+縮排一下，看起來有點像 Lisp 了。但問題是執行順序是由內到外的，相當反直覺。
 {% highlight js %}
 const result = _.unique(
                   _.map(
@@ -74,7 +75,7 @@ const data = [
 ]
 
 const twdTotal = _(data)
-                .map('price')
+                .map('usdPrice')
                 .map(num => num * 31)
                 .reduce(_.add)
 
@@ -87,7 +88,7 @@ const twdTotal = _(data)
 
 另外 underscore 也有 `_.chain()`，沒有仔細看但是印象中用法雷同。
 
-<a name="1">\*</a>即便是離開的資訊圈到南洋島國上做印刷，還是要處理傳產的 Excel 惡夢。反正沒有人要看 code，索性變本加厲的用上了 Rx.js。
-\*\* 呼叫函式 => call the function, 函式調用 => function invocation。兩者同義，依行文流暢擇用。
-
+<a name="1">\*</a> 即便是離開的資訊圈到南洋島國上做印刷，還是要處理傳產的 Excel 惡夢。反正沒有人要看 code，索性變本加厲的用上了 Rx.js。
+<a name="2">\*\*</a> 呼叫函式 => call the function，函式調用 => function invocation。兩者同義，依行文流暢擇用。
+<a name="3">\*\*</a> 最近繼續唸 Elixir/Erlang，OTP 好有趣啊。
 
