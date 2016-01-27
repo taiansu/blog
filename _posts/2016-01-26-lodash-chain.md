@@ -1,15 +1,17 @@
 ---
 layout: post
-title: _.chain()
+title: Pipe of JavaScript&#58; _.chain()
 date: 2016-01-26 02:35
 comments: true
-tags: Programming, JavaScript
+tags: Programming, JavaScript, pipe
 image: /assets/article_images/2016-01-26-lodash-chain/coffee-machine.png
 image2: /assets/article_images/2016-01-26-lodash-chain/coffee-machine-mobile.png
 ---
 
 不知道從什麼時候開始，愈來愈喜歡用 functional 的寫法來處理問題。在看完 [JavaScript
-Allonge](https://leanpub.com/javascriptallongesix) 之後更是一發不可收拾。上次的 [Elixir 文章](/2014-07-26-a_sip_of_elixir/)提到了愉快的 `|>` Pipe operator。一直想著怎麼 JavaScript 沒有類似的東西，前陣子因[工作需要](#1)，認真的翻了 Lodash 文件，才發現真是踏破鐵鞋無覓處，那 function 就是接下來要介紹的 `_.chain()` 及 `_()`。找了一下中文世界似乎沒有什麼說明，寫個小心得看看是不是真的只有我 Lag 了 XD
+Allonge](https://leanpub.com/javascriptallongesix) 之後更是一發不可收拾。上次的 [Elixir 文章](/2014-07-26-a_sip_of_elixir/)提到了愉快的 `|>` Pipe operator。一直想著怎麼 JavaScript 沒有類似的東西，但試過各種關鍵字就是找不到。
+
+直到前陣子因[工作需要](#1)，認真的翻了 Lodash 文件，才發現真是踏破鐵鞋無覓處，那 function 就是接下來要介紹的 `_.chain()` 及 `_()`。找了一下中文世界似乎沒有什麼說明，寫個小心得看看是不是真的只有我 Lag 了 XD
 
 先從問題開始，手邊有如下的資料結構：
 {% highlight js %}

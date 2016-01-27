@@ -5,7 +5,7 @@ date: 2014-11-26
 tags: Programming, Ruby
 ---
 
-@JuanitoFatas 今天分享了 [紅寶石鐵道漫遊指南](http://www.slideshare.net/katehuang0320/ss-42007998)，
+[@JuanitoFatas](https://twitter.com/juanitofatas) 今天分享了 [紅寶石鐵道漫遊指南](http://www.slideshare.net/katehuang0320/ss-42007998)，
 
 適逢本週感恩節特價，有人問起，就來快速列一些可以趁機入手的書。如果有閒的話，我再來補每本書的簡介。
 
