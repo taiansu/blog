@@ -38,7 +38,7 @@ const result        = _.unique(poNumberParts)
 // => ['FA1234', 'FB2234', 'FC3141']
 {% endhighlight %}
 
-但是其實我們不需要那些中間的臨時變數，所以可以寫成這種 Wirte only 風格來累積仇恨值：
+但其實我們不需要中間那些臨時變數，所以可以寫成這種 Wirte only 風格來累積仇恨值：
 {% highlight js %}
 const result = _.unique(_.map(_.map(poData, 'poNumber'), num => num.split('-')[0]))
 {% endhighlight %}
