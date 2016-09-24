@@ -5,7 +5,7 @@ date: 2014-07-26
 tags: [programming, Elixir]
 ---
 來聊一下最近在唸的新玩具： [Elixir](http://elixir-lang.org)。
-發音是：「ㄟ利ㄎ洗爾」
+發音是：「ㄦ利ㄎ洗爾」
 
 # Why Elixir
 是說去年底 Peepcode 還活著的時候有出過一集 Elixir 的教學。我一直蠻仰慕這個寫出這本厲害的 [Craft Rails Applications](http://pragprog.com/book/jvrails2/crafting-rails-applications) 的作者 [José Valim](https://twitter.com/josevalim) ，但是這影片一直在 stack 的最底端沒機會去看。( 話說 José 是巴西人，回頭去看影片，一直會聽到小舌音的 "ㄟ赫爾"，要仔細聽前後文才發現是 "error"。)
