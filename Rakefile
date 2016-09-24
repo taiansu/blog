@@ -7,7 +7,7 @@ task deploy: %w(build push)
 desc 'Build'
 task :build do
   puts 'Building your blog...'
-  sh 'bundle exec jekyll build'
+  sh 'JEKYLL_ENV=production bundle exec jekyll build'
 end
 
 task :push do
