@@ -14,14 +14,14 @@ There’s no shortage of advice on how you should model, design, test, build, an
 
 One trap we keep falling into is the expectation that we can make developing software a “no-brainer.” Everyone would adore it if we could just follow this or that process, just follow those rules, and have it all work out. But software development simply isn’t amenable to a “no-brainer” approach; here’s one reason why.
 
-幾年前我們發現一個叫 Dreyfus model of skills acquisition 的有用工具。
+幾年前我們發現一個很有用的工具, 叫 Dreyfus model of skills acquisition。
 
 A few years ago we discovered a helpful tool called the Dreyfus model of skills acquisition. It describes people’s needs, how they learn and problem-solve according to their skill level in a particular area. We can use the Dreyfus model to better understand people and the role of process in software development.
 
 
 舉例來說，初學者需要簡單，沒有來龍去脈的規則，才有辦法在新的環境下行動。他們不想看到整體的概念，對他們來說，那些排山倒海的資訊令人困惑，而且 ( 對他們來說 ) 是無關緊要的。假如你要給一個廚房新手寫一份食譜，光是說 "煮到熟為止" 是遠遠不夠的。因為他們沒有足夠的經驗去判斷所謂 "熟" 是什麼意思。新手要的是像 "用 350 度煮 35 分鐘" 這樣的說法，不多也不少。
 
-相反的，對於進階的參與者，他們 "一定" 要了解整體概念，否則他們無法正常運作。如果你跟一個專業廚師說出 "用 350 度煮整整 35 分鐘" 的指示，最愉快的情況就是他們直接忽略你。"煮到熟為止" 這種對新手毫無意義的句子，卻對有經驗的廚師說了許許多多。那表示去考慮濕度、食材的情況、各式各樣廚具的問題 (那個爐子每次都會過熱)、食物的色澤、香味等等等等。
+相反的，對於進階的參與者，他們 "一定" 要了解整體概念，否則他們無法正常運作。如果你跟一個專業廚師說出 "用 350 度煮整整 35 分鐘" 的指示，最好的情況就是他們直接忽略你。"煮到熟為止" 這種對新手毫無意義的句子，卻對有經驗的廚師說了許許多多。那表示去考慮濕度、食材的情況、各式各樣廚具的問題 (那個爐子每次都會過熱)、食物的色澤、香味等等等等。
 
 ---
 
