@@ -3,7 +3,7 @@ layout: post
 title: "在 Ubuntu 中安裝乾淨的 Rails 開發環境"
 date: 2012-10-26 22:47
 comments: true
-tags: Programming, Config
+tags: [programming, setup]
 ---
 
 ## 安裝必要元件

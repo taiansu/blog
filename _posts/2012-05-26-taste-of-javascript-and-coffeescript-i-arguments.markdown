@@ -3,7 +3,7 @@ layout: post
 title: " JavaScript 和 CoffeeScript 的風味: I. function arguments"
 date: 2012-05-26 16:51
 comments: true
-tags: Programming, CoffeeScript
+tags: [programming, CoffeeScript]
 ---
 
 當 JavaScript 的函式宣告時，其括號中定義的參數並不是限制，而是方便存取引數物件的變數名稱捷徑。在呼叫時傳入但沒有宣告的引數， 我們可以用 `arguments[i]` 來操作該參數。

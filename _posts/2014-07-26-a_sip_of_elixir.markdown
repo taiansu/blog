@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 淺嚐 Elixir
-tags: Programming, Elixir
 date: 2014-07-26
+tags: [programming, Elixir]
 ---
 來聊一下最近在唸的新玩具： [Elixir](http://elixir-lang.org)。
 發音是：「ㄟ利ㄎ洗爾」

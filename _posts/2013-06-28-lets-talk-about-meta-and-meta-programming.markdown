@@ -3,7 +3,7 @@ layout: post
 title: "Let's talk about meta and meta-programming"
 date: 2013-06-28 17:49
 comments: true
-tags: Programming, Meta-Programming
+tags: [programming, "meta programming"]
 ---
 
 >「我的語言的界限，就是我的世界的界限。」  -- Ludwig Wittgenstein

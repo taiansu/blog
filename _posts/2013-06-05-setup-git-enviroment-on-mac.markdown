@@ -3,7 +3,7 @@ layout: post
 title: 在 OS X 作業系統安裝 git 環境
 date: 2013-06-05 01:15
 comments: true
-tags: Programming, Config
+tags: [programming, setup]
 ---
 
 基本上就是[某篇文章](/201210/setup-rails-environment-on-mountain-lion-from-scratch)的片段翻譯。

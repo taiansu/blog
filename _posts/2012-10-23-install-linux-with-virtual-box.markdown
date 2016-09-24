@@ -3,7 +3,7 @@ layout: post
 title: "VirtualBox 安裝 Linux Mint/Ubuntu 步驟"
 date: 2012-10-23 01:58
 comments: true
-tags: Programming, Config
+tags: [programming, setup]
 ---
 
 1. 下載 [Linux Mint](http://www.linuxmint.com/download.php)。或是你喜歡 [Ubuntu](http://www.ubuntu-tw.org/modules/tinyd0/)，也可以下載桌面版本，但是我在 VirtualBox 上跑 Ubuntu 12.04 的安裝程式慢到令人髮指，所以就裝 Linux Mint 13 Xfce, 64 bit 了…

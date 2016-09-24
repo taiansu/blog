@@ -21,8 +21,14 @@
               <div class="author-image" style="background-image: url({{ site.author_image }})">Blog Logo</div>
               <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">{{ site.author }}</h4>
               on
-              <time datetime="{{ page.date | date: "%F %R" }}">{{ page.date | date_to_string }}</time>
-              <!-- , tagged on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}} -->
+              <time datetime="{{ page.date | date_to_string }}">{{ page.date | date_to_string }}</time>
+              <span class="post-tag-{{tag}}">
+              {% for tag in page.tags %}
+                {% if forloop.first %} : {% endif %}
+                <a href="/tag/{{tag}}">{{tag}}</a>
+                {% unless forloop.last %},{% endunless %}
+              {% endfor %}
+              </span>
             </div>
             <div style="text-align:center">
               <a href="#topofpage" class="topofpage"><i class="fa fa-angle-down"></i></a>
@@ -38,7 +44,11 @@
               <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person">{{ page.author }}</h4>
               on
               <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date_to_string }}</time>
-              <!-- , tagged on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}} -->
+              {% for tag in page.tags %}
+                {% if forloop.first %} : {% endif %}
+                <a href="/tag/{{tag}}">{{tag}}</a>
+                {% unless forloop.last %},{% endunless %}
+              {% endfor %}
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ layout: post
 title: "An Apple Hotkey a day"
 date: 2012-10-11 22:01
 comments: true
-tags: "OS X"
+tags: [macOS]
 ---
 
 Update daily? Well, it's just a slogan.

@@ -3,7 +3,7 @@ layout: post
 title: "The beauty of Ruby: Array Tricks Part I"
 date: 2012-09-13 00:36
 comments: true
-tags: Programming, Ruby
+tags: [programming, Ruby]
 ---
 
 首先呢, 有兩個陣列...

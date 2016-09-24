@@ -3,7 +3,7 @@ layout: post
 title: Pipe of JavaScript&#58; _.chain()
 date: 2016-01-26 02:35
 comments: true
-tags: Programming, JavaScript, pipe
+tags: [programming, JavaScript]
 image: /assets/post_img/2016-01-26-lodash-chain/coffee-machine.png
 image2: /assets/post_img/2016-01-26-lodash-chain/coffee-machine-mobile.png
 ---

@@ -3,7 +3,7 @@ layout: post
 title: "Robert Nyman: 解釋 JavaScript 的 scope 及 closures"
 date: 2012-10-17 23:23
 comments: true
-tags: Programming, JavaScript
+tags: [programming, JavaScript]
 ---
 
 當發現我沒辦法向別人清楚的解釋一件事的時候，就會有一種「其實我自己也沒有弄的非常清楚」的認知。前陣子想解釋 JavaScript 裡的 closures 以慘敗收場。網路上翻到一篇文章看了之後有點「啊原來是這樣」。細讀之餘就順手翻譯一下，也許有人能用得上。
