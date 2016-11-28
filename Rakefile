@@ -10,6 +10,7 @@ task :build do
   sh 'JEKYLL_ENV=production bundle exec jekyll build'
 end
 
+desc 'Push'
 task :push do
   puts 'copy keybase.txt'
   FileUtils.cp 'priv/keybase.txt', '_site/keybase.txt'
@@ -18,6 +19,7 @@ task :push do
   puts '--- New post is online ---'
 end
 
+desc 'Dev'
 task :dev do
   sh 'bundle exec jekyll serve'
 end
