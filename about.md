@@ -24,3 +24,5 @@ permalink: /about/
 ###|> 喜歡 Fuctional programming language
 
 ###|> 以及貓、探戈、小說跟下雨天
+
+###|> 正在弄一個叫 [Mostly Functional](http://mostlyfn.xyz) 的程式影片教學
