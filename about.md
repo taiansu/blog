@@ -19,7 +19,7 @@ permalink: /about/
 
 ### |> 目前寫 Elixir / Phoenix 維生
 
-### |> RailsGirls Taiwan & Elixir Taiwan coorganizer
+### |> [RailsGirls Taiwan](https://www.facebook.com/railsgirlstw/?fref=ts) & [Elixir Taiwan](https://www.facebook.com/groups/elixir.tw/?fref=ts) coorganizer
 
 ### |> 喜歡 Fuctional programming language
 
