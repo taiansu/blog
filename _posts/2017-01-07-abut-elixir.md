@@ -28,7 +28,7 @@ Chris McCord 在 2016 Erlang Factory 演講，說一台 phoenix web server 可�
 而這些 process 裡，有一種特殊的角色叫 _supervisor_，他的工作是啟動並控管一群 process，當其中的 process 因故陣亡時，他也要依情況決定如何反應，例如補足不夠的 process，或是整批重新設定等等。
 
 Supervisor 也可以控管 supervisor，因此夠大的 Erlang/Elixir 系統，大多都會是一顆 supervisor
-tree，在出錯時會想盡辦法依設定自動復原。Phoenix 其實就是一顆 supervisor tree。
+tree，在出錯時會想盡辦法依設定自動復原。Phoenix 框架生成的應用程式其實就是一顆 supervisor tree。
 
 > Erlang The Move: II  
 > 你可以直接往它臉上開霰彈槍，它只會停一秒，然後繼續前進，就像魔鬼終結者裡演的那樣。
@@ -57,7 +57,7 @@ Youtube 上還曾經有示範在 AR Drone 四軸飛行器寫 bug，並且在空�
 
 由於語法上很像 Ruby，所以開始寫的時候有一種安全感。接著要開始習慣的是 Functional programming 的思考模式。我自己因為持續在碰 React/Redux 及 Rx.js，所以這部份對我來說相對比較輕鬆，而國外的幾篇心得都說從 Ruby 跳過來寫 Elixir，要做到一樣的事大約就是兩週到三個月的轉換期。
 
-前陣子還發生幫人家改 Ruby code，一直想要呼叫 `apply` 去動態呼叫, 被 Manic 提醒說「在 Ruby 裡那個叫 `send` 吧？」的糗事。
+前陣子還發生幫人家改 Ruby code，一直想要寫 `apply` 去動態呼叫, 被 Manic 提醒說「在 Ruby 裡那個叫 `send` 吧？」的糗事。
 
 再接下來就發現大多數的底層核心，都是靠 macro 機制跟 Erlang 的 OTP 來完成的。熟悉 Erlang 生態圈裡的做事方式，可以讓應用程式拿到更多平行、高容錯機制的好處，這些就得花時間來磨經驗了。
 
