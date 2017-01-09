@@ -55,7 +55,7 @@ Youtube 上還曾經有示範在 AR Drone 四軸飛行器寫 bug，並且在空�
 
 ## 目前為止的心得
 
-由於語法上很像 Ruby，所以開始寫的時候有一種安全感。接著要開始習慣的是 Functional programming 的思考模式。我自己因為持續在碰 React/Redux 及 Rx.js，所以這部份對我來說相對比較輕鬆，而國外的幾篇心得都說從 Ruby 跳過來寫 Elixir，要做到一樣的事大約就是兩到三個月的轉換期。
+由於語法上很像 Ruby，所以開始寫的時候有一種安全感。接著要開始習慣的是 Functional programming 的思考模式。我自己因為持續在碰 React/Redux 及 Rx.js，所以這部份對我來說相對比較輕鬆，而國外的幾篇心得都說從 Ruby 跳過來寫 Elixir，要做到一樣的事大約就是兩週到三個月的轉換期。
 
 前陣子還發生幫人家改 Ruby code，一直想要呼叫 `apply` 去動態呼叫, 被 Manic 提醒說「在 Ruby 裡那個叫 `send` 吧？」的糗事。
 
