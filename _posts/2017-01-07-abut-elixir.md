@@ -36,7 +36,7 @@ tree，在出錯時會想盡辦法依設定自動復原。Phoenix 其實就是�
 ### 3. Hot update
 我們從來沒有聽過因為電話系統要升級，所以某段時間大家都不能打電話的情況。Erlang 能做到在不影響其它運作中使用者的情況下，修復/升級部份元件。1990 拍的 [Erlang the movie](https://www.youtube.com/watch?v=xrIjfIjssLE) 後半段就有 Hot update 的示範。__注意__：*這是近三十年前的影片，非常 old school。*
 
-[Youtube](https://plus.google.com/+RichardCarlsson/posts/UBMensoXyxG) 上還曾經有示範在 AR Drone 四軸飛行器寫 bug，並且在空中飛行時把 bug 修掉繼續飛的影片，是所謂 "In-flight update, litterally"，但後來不知為何下架了。
+Youtube 上還曾經有示範在 AR Drone 四軸飛行器寫 bug，並且在空中飛行時把 bug 修掉繼續飛的[影片](https://plus.google.com/+RichardCarlsson/posts/UBMensoXyxG)，是所謂 "In-flight update, litterally"，但後來不知為何下架了。
 
 > Erlang [宣稱](http://stackoverflow.com/questions/8426897/erlangs-99-9999999-nine-nines-reliability) 曾在 AXD301 ATM 機器上達到 9 個 9 的上線時間，也就是 99.9999999%。
 
