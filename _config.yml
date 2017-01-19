@@ -25,7 +25,7 @@ kramdown:
 
 exclude: ["priv/*", "_draft/*"]
 
-url: "http://blog.taian.su" # the base hostname & protocol for your site
+url: "http://taian.su" # the base hostname & protocol for your site
 baseurl: ""
 #used to display twitter cards
 twitter_handle: '@taiansu'
