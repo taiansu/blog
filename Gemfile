@@ -11,5 +11,4 @@ group :jekyll_plugins do
 end
 group :development do
   gem 'rake'
-  gem 's3_website'
 end

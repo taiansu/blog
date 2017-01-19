@@ -8,7 +8,7 @@ title: "Tai-An Su"
 description: > # this means to ignore newlines until "email:"
    So Wrong, It's Right.
 
-email: i@taian.su
+email: taiansu@gmail.com
 #blog logo
 logo: "/assets/images/logo.png"
 # blog cover
@@ -23,7 +23,9 @@ permalink: "/:year-:month-:day-:title/"
 kramdown:
   input: GFM
 
-url: "http://taian.su" # the base hostname & protocol for your site
+exclude: ["priv/*", "_draft/*"]
+
+url: "http://blog.taian.su" # the base hostname & protocol for your site
 baseurl: ""
 #used to display twitter cards
 twitter_handle: '@taiansu'
