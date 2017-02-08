@@ -10,7 +10,7 @@ tags: [programming, Elixir]
 # Why Elixir
 是說去年底 Peepcode 還活著的時候有出過一集 Elixir 的教學。我一直蠻仰慕這個寫出這本厲害的 [Craft Rails Applications](http://pragprog.com/book/jvrails2/crafting-rails-applications) 的作者 [José Valim](https://twitter.com/josevalim) ，但是這影片一直在 stack 的最底端沒機會去看。( 話說 José 是巴西人，回頭去看影片，一直會聽到小舌音的 "ㄟ赫爾"，要仔細聽前後文才發現是 "error"。)
 
-一直到上次 [Dave Thomas](https://twitter.com/pragdave) 路過台灣被 Ruby Taiwan 社群拉來吃熱炒，席間聊到他寫的新書 [Programming Elixir](http://pragprog.com/book/elixir/programming-elixir) 。他說電腦跟手機核心愈來愈多，分散式運算是肯定是未來五年最重要的課題之一，也提到最後出線的也許不是 Elixir ，但是出頭的那個語言必然會有相似的概念 ( 看看 go 那個精美的 goroutine ) 。加上他總是說一年要學一門讓你重新思考的新語言，講的這麼有趣，一頓飯吃完腦也被順利的洗過一輪了。
+一直到上次 [Dave Thomas](https://twitter.com/pragdave) 路過台灣被 Ruby Taiwan 社群拉來[吃熱炒](http://rubytaiwan.kktix.cc/events/dave-drinkup)，席間聊到他寫的新書 [Programming Elixir](http://pragprog.com/book/elixir/programming-elixir) 。他說電腦跟手機核心愈來愈多，分散式運算是肯定是未來五年最重要的課題之一，也提到最後出線的也許不是 Elixir ，但是出頭的那個語言必然會有相似的概念 ( 看看 go 那個精美的 goroutine ) 。加上他總是說一年要學一門讓你重新思考的新語言，講的這麼有趣，一頓飯吃完腦也被順利的洗過一輪了。
 
 # What is Elixir
 
