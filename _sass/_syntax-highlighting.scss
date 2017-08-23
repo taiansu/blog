@@ -1,10 +1,12 @@
-pre.highlight { background-color: #404040 }
+$code-background: #222222;
+
+pre.highlight { background-color: $code-background }
 
 .highlight {
     @extend %vertical-rhythm;
     code { color: #f0f0f0 }
-    pre { background-color: #404040 }
-    .hll { background-color: #404040 }
+    pre { background-color: $code-background }
+    .hll { background-color: $code-background }
     .c { color: #999999; font-style: italic } /* Comment */
     .err { color: #a61717; background-color: #e3d2d2 } /* Error */
     .g { color: #d0d0d0 } /* Generic */
