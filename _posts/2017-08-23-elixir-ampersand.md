@@ -27,6 +27,10 @@ image2: /assets/post_img/elixir-ampersand/snow-mobile.jpg
 但在 Elixir 中，具名函式不加括號視同零參數的呼叫，因此我們需要有辦法將具名函式轉換成 lambda。這就是 `&` 的第一個用法。在轉換其它 module 的函式 (正式名稱叫 _remote function_) 時，語法是 `&Module.function/arity`，記得斜線後要帶上參數的個數。
 
 ```elixir
+Enum.map([:a, :b, :c], fn a -> Atom.to_string(a) end)
+
+# 等同於
+
 Enum.map([:a, :b, :c], &Atom.to_string/1)
 
 #=> ["a", "b", "c"]
@@ -110,7 +114,7 @@ take_five.(1..100)
 
 local function 也是一樣的:
 ```elixir
-first_elem = &elem(&1, 1)
+first_elem = &elem(&1, 0)
 first_elem.({1, 2, 3})
 #=> 1
 ```
