@@ -4,8 +4,8 @@ title: Elixir 的 & 運算子
 date: 2017-08-23 00:00
 comments: true
 tags: [programming, Elixir]
-image: /assets/post_img/elixir-ampersand/snow.jpg
-image2: /assets/post_img/elixir-ampersand/snow-mobile.jpg
+image: /assets/post_img/elixir-ampersand.jpg
+image2: /assets/post_img/elixir-ampersand-mobile.jpg
 ---
 
 在跟朋友討論 Elixir 的過程中，發現常會需要解釋 `&` 運算子的用法，決定寫篇完整的來科普一下。
