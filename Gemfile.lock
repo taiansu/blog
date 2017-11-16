@@ -229,6 +229,7 @@ DEPENDENCIES
   bourbon
   github-pages
   jekyll-paginate
+  jekyll-sitemap
   jemoji
   json!
   rake
