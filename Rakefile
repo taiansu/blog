@@ -22,5 +22,5 @@ end
 
 desc 'Dev'
 task :dev do
-  sh 'bundle exec jekyll serve'
+  sh 'bundle exec jekyll serve --incremental'
 end

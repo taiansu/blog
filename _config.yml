@@ -19,13 +19,13 @@ author: 'taiansu'
 author_image: "/assets/images/author.png"
 
 paginate: 5
-permalink: "/:year-:month-:day-:title/"
+permalink: "/:categories/:year-:month-:day-:title/"
 kramdown:
   input: GFM
 
 exclude: ["priv/*", "_draft/*"]
 
-url: "http://taian.su" # the base hostname & protocol for your site
+url: "https://taian.su" # the base hostname & protocol for your site
 baseurl: ""
 
 plugins:
