@@ -4,8 +4,8 @@ title: Elixir 二三事
 date: 2017-01-07 02:17
 comments: true
 tags: [programming, Elixir]
-image: /assets/post_img/2017-01-07-about-elixir/railway-station.jpg
-image2: /assets/post_img/2017-01-07-about-elixir/railway-station-mobile.jpg
+image: /assets/post_img/2017-01-07-about-elixir/railway-station-compress.jpg
+image2: /assets/post_img/2017-01-07-about-elixir/railway-station-mobile-compress.jpg
 ---
 
 自從 2014 被 [Dave Thomas 推坑](../2014-07-26-a_sip_of_elixir/)至今也好一陣子了。前些時候發現自己被 tag

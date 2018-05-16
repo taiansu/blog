@@ -4,8 +4,8 @@ title: "List 操作小技巧"
 date: 2017-11-10 19:10
 comments: true
 tags: [programming, Elixir]
-image: /assets/post_img/list-trick.jpg
-image2: /assets/post_img/list-trick-mobile.jpg
+image: /assets/post_img/list-trick-compress.jpg
+image2: /assets/post_img/list-trick-mobile-compress.jpg
 ---
 
 最近寫 Elixir 時，有個慣用的 functional 小手法，順手記錄一下。

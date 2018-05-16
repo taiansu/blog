@@ -24,25 +24,25 @@ tags: [mac, trick]
 <br />
 1. 首先到 [https://pqrs.org/osx/karabiner/index.html](https://pqrs.org/osx/karabiner/index.html)
 下載並依指示安裝，執行後會看到底下的畫面(記得要到**系統偏好設定 > 安全性與隱私權**打開相應的權限)：
-  ![](/assets/post_img/bcp1.png)
+  ![](/assets/post_img/bcp1-compress.png)
 2. 接著切換到 [Complex Modifications]，並按下左下角的 [Add rule]
-  ![](/assets/post_img/bcp2.png)
+  ![](/assets/post_img/bcp2-compress.png)
 3. 按下上方的 [import more rules from the Internet]
-  ![](/assets/post_img/bcp3.png)
+  ![](/assets/post_img/bcp3-compress.png)
 4. 這時瀏覽器會開啟，列入可以匯入的各種規則，找到 **Modify Keys** 區塊下的 **Change caps_lock
    key**，按下右邊的 [Import]
-  ![](/assets/post_img/bcp4.png)
+  ![](/assets/post_img/bcp4-compress.png)
 5. 回到 Karabiner 視窗，就可以看到多出一些可用的規則。找到 **Change caps_lock to control if pressed
    with other keys, to escape if pressed alone.**，按下右邊的 [Enable]。這個設定會在單獨按下時觸發
    [ESC]，而跟其它鍵一起按的時候變成 [Ctrl + key]
-  ![](/assets/post_img/bcp5.png)
+  ![](/assets/post_img/bcp5-compress.png)
 6. 雖然上面的設定也很不錯，但是我還是想要切換輸入法。這就要動用到編輯器了，用你喜歡的編輯器打開
    "~/.config/karabiner/karabiner.json"，找到我們匯入的規則區塊，也就是寫著 "description": "Change caps_lock to control..." 的那個 JSON object (花括號)。
-  ![](/assets/post_img/bcp6.png)
+  ![](/assets/post_img/bcp6-compress.png)
 7. 將底下的 "to_if_alone" 裡的 **key_code** 從 "esc" 改成 "caps_lock"，為了避免誤解，也順便將上方說明改成 "...to caps_lock if press alone."
-  ![](/assets/post_img/bcp7.png)
+  ![](/assets/post_img/bcp7-compress.png)
 8. 要切換輸入法，記得要在 macOS 的**系統偏好設定 > 鍵盤 > 輸入方式** ，將**使用大寫鎖定鍵來切換...** 核取方塊打勾  
-  ![](/assets/post_img/bcp8.png)
+  ![](/assets/post_img/bcp8-compress.png)
 
 *Note:* 這個方式在切換到 macOS 內建的輸入法，如注音或是雙拼等都運作的很好。而我個人慣用的嘸蝦米，則是第一次要用 [Ctrl + Space] 切換到嘸蝦米之後，按下 [Ctrl] 可以輸入英文，再按一次回到嘸蝦米。不過右上角的輸入法則始終都會顯示嘸蝦米。 
 

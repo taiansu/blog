@@ -4,8 +4,8 @@ title: Pipe of JavaScript&#58; _.chain()
 date: 2016-01-26 02:35
 comments: true
 tags: [programming, JavaScript]
-image: /assets/post_img/2016-01-26-lodash-chain/coffee-machine.png
-image2: /assets/post_img/2016-01-26-lodash-chain/coffee-machine-mobile.png
+image: /assets/post_img/2016-01-26-lodash-chain/coffee-machine-compress.png
+image2: /assets/post_img/2016-01-26-lodash-chain/coffee-machine-mobile-compress.png
 ---
 
 不知道從什麼時候開始，愈來愈喜歡用 functional 的寫法來處理問題。在看完 [JavaScript
