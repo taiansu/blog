@@ -23,7 +23,7 @@ permalink: "/:categories/:year-:month-:day-:title/"
 kramdown:
   input: GFM
 
-exclude: ["priv/*", "_draft/*"]
+exclude: ["priv/*", "_drafts/*"]
 
 url: "https://taian.su" # the base hostname & protocol for your site
 baseurl: ""
