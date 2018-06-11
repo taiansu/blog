@@ -3,7 +3,7 @@ layout: post
 title: "The kid (back) in town."
 date: 2012-04-29 03:35
 comments: true
-tags: [programming]
+tags: [學程式]
 ---
 
 Hello, world of blog. Again.

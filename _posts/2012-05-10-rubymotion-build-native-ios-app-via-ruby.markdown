@@ -3,7 +3,7 @@ layout: post
 title: "RubyMotion: 用 Ruby 寫原生 iOS app"
 date: 2012-05-10 01:12
 comments: true
-tags: [programming, Ruby]
+tags: [學程式, Ruby]
 ---
 
   故事是這樣的，2007 年的某個時刻，Apple 公司的 Laurent Sansonetti 公佈了 MacRuby，一個 Object-C 執行期的開源動態解析器。能夠用 Ruby 直接操作 Cocoa API。稍稍的降低了開發 OS X 桌面程式的痛苦程度。當然 Ruby 社群們殷殷期盼的,就是能夠在 iOS 上如法泡製。

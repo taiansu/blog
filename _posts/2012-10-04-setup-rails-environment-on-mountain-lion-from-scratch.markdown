@@ -3,7 +3,7 @@ layout: post
 title: "Setup Rails environment on Mountain Lion from scratch"
 date: 2012-10-04 10:37
 comments: true
-tags: [programming, setup]
+tags: [programming, "env setup"]
 ---
 
 A humble (\*caught) guide for helping setup Rails environment on Mountain Lion with rbenv.

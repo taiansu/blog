@@ -3,7 +3,7 @@ layout: post
 title: "在 Windows 7 64-bit 上使用 Guard"
 date: 2012-05-12 01:13
 comments: true
-tags: [programming, setup]
+tags: [學程式, 環境設定]
 ---
 
   寫Rails的人都知道 [Guard](https://github.com/guard/guard) 實在好用的要命，修改檔案後按下存檔的那一瞬間，就幫你跑 RSpec/jasmine/spork 測試、還能自動重新整理頁面。

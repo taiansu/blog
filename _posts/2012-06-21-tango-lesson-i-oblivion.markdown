@@ -3,7 +3,7 @@ layout: post
 title: "Tango Lesson: 關於遺忘，還有那些不忍遺忘的"
 date: 2012-06-21 23:07
 comments: true
-tags: [music]
+tags: [聽音樂]
 ---
 
 記憶裡，那是升高三的暑假最後幾天，把身上最後一些零用錢湊下來去逛了唱片行。現在想想，真不知道那時候的我，怎麼會想到要買這樣的東西。

@@ -3,7 +3,7 @@ layout: post
 title: Elixir 的 & 運算子
 date: 2017-08-23 00:00
 comments: true
-tags: [programming, Elixir]
+tags: [學程式, 函數式編程, Elixir]
 image: /assets/post_img/elixir-ampersand-compress.jpg
 image2: /assets/post_img/elixir-ampersand-mobile-compress.jpg
 ---

@@ -3,7 +3,7 @@ layout: post
 title: " JavaScript 和 Coffeescript的風味: II. 物件引數與更多的 Splats"
 date: 2012-06-19 23:10
 comments: true
-tags: [programming, CoffeeScript]
+tags: [學程式, CoffeeScript]
 ---
 
   [上一篇](/201205/taste-of-javascript-and-coffeescript-i-arguments/)提到呼叫 JavaScript 函式的引數可以是任意值，但是當函式需要超過三個引數時，由於不像強型別語言有型別及引數個數的檢查，在呼叫時要注意順序是很麻煩的事。實務上常會使用物件來處理大量引數的需求。

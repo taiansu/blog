@@ -3,7 +3,7 @@ layout: post
 title: "Beyond Caps lock"
 date: 2017-11-10 19:10
 comments: true
-tags: [mac, trick]
+tags: [mac, 小技巧]
 ---
 
 應該不只一次跟別人提起：「如果這幾年用 mac 有學到些什麼的話，最重要的一件事肯定是**把 Caps lock
@@ -19,7 +19,7 @@ tags: [mac, trick]
 1. 當快速按下 Caps lock 並放開，觸發**切換輸入法**
 2. 如果按著 Caps lock，並按下另一顆鍵，則視為 **Ctrl + key**
 
-是的，這是辦得到的。但需要 [Karabiner](https://pqrs.org/osx/karabiner/) 這個免費軟體，並稍加修改。  
+是的，這是辦得到的。但需要 [Karabiner](https://pqrs.org/osx/karabiner/) 這個免費軟體，並稍加修改。
 
 <br />
 1. 首先到 [https://pqrs.org/osx/karabiner/index.html](https://pqrs.org/osx/karabiner/index.html)
@@ -41,10 +41,10 @@ tags: [mac, trick]
   ![](/assets/post_img/bcp6-compress.png)
 7. 將底下的 "to_if_alone" 裡的 **key_code** 從 "esc" 改成 "caps_lock"，為了避免誤解，也順便將上方說明改成 "...to caps_lock if press alone."
   ![](/assets/post_img/bcp7-compress.png)
-8. 要切換輸入法，記得要在 macOS 的**系統偏好設定 > 鍵盤 > 輸入方式** ，將**使用大寫鎖定鍵來切換...** 核取方塊打勾  
+8. 要切換輸入法，記得要在 macOS 的**系統偏好設定 > 鍵盤 > 輸入方式** ，將**使用大寫鎖定鍵來切換...** 核取方塊打勾
   ![](/assets/post_img/bcp8-compress.png)
 
-*Note:* 這個方式在切換到 macOS 內建的輸入法，如注音或是雙拼等都運作的很好。而我個人慣用的嘸蝦米，則是第一次要用 [Ctrl + Space] 切換到嘸蝦米之後，按下 [Ctrl] 可以輸入英文，再按一次回到嘸蝦米。不過右上角的輸入法則始終都會顯示嘸蝦米。 
+*Note:* 這個方式在切換到 macOS 內建的輸入法，如注音或是雙拼等都運作的很好。而我個人慣用的嘸蝦米，則是第一次要用 [Ctrl + Space] 切換到嘸蝦米之後，按下 [Ctrl] 可以輸入英文，再按一次回到嘸蝦米。不過右上角的輸入法則始終都會顯示嘸蝦米。
 
 *Note2:* 我的系統有裝 Better touch tool，本來想用它來改，但目前似乎不提供這種功能。但 BTT 跟 Karabiner 一起運用目前都蠻正常的。
 

@@ -3,7 +3,7 @@ layout: post
 title: "List 操作小技巧"
 date: 2017-11-10 19:10
 comments: true
-tags: [programming, Elixir]
+tags: [學程式, 函數式編程, Elixir]
 image: /assets/post_img/list-trick-compress.jpg
 image2: /assets/post_img/list-trick-mobile-compress.jpg
 ---

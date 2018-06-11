@@ -3,7 +3,7 @@ layout: post
 title: Elixir 二三事
 date: 2017-01-07 02:17
 comments: true
-tags: [programming, Elixir]
+tags: [學程式, 函數式編程, Elixir]
 image: /assets/post_img/2017-01-07-about-elixir/railway-station-compress.jpg
 image2: /assets/post_img/2017-01-07-about-elixir/railway-station-mobile-compress.jpg
 ---

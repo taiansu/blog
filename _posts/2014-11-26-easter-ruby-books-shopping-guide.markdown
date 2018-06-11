@@ -2,7 +2,7 @@
 layout: post
 title: 2014 復活節特價 Ruby 書敗家指南
 date: 2014-11-26
-tags: [programming, Ruby, "buying guide"]
+tags: [學程式, Ruby, "buying guide"]
 ---
 
 [@JuanitoFatas](https://twitter.com/juanitofatas) 今天分享了 [紅寶石鐵道漫遊指南](http://www.slideshare.net/katehuang0320/ss-42007998)，

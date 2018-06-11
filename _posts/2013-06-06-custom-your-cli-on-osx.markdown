@@ -3,7 +3,7 @@ layout: post
 title: 量身訂作 Mac 的 Command Line Interface
 date: 2013-06-06 00:42
 comments: true
-tags: [setup]
+tags: [mac, 環境設定]
 ---
 
 之前答應的事欠很久，就用這篇來還吧。

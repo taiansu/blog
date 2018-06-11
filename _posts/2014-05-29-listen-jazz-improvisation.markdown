@@ -2,7 +2,7 @@
 layout: post
 title: "Listen Jazz: Improvisation"
 date: 2014-05-29
-tags: [music]
+tags: [聽音樂]
 ---
 
 話說幾年前有個部落格叫「爵士道 (Jazztao)」，雖然生性散漫的只寫了三、五篇文章。最後還因為閃神不小心砍掉整個 Google 帳號而從此沉沒。但有時想起還是會好奇著：「要是那時繼續寫下去，會是怎麼樣子呢?」
