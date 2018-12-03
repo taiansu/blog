@@ -24,7 +24,7 @@ Erlang / Elixir 裡的並行機制是俗稱的 Actor model。在整個運行的�
 
 首先我們可以用 `spawn/1` 來生成一個 light-weight process (下稱 process)，傳入的參數是一個函數。`spawn/1` 的回傳值則是生成的 process 的 pid。而 process 間的溝通，則是用 `send/2` 帶上 `pid` 及要傳送的訊息。
 
-例如我們可以讓新的 process 進行計算後，將結果傳給自己。由於 iex ( Elixir 的 repl ) 也是作為一個 process 啟動的，所以用 `self/0` 也可以拿到它的 pid，我們用它來試試訊息傳遞是怎麼一回事。到此為止是上次 meetup 時分享的內容。
+例如我們可以讓新的 process 進行計算後，將結果傳給自己。由於 iex ( Elixir 的 repl ) 也是作為一個 process 啟動的，所以用 `self/0` 也可以拿到它的 pid，我們用它來試試訊息傳遞是怎麼一回事。
 
 註：依 Elixir 慣例，`spawn/1` 代表名為 `spawn`， 接收**一個參數**的函式。其它依此類推。
 
@@ -43,6 +43,9 @@ flush() # 將收到的訊息全部沖出來看 (iex 限定函式)
 上例的圖示如下，我們在 iex 中，用 `self/0` 找到自己的 pid 為 0.101.0，用 `spawn/1` 生成一個新的 process，讓它在計算完成後，將結果用訊息送回 0.101.0。
 
 ![](/assets/post_img/2018-12-03-elixir-actor-model/spawn.png)
+
+到此為止是上次 meetup 時分享的內容。
+
 
 ### 用 `receive/1` 檢查信箱
 每個 actor (也就是 process) 都分別有一個不與其它人共用的信箱，依**傳入時序**存放未處理的訊息。讀取訊息時，則是依 FIFO 的順序取出。大概像是這樣：
