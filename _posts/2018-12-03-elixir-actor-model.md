@@ -139,17 +139,17 @@ end
 
 ## 在 iex 裡操作生出來的 process
 counter = FibCounter.start
-send(c, :next)
-send(c, {:get, self()})
-send(c, :next)
-send(c, :next)
-send(c, :next)
-send(c, :next)
-send(c, {:get, self()})
-send(c, :reset)
-send(c, {:get, self()})
+send(counter, :next)
+send(counter, {:get, self()})
+send(counter, :next)
+send(counter, :next)
+send(counter, :next)
+send(counter, :next)
+send(counter, {:get, self()})
+send(counter, :reset)
+send(counter, {:get, self()})
 flush # => 拿到三條訊息，1, 5 跟 0
-send(c, :kabom)
+send(counter, :kabom)
 ```
 
 應用程式裡我們可以到處傳遞 counter 這個 process，任何人都可以對它發送 `:next` 或是 `{:get, caller_pid}` 等訊息。
