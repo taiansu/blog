@@ -16,7 +16,7 @@ image: /assets/post_img/2018-12-03-elixir-actor-model/title-compress.jpg
 
 Erlang / Elixir 裡的並行機制是俗稱的 Actor model。在整個運行的系統裡，每個獨立執行的單位稱之為 Actor。各個 Actor 間不與其它人共享記憶體，而是透過互相傳遞訊息來得知其它 Actor 所持有的資訊。就像是一個房間裡有很多人，每個人都各自做自己的事，如果有某個人想知道另一個人的知識，那就要主動開口問他並等待回覆。
 
-在 Erlang / Elixir 裡，整個運行系統 (BEAM 虛擬機) 裡，可以產生多個 light-weight process。這個 process 並非 linux 作業系統的 process，而是啟動耗時 1~3 µs 的輕量虛擬機 process。如果你寫過物件導向的語言，可以把它想像成類似 object instance 的東西。
+在 Erlang / Elixir 裡，整個運行系統 (BEAM 虛擬機) 裡，可以產生多個 light-weight process。這個 process 並非作業系統的 process，而是啟動耗時 1~3 µs 的輕量虛擬機 process。如果你寫過物件導向的語言，可以把它想像成類似 object instance 的東西。
 
 
 
