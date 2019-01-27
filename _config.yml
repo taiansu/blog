@@ -4,7 +4,7 @@ plugins:
   - jekyll-paginate
 
 # Site settings
-title: "Tai-An Su"
+title: "Tai An, Su"
 description: > # this means to ignore newlines until "email:"
    Mostly Functional.
 
