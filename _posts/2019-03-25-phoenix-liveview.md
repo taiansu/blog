@@ -57,7 +57,6 @@ image2: /assets/post_img/2019-03-25-phoenix-liveview/title-mobile.jpg
 即使天時地利人和，總算把整個站改成了 Single Page Application 加上原本的後端的 Server。此時後端的 Server 已經變成一個純 API Server 了，那麼就會開始懷疑後端 Server 的實作方式是否符合目前架構的特性。舉例來說，為什麼要用 Rails 做純 API Server 呢？是不是改成 Sinatra ，甚至用 Golang 會比較好？
 
 
-
 # Phoenix LiveView
 
 在許多情況下，我們只是想要一些些比較好的使用者互動而己。
@@ -69,7 +68,7 @@ Chris McCord 在 announcement post 裡是這麼說的：
 > *Phoenix LiveView is an exciting new library which enables rich, real-time user experiences with server-rendered HTML. LiveView powered applications are stateful on the server with bidrectional communication via WebSockets, offering a vastly simplified programming model compared to JavaScript alternatives.*
 
 
-Phoenix LiveView 讓你可以在 HTML tag 上註明事件綁定的 tag，但不是由前端進行處理，而是在事件觸發時，透過 websocket 將資料傳到後端，處理完成時後端主動將資料推至前端進行部份渲染。這麼一來，我們的網頁就有了保持狀態的能力，也就是上面引言中 “Stateful” 的意思。
+Phoenix LiveView 讓你可以在 HTML tag 上用 `phx-` 屬性註明綁定的事件，但不是由前端進行處理，而是在事件觸發時，透過 websocket 將資料傳到後端，處理完成時後端主動將資料推至前端進行部份渲染。這麼一來，我們的網頁就有了保持狀態的能力，也就是上面引言中 “Stateful” 的意思。
 
 在下圖的例子中，我們用 `phx-click="inc"`幫 + 這個按鈕綁上 `click` 事件。並在後端用 `handle_event/3` 處理接收到的 `inc` 事件資料。這樣一來每次按下這個按鈕，就會觸發事件，用 websocket 傳送資料到後端。處理完成後，一樣用 websocket 將資料傳回前端重新渲染 。由於 `handle_event/3` 是在 server 端處理的，所以這邊的程式可以直接呼叫原本的流程及驗證邏輯等既有程式。
 
@@ -114,7 +113,7 @@ José Valim 跟 Chris McCord 都說過他們開發這個語言/框架的最主�
 * 應用程式裡需要大量使用者互動的地方，如提示訊息、非同步工作狀態顯示、進度條、儀表板、附掛小工具等
 * 表單互動。如驗證、會依不同選項變動的動態表單、設定精靈等
 * 會需要即時知道 server 端狀態的東西
-* 在需要 server 參與的使用者互動，如搜尋、自動補完等
+* 需要 server 參與的使用者互動，如搜尋、自動補完等
 
 
 
@@ -124,7 +123,7 @@ José Valim 跟 Chris McCord 都說過他們開發這個語言/框架的最主�
 
 ## 個人想法
 
-Client side rendering 在這五六年蓬勃發展，也有它無可取代的應用場景。例如 Gmail、Netflix 等等。另外 server 端只做 API，而由不同樣態的客戶端如瀏覽器、手機 app 分別與之對接也是在規模變大時很常見的做法。
+Client side rendering 在這五六年蓬勃發展，也有它無可取代的應用場景。例如 Gmail、Netflix 等等。另外 server 端只做 API，而由不同樣態的客戶端如瀏覽器、手機 App 分別與之對接也是在規模變大時很常見的做法。
 
 ![](../assets/post_img/2019-03-25-phoenix-liveview/axis.png)
 
@@ -134,7 +133,7 @@ Client side rendering 在這五六年蓬勃發展，也有它無可取代的應�
 
 
 
-順帶一提目前已經有人把 [Phoenix LiveView 跟 Vue Component 搭在一起用](https://github.com/montag/Live-Vue-Webcomponents) ，依這個思路與 React 或 Web Component 合併看來也完全可行，只是還想不到能這樣能拿來幹麼就是了。
+順帶一提目前已經有人把 [Phoenix LiveView 跟 Vue Component 搭在一起用](https://github.com/montag/Live-Vue-Webcomponents) ，依這個思路與 React 或 Web Component 合併看來也完全可行，只是除了在遷移的過渡情況之外，還想不到能這樣能拿來幹麼就是了。
 
 
 
