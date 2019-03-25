@@ -83,7 +83,7 @@ Phoenix LiveView 讓你可以在 HTML tag 上註明事件綁定的 tag，但不�
 
 José Valim 跟 Chris McCord 都說過他們開發這個語言/框架的最主要原因，就是平行化處理。因此 Phoenix 自專案開始就內建了 Channel 這個處理 WebSocket 協定的模組，在建立連線後，Server 端除了被動的接收從 Client 來的訊息之外，也可以主動推送資料到 Client 端。適用在聊天室等 Cllient 端需要知道 Server 端的連續狀態變化等場景。
 
-得益於 Elixir / Erlang 優異的平行處理能力，Phoenix Channel 有在  55,000 使用者同時連線 websocket 的情況下，廣播訊息至200 人的聊天室裡平均 0.24 秒的[記錄]()。建構於其上的 Phoenix LiveView 甚至在官方 demo 裡放了一個 server side rendering 的動畫範例 **rainbow** ，純靠 server side 不斷的將更新的 div 推送到前端製造動畫效果。
+得益於 Elixir / Erlang 優異的平行處理能力，Phoenix Channel 有在  55,000 使用者同時連線 websocket 的情況下，廣播訊息至 200 人的聊天室裡平均 0.24 秒的[記錄]()。建構於其上的 Phoenix LiveView 甚至在官方 demo 裡放了一個 server side rendering 的動畫範例 **rainbow** ，純靠 server side 不斷的將更新的 div 推送到前端製造動畫效果。
 
 在我的電腦 (MacBook pro 15" 2015) 上，在不開 development tools 的情況下，60 fps 相當順暢，超過 85 fps 就會偶爾會出現卡頓感了。
 
