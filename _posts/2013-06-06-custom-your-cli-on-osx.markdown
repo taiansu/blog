@@ -72,3 +72,8 @@ __UPDATE__:
 
 後來我改用 [prezto](https://github.com/sorin-ionescu/prezto) 來取代 ohmyzsh，功能跟佈景主題比較少，但啟動速度較快.
 
+
+
+__Even Newer Update:__
+
+再後來就用純 zshrc + zshenv 改了。可以參考 [我的 dotfiles](https://github.com/taiansu/dotfiles)
