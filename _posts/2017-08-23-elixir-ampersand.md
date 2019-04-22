@@ -4,8 +4,8 @@ title: Elixir 的 & 運算子
 date: 2017-08-23 00:00
 comments: true
 tags: [學程式, 函數式編程, Elixir]
-image: /assets/post_img/elixir-ampersand-compress.jpg
-image2: /assets/post_img/elixir-ampersand-mobile-compress.jpg
+image: /assets/post\_img/elixir-ampersand-compress.jpg
+image2: /assets/post\_img/elixir-ampersand-mobile-compress.jpg
 ---
 
 在跟朋友討論 Elixir 的過程中，發現常會需要解釋 `&` 運算子的用法，決定寫篇完整的來科普一下。
@@ -34,6 +34,12 @@ Enum.map([:a, :b, :c], fn a -> Atom.to_string(a) end)
 Enum.map([:a, :b, :c], &Atom.to_string/1)
 
 #=> ["a", "b", "c"]
+
+# 不能這樣寫
+Enum.map([:a, :b, :c], Atom.to_string)
+
+# 因為上一句會被解析成這樣：
+Enum.map([:a, :b, :c], Atom.to_string())
 ```
 
 當然轉換 local fucntion 或 imported function 也沒問題，不加 Module 名稱就可以。
@@ -61,7 +67,7 @@ Elixir/Erlang 裡，匿名函式的宣告比較冗長。因此遇到函式本體
 Enum.map([1, 2, 3], fn i -> i * 2 end)
 ```
 
-這種情況就是 `&` 運算子派上用場的另一個地方，順帶一提，也是最多人感到困惑的用法。
+這種情況就是 `&` 運算子派上用場的另一個地方，這也是最多人感到困惑的用法。
 
 ```elixir
 Enum.map([1, 2, 3], &(&1 * 2))
@@ -85,7 +91,7 @@ t.(1, 2)
 
 ## 更多參數及使用判準
 
-上例中，`&1` 是匿名函式接收到的第一個參數，可以推導出多個參數也是可以的。
+`&1` 是匿名函式接收到的第一個參數，多個參數也是可以的，就是 `&2`、`&3` 遞增下去。
 ```elixir
 fn = &(&1 + &2 + &3)
 
@@ -94,7 +100,7 @@ fn.(1, 2, 3) #=> 6
 
 不過濫用 `&()` 語法的話，程式很容易就會變得難讀。個人的判準是內部超過 10 個字元，或是有三個以上的運算子，就寧願用 `fn -> end` 來宣告了。
 
-那麼要做出 Haskell 的 [identity](https://www.haskell.org/hoogle/?hoogle=id) 就簡單了： `&(&1)`。
+那麼要做出 Haskell 的 [identity][1] 就簡單了： `&(&1)`。
 ```elixir
 Enum.group_by(["a", "b", "c", "a", "b"], &(&1))
 
@@ -124,3 +130,5 @@ first_elem.({1, 2, 3})
 ---
 
 Photo by <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px;" href="https://unsplash.com/@aaronburden?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Aaron Burden"><span style="display:inline-block;padding:2px 3px;"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-1px;fill:white;" viewBox="0 0 32 32"><title></title><path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span style="display:inline-block;padding:2px 3px;">Aaron Burden</span></a>
+
+[1]:	https://www.haskell.org/hoogle/?hoogle=id
