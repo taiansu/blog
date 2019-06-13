@@ -26,7 +26,7 @@ tags: [學程式, Elixir, 函數式編程]
 
 1. 安裝 asdf 及 erlang 需要的元件
 ```
-brew install \
+$ brew install \
   coreutils automake autoconf openssl \
   libyaml readline libxslt libtool unixodbc \
   unzip curl wxmac
@@ -37,11 +37,10 @@ brew install \
 $ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.2
 ```
 
-3. 將 asdf init script 加到 bashrc 中，這步之後需要重啟 shell。
-zsh 及 fish 參考官方說明： https://asdf-vm.com/#/core-manage-asdf-vm
+3. 將 asdf init script 加到 bashrc 中，這步之後需要重啟 shell。zsh 及 fish 參考[官方說明](https://asdf-vm.com/#/core-manage-asdf-vm)
 ```
-echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
-echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
+$ echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+$ echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
 ```
 
 4. 安裝 asdf 的 elixir 及 erlang plugin
@@ -58,8 +57,7 @@ asdf global erlang 22.0.2
 ```
 
 
-6. 用 asdf 找到可用的 Elixir 版本並安裝。
-由於 Elixir 是預編譯版本，所以可以選擇用符合自己 Erlang 版本編譯的版本。
+6. 用 asdf 找到可用的 Elixir 版本並安裝。由於 Elixir 是預編譯版本，所以可以選擇用符合自己 Erlang 版本編譯的版本。
 ```
 asdf list-all elixir
 asdf install elixir 1.8.2-otp-22
