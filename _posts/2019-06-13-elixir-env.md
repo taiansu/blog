@@ -14,7 +14,7 @@ tags: [學程式, Elixir, 函數式編程]
 # Mac
 
 
-## 使用 asdf (推薦)
+## A. 使用 asdf (推薦)
 
 [asdf](https://github.com/asdf-vm/asdf) 是類 unix 作業系統上類似 rvm, rbenv 或 nvm 的語言版本管理套件。特別之處在於它可以安裝不同的 plugin 來管理[多種不同的語言](https://github.com/asdf-vm/asdf-plugins)。
 
@@ -82,15 +82,20 @@ $ asdf install nodejs 12.4.0
 $ asdf global nodejs 12.4.0
 ```
 
-完工！試一下會不會動：
+### 完工
+
+試一下會不會動：
 ```
 $ elixir -v
 $ which erl
+
+## 如果有裝 phoenix 的話
+$ mix phx.new --version
 ```
 
 ---
 
-## 使用 homebrew
+## B. 使用 homebrew
 
 由於這個方法會跟著 homebrew upgrade 一起更新版本，所以比較適合下載來玩一下的情況。長時間的正式專案開發可能會遇到一些雷。
 
@@ -100,19 +105,19 @@ $ brew install erlang elixir
 
 ---
 
-## 使用 Docker
+## C. 使用 Docker
 
 1. 安裝 docker
 ```
 $ brew cask install docker
 ```
 
-2. 拉官方 image
-```
+2. 拉官方 image。也可以不加 tag 直接拉預設版本，但是該版本有 1.08GB。相較之下 alpine 版只有 82 MB。
+	```
 $ docker pull elixir:1.8-otp-22-alpine
+	```
 ```
-
-也可以不加 tag 直接拉預設版本，但是該版本有 1.08GB。
+	
 
 3. 跑起來
 ```
@@ -123,7 +128,7 @@ $ docker run elixir:1.8-otp-22-alpine -it --rm iex
 
 # Ubuntu/Debian
 
-## 使用 asdf
+## A. 使用 asdf
 
 1. 安裝 asdf 及 erlang 需要的元件
 ```
@@ -140,10 +145,11 @@ libpng-dev libssh-dev unixodbc-dev
 
 # Windows
 
-## 使用 Linux Sub System (推薦)
+## A. 使用 Linux Sub System (推薦)
 
-## 使用 scoop (第二優先選擇)
+## B. 使用 scoop (第二優先選擇)
 
-## 使用 chocolatey
+## C. 使用 chocolatey
 
-## 使用 Docker
+## D. 使用 Docker
+```
