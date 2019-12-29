@@ -1,5 +1,5 @@
 ---
-比村奇石layout: post
+layout: post
 title: "Phoenix LiveView： 概念篇"
 date: 2019-03-25 03:10
 comments: true
