@@ -2,8 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `Tai An Su`,
     author: `taiansu`,
-    description: `Mostly functional`,
-    siteUrl: `https://taian.su/`,
+    description: `mostly functional`,
+    siteUrl: `https://taian.su`,
     social: {
       twitter: `taiansu`,
       github: `taiansu`,
@@ -24,14 +24,17 @@ module.exports = {
         name: `assets`,
       },
     },
+
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        extensions: ['.mdx', '.md'],
+        defaultLayouts: require.resolve('./src/components/layout.js'),
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 590,
+              maxWidth: 1280,
             },
           },
           {
@@ -40,10 +43,24 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+          },
+
+          {
+            resolve: `gatsby-remark-smartypants`,
+          },
+          {
+            resolve: `gatsby-remark-prismjs`,
+          },
         ],
+        plugins: [`gatsby-remark-images`],
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [`gatsby-remark-mathjax`],
       },
     },
     `gatsby-transformer-sharp`,
@@ -54,12 +71,71 @@ module.exports = {
         //trackingId: `ADD YOUR TRACKING ID HERE`,
       },
     },
-    `gatsby-plugin-feed`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  data: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ 'content:encoded': edge.node.body }],
+                })
+              })
+            },
+
+            /* if you want to filter for only published posts, you can do
+             * something like this:
+             * filter: { frontmatter: { published: { ne: false } } }
+             * just make sure to add a published frontmatter field to all posts,
+             * otherwise gatsby will complain
+             **/
+            query: `
+            {
+              allMdx(
+                limit: 1000,
+                sort: { order: DESC, fields: [frontmatter___date] },
+                filter: { frontmatter: { published: { ne: false } } },
+              ) {
+                edges {
+                  node {
+                    fields { slug }
+                    frontmatter {
+                      title
+                      date
+                    }
+                    body
+                  }
+                }
+              }
+            }
+            `,
+            output: '/rss.xml',
+            title: 'TaiAnSu RSS feed',
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Tai An Su's Blog`,
+        short_name: `taiansu`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#363636`,
@@ -68,14 +144,9 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
-    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-postcss`,
   ],
 }

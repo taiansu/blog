@@ -1,0 +1,93 @@
+@tailwind base;
+
+body {
+  @apply antialiased;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+menu,
+nav,
+section,
+summary {
+  @apply block;
+}
+
+audio,
+canvas,
+progress,
+video {
+ @apply inline-block;
+}
+
+h1 {
+  @apply text-2xl font-bold;
+}
+h2 {
+  @apply text-2xl;
+}
+h3 {
+  @apply text-xl font-bold;
+}
+h4 {
+  @apply text-lg;
+}
+h5 {
+  @apply text-lg font-thin;
+}
+
+
+a {
+  @apply bg-transparent no-underline;
+  -webkit-text-decoration-skip: objects;
+}
+a:active,
+a:hover {
+  @apply outline-none;
+}
+
+code,
+kbd,
+pre,
+samp {
+  @apply font-mono text-base;
+}
+
+code {
+  @apply p-0 rounded;
+  background-color: hsla(0, 0%, 0%, 0.04);
+  font-family: 'Source Code Pro', 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono',
+    'Liberation Mono', Menlo, Courier, monospace;
+}
+pre code {
+  background: none;
+  line-height: 1.42;
+  color: white;
+}
+code:before,
+code:after,
+tt:before,
+tt:after {
+  @apply tracking-tight;
+  content: '\00a0';
+}
+pre code:before,
+pre code:after,
+pre tt:before,
+pre tt:after {
+  content: '';
+}
+
+[hidden],
+template {
+  @apply hidden
+}
+
+@tailwind components;
+@tailwind utilities;
