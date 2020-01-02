@@ -52,6 +52,23 @@ a:hover {
   @apply outline-none;
 }
 
+.gatsby-highlight pre[class*="language-"].line-numbers {
+  @apply pl-10;
+}
+.gatsby-highlight pre[class*="language-"] .line-numbers-rows {
+  @apply pt-4 pl-2;
+}
+
+/* .gatsby-highlight-code-line { */
+/*   background-color: #feb; */
+/*   display: block; */
+/*   margin-right: -1em; */
+/*   margin-left: -1em; */
+/*   padding-right: 1em; */
+/*   padding-left: 0.75em; */
+/*   border-left: 0.25em solid #f99; */
+/* } */
+
 code,
 kbd,
 pre,
@@ -60,15 +77,10 @@ samp {
 }
 
 code {
-  @apply p-0 rounded;
-  background-color: hsla(0, 0%, 0%, 0.04);
-  font-family: 'Source Code Pro', 'SFMono-Regular', Consolas, 'Roboto Mono', 'Droid Sans Mono',
-    'Liberation Mono', Menlo, Courier, monospace;
+  @apply font-mono
 }
 pre code {
-  background: none;
   line-height: 1.42;
-  color: white;
 }
 code:before,
 code:after,
