@@ -16,10 +16,10 @@ class Layout extends React.Component {
 
         <main>{children}</main>
 
-        <footer className="mt-5 mx-auto text-center">
-          {author} © {new Date().getFullYear()}, with
+        <footer className="mt-5 mx-auto font-semibold text-center">
+          {author} © {new Date().getFullYear()}, build with
           {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
+          <a className="underline font-sans" href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
       </div>
     )
