@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Tai An Su`,
+    title: `Tai An, Su`,
     author: `taiansu`,
     description: `mostly functional`,
     siteUrl: `https://taian.su`,
@@ -140,7 +140,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#363636`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/logo.png`,
       },
     },
     `gatsby-plugin-react-helmet`,
