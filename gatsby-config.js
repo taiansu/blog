@@ -53,11 +53,17 @@ module.exports = {
           },
           {
             resolve: `gatsby-remark-prismjs`,
+            options: {
+              inlineCodeMarker: '≠',
+              aliases: {js: 'javascript'},
+              showLineNumbers: true
+            }
           },
         ],
         plugins: [`gatsby-remark-images`],
       },
     },
+    `gatsby-remark-reading-time`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
