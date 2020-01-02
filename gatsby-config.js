@@ -31,6 +31,7 @@ module.exports = {
         extensions: ['.mdx', '.md'],
         defaultLayouts: require.resolve('./src/components/layout.js'),
         gatsbyRemarkPlugins: [
+          // `gatsby-remark-mathjax`,
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -55,12 +56,6 @@ module.exports = {
           },
         ],
         plugins: [`gatsby-remark-images`],
-      },
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [`gatsby-remark-mathjax`],
       },
     },
     `gatsby-transformer-sharp`,
@@ -148,5 +143,11 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
     `gatsby-plugin-postcss`,
+    // {
+    //   resolve: `gatsby-transformer-remark`,
+    //   options: {
+    //     plugins: [`gatsby-remark-mathjax`],
+    //   },
+    // },
   ],
 }

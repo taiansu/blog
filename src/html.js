@@ -13,8 +13,8 @@ window.MathJax = {
       equationNumbers: {autoNumber: 'AMS'},
       extensions: ['AMSmath.js', 'AMSsymbols.js', 'color.js'],
     },
-    "HTML-CSS": { scale: 400, linebreaks: { automatic: true } },
-    SVG: { linebreaks: { automatic:true } },
+    CommonHTML: { linkbreaks: { automatic: true } },
+    SVG: { linkbreaks: { automatic: true } }
   }
 };
 `;
@@ -43,7 +43,7 @@ export default function HTML(props) {
         {props.postBodyComponents}
 
         <script dangerouslySetInnerHTML={{__html: MathJaxConfig}} />
-        <script defer src="https://cdn.bootcss.com/mathjax/2.7.4/latest.js?config=TeX-MML-AM_HTMLorMML" />
+        <script src="https://cdn.bootcss.com/mathjax/2.7.4/latest.js?config=TeX-AMS_CHTML" />
       </body>
     </html>
   )
