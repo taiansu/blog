@@ -1,18 +1,18 @@
 import React from "react"
-import { Link } from "gatsby"
+import HomeHeader from "./home_header"
+import PostHeader from "./post_header"
+import "../styles/global.css"
+
+const rootPath = `${__PATH_PREFIX__}/`
 
 class Layout extends React.Component {
   render() {
-    const { title, children, author, description } = this.props
+    const { location, children, title, description, author} = this.props
+    const Header = location.pathname === rootPath ? HomeHeader : PostHeader
 
     return (
-      <div className="max-w-sm mx-auto px-6 py-1">
-        <h1 className="mt-8 mx-auto text-center text-4xl">
-          <Link className="shadow-none no-underline" to={`/`}>
-            {title}
-          </Link>
-        </h1>
-        <h3 className="mb-5 mx-auto text-center text-2xl text-gray-800 font-hairline">{description}</h3>
+      <div>
+        <Header title={title} description={description} />
 
         <main>{children}</main>
 

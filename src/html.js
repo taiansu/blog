@@ -29,6 +29,7 @@ export default function HTML(props) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        <link href="https://fonts.googleapis.com/css?family=Baskervville|Montserrat&display=swap" rel="stylesheet" />
         <link rel="icon" type="image/png" href="./favicon.png" />
         {props.headComponents}
       </head>

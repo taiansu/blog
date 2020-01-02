@@ -1,11 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
+// import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-
-import "../styles/global.css"
 
 class BlogIndex extends React.Component {
   render() {
@@ -16,13 +14,12 @@ class BlogIndex extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle} author={author} description={description} >
         <SEO title="All posts" />
-        <Bio />
         {posts.map(({ node }) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
-            <article key={node.fields.slug}>
-              <header>
-                <h3 className="mb-2 text-gray-800 hover:text-gray-700 focus:text-gray-700">
+            <article key={node.fields.slug} className="my-6">
+              <header className="mb-2">
+                <h3 className="mb-0 text-gray-800 font-serif font-normal hover:text-gray-700 focus:text-gray-700">
                   <Link to={node.fields.slug}>
                     {title}
                   </Link>

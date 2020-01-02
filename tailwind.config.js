@@ -1,6 +1,16 @@
 module.exports = {
   theme: {
-    extend: {}
+    extend: {
+      fontFamily: {
+        sans: ['Montserrat', "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
+        serif: ['Baskervville', "Georgia", "Cambria", "Times New Roman", "Times", "serif"]
+      },
+      height: {
+        "72": "20rem",
+        "96": "24rem",
+        "128": "32rem"
+      }
+    }
   },
   variants: {},
   plugins: []
