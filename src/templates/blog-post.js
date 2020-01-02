@@ -1,7 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import {MDXRenderer} from "gatsby-plugin-mdx"
@@ -13,7 +12,7 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext
 
     return (
-      <Layout location={this.props.location} title={siteTitle} description={description}>
+      <Layout location={this.props.location} title={siteTitle} image={post.frontmatter.image}>
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
@@ -82,6 +81,13 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tags
+        image
+      }
+      fields {
+        readingTime {
+          text
+        }
       }
       body
     }

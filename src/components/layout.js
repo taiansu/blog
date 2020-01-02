@@ -1,20 +1,20 @@
 import React from "react"
-import HomeHeader from "./home_header"
-import PostHeader from "./post_header"
+import HomeHeader from "./home-header"
+import PostHeader from "./post-header"
 import "../styles/global.css"
 
 const rootPath = `${__PATH_PREFIX__}/`
 
 class Layout extends React.Component {
   render() {
-    const { location, children, title, description, author} = this.props
+    const { location, children, author, image } = this.props
     const Header = location.pathname === rootPath ? HomeHeader : PostHeader
 
     return (
       <div>
-        <Header title={title} description={description} />
+        <Header image={image} />
 
-        <main>{children}</main>
+        <main className="max-w-sm mx-10">{children}</main>
 
         <footer className="mt-5 mx-auto font-semibold text-center">
           {author} © {new Date().getFullYear()}, build with
