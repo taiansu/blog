@@ -2,11 +2,12 @@ module.exports = {
   siteMetadata: {
     title: `Tai An, Su`,
     author: `taiansu`,
-    description: `mostly functional`,
+    description: `Mostly functional.`,
     siteUrl: `https://taian.su`,
     social: {
       twitter: `taiansu`,
       github: `taiansu`,
+      facebook: `sutaian`,
     },
   },
   plugins: [

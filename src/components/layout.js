@@ -7,19 +7,19 @@ const rootPath = `${__PATH_PREFIX__}/`
 
 class Layout extends React.Component {
   render() {
-    const { location, children, author, image } = this.props
+    const { location, children, author, title, description, image, social} = this.props
     const Header = location.pathname === rootPath ? HomeHeader : PostHeader
 
     return (
-      <div>
-        <Header image={image} />
+      <div className="font-sans">
+        <Header title={title} description={description} image={image} social={social} />
 
-        <main className="max-w-sm mx-10">{children}</main>
+        <main className="px-8">{children}</main>
 
-        <footer className="mt-5 mx-auto font-semibold text-center">
+        <footer className="my-3 mx-auto text-center text-gray-500">
           {author} © {new Date().getFullYear()}, build with
           {` `}
-          <a className="underline font-sans" href="https://www.gatsbyjs.org">Gatsby</a>
+          <a className="underline" href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
       </div>
     )
