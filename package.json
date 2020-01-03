@@ -40,9 +40,7 @@
     "react-helmet": "^5.2.1",
     "stylelint": "^12.0.1",
     "tailwind.macro": "^0.5.10",
-    "tailwindcss": "^1.1.4",
-    "typeface-merriweather": "0.0.72",
-    "typeface-montserrat": "0.0.75"
+    "tailwindcss": "^1.1.4"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
