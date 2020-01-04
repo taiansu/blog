@@ -83,6 +83,7 @@ module.exports = {
                 title
                 description
                 siteUrl
+                site_url: siteUrl
               }
             }
           }
@@ -116,6 +117,7 @@ module.exports = {
               ) {
                 edges {
                   node {
+                  excerpt
                     fields { slug }
                     frontmatter {
                       title
