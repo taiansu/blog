@@ -1,33 +1,42 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-
-import Layout from "../components/post-layout"
-import SEO from "../components/seo"
 import {MDXRenderer} from "gatsby-plugin-mdx"
+
+import PostLayout from "../components/post-layout"
+import SEO from "../components/seo"
+import author from "../../content/assets/author.png"
 
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.mdx
-    const {title: siteTitle, description} = this.props.data.site.siteMetadata
     const { previous, next } = this.props.pageContext
+    const {title: siteTitle} = this.props.data.site.siteMetadata
+    const {frontmatter, excerpt, body, fields: {readingTime}} = this.props.data.mdx
+    const {title, description, image, date, tags} = frontmatter
 
     return (
-      <Layout location={this.props.location} title={siteTitle} image={post.frontmatter.image}>
+      <PostLayout location={this.props.location} title={siteTitle} image={image} readingTime={readingTime.text}>
         <SEO
-          title={post.frontmatter.title}
-          description={post.frontmatter.description || post.excerpt}
+          title={title}
+          description={description || excerpt}
         />
         <article>
-          <header>
-            <h1 className="mb-0">
-              {post.frontmatter.title}
+          <header className="text-center -mt-18">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+              {title}
             </h1>
-            <p className="block mt-1">
-              {post.frontmatter.date}
-            </p>
+            <div className="mt-2 mb-4 flex justify-center items-center text-gray-500">
+              <Link to={"/about"}>
+                <img src={author} alt="logo"
+                  className="rounded-full shadow mr-2 h-8 w-8 sm:shadow-md md:h-10 md:w-10 md:shadow-lg lg:h-12 lg:w-12 lg:shadow-xl"/>
+              </Link>
+              <span className="text-xs sm:text-base md:text-lg lg:text-xl">on&nbsp;<date>{date}</date></span>
+              { tags && tags.length ? <span className="text-xs sm:text-base md:text-lg lg:text-xl">：{tags.join(", ")}</span> : ""}
+            </div>
           </header>
 
-          <MDXRenderer>{post.body}</MDXRenderer>
+          <div class="mdx-content mt-8">
+            <MDXRenderer>{body}</MDXRenderer>
+          </div>
 
           <footer/ >
         </article>
@@ -58,7 +67,7 @@ class BlogPostTemplate extends React.Component {
             </li>
           </ul>
         </nav>
-      </Layout>
+      </PostLayout>
     )
   }
 }

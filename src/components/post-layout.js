@@ -5,14 +5,15 @@ import "../styles/global.css"
 
 class Layout extends React.Component {
   render() {
-    const { children, author, image } = this.props
+    const { children, author, image, readingTime } = this.props
 
     return (
-      <div className="font-sans">
-        <header className="mb-3 bg-center bg-cover flex items-start justify-between h-32 " style={{backgroundImage: `url(${image})`}}>
+      <div className="font-sans -mt-8">
+        <header className="mb-3 bg-center bg-cover flex items-center justify-between h-32 " style={{backgroundImage: `url(${image})`}}>
           <Link to={"/"}>
             <img src={logo} alt="logo" className="h-12 border-8 mt-3 ml-3 border-black" />
           </Link>
+          <div className="mt-5 mr-3 text-gray-500">{ readingTime }</div>
         </header>
 
         <main className="px-8">{children}</main>

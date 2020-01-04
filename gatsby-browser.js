@@ -5,10 +5,10 @@ exports.onRouteUpdate = ({location}) => {
   if (window.MathJax && window.MathJax.Hub) {
     window.MathJax.Hub.Config({
       CommonHTML: {
-        scale: 135
+        scale: 110
       },
       SVG: {
-        scale: 135
+        scale: 110
       }
     })
 
