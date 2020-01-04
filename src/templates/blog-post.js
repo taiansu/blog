@@ -9,12 +9,12 @@ import author from "../../content/assets/author.png"
 class BlogPostTemplate extends React.Component {
   render() {
     const { previous, next } = this.props.pageContext
-    const {title: siteTitle} = this.props.data.site.siteMetadata
+    const {title: siteTitle, description: siteDescription, social} = this.props.data.site.siteMetadata
     const {frontmatter, excerpt, body, fields: {readingTime}} = this.props.data.mdx
     const {title, description, image, date, tags} = frontmatter
 
     return (
-      <PostLayout location={this.props.location} title={siteTitle} image={image} readingTime={readingTime.text}>
+      <PostLayout location={this.props.location} title={siteTitle} description={siteDescription} image={image} social={social} readingTime={readingTime.text}>
         <SEO
           title={title}
           description={description || excerpt}
@@ -29,7 +29,7 @@ class BlogPostTemplate extends React.Component {
                 <img src={author} alt="logo"
                   className="rounded-full shadow mr-2 h-8 w-8 sm:shadow-md md:h-10 md:w-10 md:shadow-lg lg:h-12 lg:w-12 lg:shadow-xl"/>
               </Link>
-              <span className="text-xs sm:text-base md:text-lg lg:text-xl">on&nbsp;<time>{date}</time></span>
+              <span className="text-xs sm:text-base md:text-lg lg:text-xl">on{' '}<time>{date}</time></span>
               { tags && tags.length ? <span className="text-xs sm:text-base md:text-lg lg:text-xl">：{tags.join(", ")}</span> : ""}
             </div>
           </header>
@@ -37,20 +37,12 @@ class BlogPostTemplate extends React.Component {
           <div className="mdx-content mt-8 max-w-md mx-auto sm:max-w-sm md:max-w-md md:mt-10 md:max-w-lg lg:mt-12 lg:max-w-xl">
             <MDXRenderer>{body}</MDXRenderer>
           </div>
-
-          <footer/ >
         </article>
 
+        <hr />
+
         <nav>
-          <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
-          >
+          <ul className="-mx-6 my-4 flex flex-wrap justify-between p-0 list-none text-sm sm:text-base sm:mx-0 lg:mx-4 lg:text-lg">
             <li>
               {previous && (
                 <Link to={previous.fields.slug} rel="prev">
@@ -81,6 +73,11 @@ export const pageQuery = graphql`
         title
         author
         description
+        social {
+          twitter
+          github
+          facebook
+        }
       }
     }
     mdx(fields: { slug: { eq: $slug } }) {

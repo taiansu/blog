@@ -1,11 +1,13 @@
 import React from "react"
-import logo from "../../content/assets/logo.png"
 import { Link } from "gatsby"
+
+import logo from "../../content/assets/logo.png"
+import banner from "../../content/assets/banner.jpg"
 import "../styles/global.css"
 
 class Layout extends React.Component {
   render() {
-    const { children, author, image, readingTime } = this.props
+    const { children, title, description, image, readingTime } = this.props
 
     return (
       <div className="font-sans -mt-8">
@@ -18,10 +20,17 @@ class Layout extends React.Component {
 
         <main className="px-8">{children}</main>
 
-        <footer className="my-3 mx-auto text-center text-gray-500">
-          {author} © {new Date().getFullYear()}, build with
-          {` `}
-          <a className="underline" href="https://www.gatsbyjs.org">Gatsby</a>
+        <footer className="mt-4 mx-auto text-center text-white">
+          <div className="flex flex-col items-center justify-center h-32 sm:h-48 lg:h-64 w-full bg-auto bg-right-bottom" style={{backgroundImage: `url(${banner})`}}>
+            <Link to={"/"}>
+              <h3 className="font-sans font-bold text-2xl sm:text-xl lg:text-2xl">
+                {title}
+              </h3>
+            </Link>
+            <Link to={"/"}>
+              <h2 className="font-serif hidden sm:block text-2xl lg:text-4xl">{description}</h2>
+            </Link>
+          </div>
         </footer>
       </div>
     )
