@@ -17,13 +17,13 @@ class Layout extends React.Component {
             <img src={logo} alt="logo" className="h-24 w-24 rounded-full border-4 border-white shadow-md object-cover object-center lg:h-32 lg:w-32" />
           </div>
 
-          <h1 className="mx-auto mt-2 text-center text-gray-900 tracking-wide text-xl lg:text-2xl">
+          <h2 className="mx-auto mt-2 text-center text-gray-900 tracking-wide text-xl lg:text-2xl">
             <Link className="shadow-none no-underline" to={`/`}>
               {title}
             </Link>
-          </h1>
+          </h2>
 
-          <h3 className="mx-auto text-center text-gray-900 tracking-wide font-normal font-serif text-lg sm:text-2xl md:text-3xl">{description}</h3>
+          <h1 className="mx-auto text-center text-gray-900 tracking-wide font-normal font-serif text-lg sm:text-2xl md:text-3xl">{description}</h1>
 
           <div className="my-3 mx-auto flex items-center justify-center text-gray-700 text-xs sm:text-sm md:text-base">
             <a href={`https://github.com/${social.github}`}>

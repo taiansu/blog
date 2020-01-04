@@ -26,23 +26,6 @@ video {
  @apply inline-block;
 }
 
-h1 {
-  @apply text-2xl font-bold;
-}
-h2 {
-  @apply text-2xl;
-}
-h3 {
-  @apply text-xl font-bold;
-}
-h4 {
-  @apply text-lg;
-}
-h5 {
-  @apply text-lg font-thin;
-}
-
-
 a {
   @apply bg-transparent no-underline;
   -webkit-text-decoration-skip: objects;
@@ -51,23 +34,6 @@ a:active,
 a:hover {
   @apply outline-none;
 }
-
-.gatsby-highlight pre[class*="language-"].line-numbers {
-  @apply pl-10;
-}
-.gatsby-highlight pre[class*="language-"] .line-numbers-rows {
-  @apply pt-4 pl-2;
-}
-
-/* .gatsby-highlight-code-line { */
-/*   background-color: #feb; */
-/*   display: block; */
-/*   margin-right: -1em; */
-/*   margin-left: -1em; */
-/*   padding-right: 1em; */
-/*   padding-left: 0.75em; */
-/*   border-left: 0.25em solid #f99; */
-/* } */
 
 code,
 kbd,
@@ -95,6 +61,24 @@ pre tt:before,
 pre tt:after {
   content: '';
 }
+
+/* prismjs syntax highlighting */
+.gatsby-highlight pre[class*="language-"].line-numbers {
+  @apply pl-10;
+}
+.gatsby-highlight pre[class*="language-"] .line-numbers-rows {
+  @apply pt-4 pl-2;
+}
+
+/* .gatsby-highlight-code-line { */
+/*   background-color: #feb; */
+/*   display: block; */
+/*   margin-right: -1em; */
+/*   margin-left: -1em; */
+/*   padding-right: 1em; */
+/*   padding-left: 0.75em; */
+/*   border-left: 0.25em solid #f99; */
+/* } */
 
 [hidden],
 template {

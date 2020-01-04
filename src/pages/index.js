@@ -28,7 +28,7 @@ class BlogIndex extends React.Component {
                 { index === 0 ? "" : <hr /> }
                 <article className="my-6">
                   <header className="mb-3">
-                    <h3 className="text-gray-800 font-normal hover:text-gray-700 focus:text-gray-700">
+                    <h3 className="font-bold text-xl hover:text-gray-700 focus:text-gray-700">
                       <Link to={node.fields.slug}>{title}</Link>
                     </h3>
                   </header>
