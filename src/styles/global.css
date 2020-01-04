@@ -62,6 +62,81 @@ pre tt:after {
   content: '';
 }
 
+/* blog-post content */
+.mdx-content {
+  @apply mb-8;
+}
+
+.mdx-content h1 {
+  @apply my-6 font-bold text-2xl;
+}
+
+.mdx-content h2 {
+  @apply my-6 font-bold text-xl;
+}
+
+.mdx-content h3 {
+  @apply my-5 font-semibold text-lg;
+}
+
+.mdx-content h4 {
+  @apply my-4 underline text-lg;
+}
+
+.mdx-content p {
+  @apply my-4;
+}
+
+.mdx-content a {
+  @apply text-blue-700;
+}
+
+.mdx-content blockquote {
+  @apply italic text-gray-700;
+}
+
+.mdx-content li {
+  @apply text-lg;
+}
+
+.mdx-content ul {
+  @apply list-disc ml-8;
+}
+
+.mdx-content ol {
+  @apply list-decimal ml-8;
+}
+
+.mdx-content .mjx-chtml {
+  @apply my-4;
+}
+
+@screen md {
+  .mdx-content h1 {
+    @apply text-3xl;
+  }
+
+  .mdx-content h2 {
+    @apply text-2xl;
+  }
+
+  .mdx-content h3 {
+    @apply text-xl;
+  }
+
+  .mdx-content h4 {
+    @apply text-xl;
+  }
+
+  .mdx-content p {
+    @apply text-lg;
+  }
+
+  .mdx-content .mjx-chtml {
+    @apply my-5
+  }
+}
+
 /* prismjs syntax highlighting */
 .gatsby-highlight pre[class*="language-"].line-numbers {
   @apply pl-10;

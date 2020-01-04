@@ -29,12 +29,12 @@ class BlogPostTemplate extends React.Component {
                 <img src={author} alt="logo"
                   className="rounded-full shadow mr-2 h-8 w-8 sm:shadow-md md:h-10 md:w-10 md:shadow-lg lg:h-12 lg:w-12 lg:shadow-xl"/>
               </Link>
-              <span className="text-xs sm:text-base md:text-lg lg:text-xl">on&nbsp;<date>{date}</date></span>
+              <span className="text-xs sm:text-base md:text-lg lg:text-xl">on&nbsp;<time>{date}</time></span>
               { tags && tags.length ? <span className="text-xs sm:text-base md:text-lg lg:text-xl">：{tags.join(", ")}</span> : ""}
             </div>
           </header>
 
-          <div class="mdx-content mt-8">
+          <div className="mdx-content mt-8 max-w-md mx-auto sm:max-w-sm md:max-w-md md:mt-10 md:max-w-lg lg:mt-12 lg:max-w-xl">
             <MDXRenderer>{body}</MDXRenderer>
           </div>
 
