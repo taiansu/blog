@@ -47,7 +47,7 @@ class Layout extends React.Component {
         <main className="px-8">{children}</main>
 
         <footer className="mt-8 mb-5 mx-auto text-center text-gray-500">
-          <a href="/rss.xml">Subscribe with{` `}<i className="fas fa-rss ml-1"></i></a>
+          <a href="/rss.xml">Subscribe {` `}<i className="fas fa-rss ml-1"></i></a>
           <div>
             {author} © {new Date().getFullYear()}
             <span className="mx-3">·</span>
