@@ -4,12 +4,12 @@ import {MDXRenderer} from "gatsby-plugin-mdx"
 
 import PostLayout from "../components/post-layout"
 import SEO from "../components/seo"
-import author from "../../content/assets/author.png"
+import authorImg from "../../content/assets/author.png"
 
 class BlogPostTemplate extends React.Component {
   render() {
     const { previous, next } = this.props.pageContext
-    const {title: siteTitle, description: siteDescription, social} = this.props.data.site.siteMetadata
+    const {title: siteTitle, description: siteDescription, author, social} = this.props.data.site.siteMetadata
     const {frontmatter, excerpt, body, fields: {readingTime}} = this.props.data.mdx
     const {title, description, image, date, tags} = frontmatter
 
@@ -26,7 +26,7 @@ class BlogPostTemplate extends React.Component {
             </h1>
             <div className="mt-2 mb-4 flex justify-center items-center text-gray-500">
               <Link to={"/about"}>
-                <img src={author} alt="logo"
+                <img src={authorImg} alt="logo"
                   className="rounded-full shadow mr-2 h-8 w-8 sm:shadow-md md:h-10 md:w-10 md:shadow-lg lg:h-12 lg:w-12 lg:shadow-xl"/>
               </Link>
               <span className="text-xs sm:text-base md:text-lg lg:text-xl">on{' '}<time>{date}</time></span>
@@ -39,7 +39,26 @@ class BlogPostTemplate extends React.Component {
           </div>
         </article>
 
-        <hr />
+        <div className="flex items-start justify-center md:mb-4">
+          <div className="w-3/4 border-t border-gray-300 py-3 sm:w-1/2">
+            <div className="uppercase font-bold text-xs text-gray-400 -mt-2">written by</div>
+
+            <div className="flex flex-col items-center">
+              <div className="flex items-center justify-center mt-4">
+                <img src={authorImg} className="h-8 w-8 rounded-full border shadow mr-2" />
+                <div className="mr-2">{author},</div>
+                <div className="font-bold">{date}</div>
+              </div>
+              <div className="mt-1">
+                <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
+              </div>
+              <div className="mt-1">
+                <a href="/rss.xml">Subscribe {` `}<i className="fas fa-rss ml-1"></i></a>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
         <nav>
           <ul className="-mx-6 my-4 flex flex-wrap justify-between p-0 list-none text-sm sm:text-base sm:mx-0 lg:mx-4 lg:text-lg">
