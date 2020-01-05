@@ -93,8 +93,7 @@ export const pageQuery = graphql`
         author
         description
         social {
-          twitter
-          github
+          default
           facebook
         }
       }

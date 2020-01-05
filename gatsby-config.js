@@ -5,8 +5,7 @@ module.exports = {
     description: `Mostly functional.`,
     siteUrl: `https://taian.su`,
     social: {
-      twitter: `taiansu`,
-      github: `taiansu`,
+      default: `taiansu`,
       facebook: `sutaian`,
     },
   },
