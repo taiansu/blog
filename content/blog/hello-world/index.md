@@ -1,7 +1,9 @@
 ---
-title: Hello World
+title: Phoenix LiveView：概念篇
 date: "2015-05-01T22:12:03.284Z"
 description: "Hello World"
+image: ""
+tags: []
 published: true
 ---
 
@@ -21,3 +23,12 @@ Oh, and here's a great quote from this Wikipedia on
 > firm-textured, round yolk that is bright orange-red in color.
 
 ![Chinese Salty Egg](./salty_egg.jpg)
+
+
+$$
+a[i+1]=
+\begin{cases}
+a[i]+1&S[i]=\text{'a'}\\\\
+a[i]& S[i]\neq\text{'a'}
+\end{cases}
+$$
