@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import SocialIcons from "./social-icons"
 import banner from "../../content/assets/banner.jpg"
 import logo from "../../content/assets/logo.png"
 import "../styles/global.css"
@@ -27,27 +28,8 @@ class Layout extends React.Component {
             {description}
           </h1>
 
-          <div className="my-3 mx-auto flex items-center justify-center text-gray-500 text-base sm:text-lg">
-            <a href={`https://github.com/${social.default}`}>
-              <i className="fab fa-github"></i>
-            </a>
-            <span className="mx-3">·</span>
-            <a href={`https://twitter.com/${social.default}`}>
-              <i className="fab fa-twitter"></i>
-            </a>
-            <span className="mx-3">·</span>
-            <a href={`https://linkedin.com/in/${social.default}`}>
-              <i className="fab fa-linkedin"></i>
-            </a>
-            <span className="mx-3">·</span>
-            <a href={`https://www.facebook.com/${social.facebook}`}>
-              <i className="fab fa-facebook"></i>
-            </a>
-            <span className="mx-3">·</span>
-            <Link to={"/about"}>
-            <span>about</span>
-            </Link>
-          </div>
+          <SocialIcons social={social} styles="my-3 text-gray-500"/>
+
         </div>
 
         <main className="px-8">{children}</main>
