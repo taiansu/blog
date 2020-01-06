@@ -28,7 +28,7 @@ class Layout extends React.Component {
               </h3>
             </Link>
             <Link to={"/"}>
-              <h2 className="font-serif hidden sm:block text-2xl lg:text-4xl">{description}</h2>
+              <h2 className="font-display hidden sm:block text-2xl lg:text-4xl">{description}</h2>
             </Link>
           </div>
         </footer>
