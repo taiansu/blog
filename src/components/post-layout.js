@@ -10,17 +10,17 @@ class Layout extends React.Component {
     const { children, title, description, image, readingTime } = this.props
 
     return (
-      <div className="font-sans -mt-8">
-        <header className="mb-3 bg-center bg-cover flex items-center justify-between h-32 " style={{backgroundImage: `url(${image})`}}>
+      <div className="font-sans flex flex-col min-h-screen">
+        <header className="mb-3 -mt-8 bg-center bg-cover flex items-center justify-between h-32 " style={{backgroundImage: `url(${image})`}}>
           <Link to={"/"}>
             <img src={logo} alt="logo" className="h-12 border-8 mt-3 ml-3 border-black" />
           </Link>
           <div className="mt-5 mr-3 text-gray-500">{ readingTime }</div>
         </header>
 
-        <main className="px-8 min-h-63vh lg:min-h-55vh">{children}</main>
+        <main className="px-8 -mt-8 flex-1 flex-auto">{children}</main>
 
-        <footer className="text-center text-white">
+        <footer className="text-center text-white flex-shrink-0">
           <div className="flex flex-col items-center justify-center h-32 sm:h-48 lg:h-64 w-full bg-auto bg-right-bottom" style={{backgroundImage: `url(${banner})`}}>
             <Link to={"/"}>
               <h3 className="font-sans font-bold text-2xl sm:text-xl lg:text-2xl">

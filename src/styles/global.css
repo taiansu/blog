@@ -1,5 +1,9 @@
 @tailwind base;
 
+html, body, #gatsby-focus-wrapper {
+  height: 100vh;
+}
+
 body {
   @apply antialiased;
 }

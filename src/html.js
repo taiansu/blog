@@ -39,6 +39,7 @@ export default function HTML(props) {
         <div
           key={`body`}
           id="___gatsby"
+          className="min-h-screen"
           dangerouslySetInnerHTML={{ __html: props.body }}
         />
         {props.postBodyComponents}
