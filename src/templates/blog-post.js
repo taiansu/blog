@@ -21,7 +21,7 @@ class BlogPostTemplate extends React.Component {
         />
         <article>
           <header className="text-center -mt-18">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+            <h1 className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
               {title}
             </h1>
             <div className="mt-2 mb-4 flex justify-center items-center text-gray-500">

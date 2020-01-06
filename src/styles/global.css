@@ -72,31 +72,31 @@ pre tt:after {
 }
 
 .mdx-content h1 {
-  @apply my-6 font-bold text-2xl;
+  @apply my-6 font-bold font-sans text-2xl;
 }
 
 .mdx-content h2 {
-  @apply my-6 font-bold text-xl;
+  @apply my-6 font-bold font-sans text-xl;
 }
 
 .mdx-content h3 {
-  @apply my-5 font-semibold text-lg;
+  @apply my-5 font-semibold font-sans text-lg;
 }
 
 .mdx-content h4 {
-  @apply my-4 underline text-lg;
+  @apply my-4 underline font-sans text-lg;
 }
 
 .mdx-content p {
-  @apply my-4;
+  @apply my-4 font-serif;
 }
 
 .mdx-content a {
-  @apply text-blue-700;
+  @apply font-sans text-blue-700;
 }
 
 .mdx-content blockquote {
-  @apply italic text-gray-700;
+  @apply italic text-gray-700 leading-relaxed;
 }
 
 .mdx-content li {
@@ -147,6 +147,10 @@ pre tt:after {
 }
 .gatsby-highlight pre[class*="language-"] .line-numbers-rows {
   @apply pt-4 pl-2;
+}
+
+#about-lang li:not:(:first-child):before {
+  content: ',\00a0'
 }
 
 /* .gatsby-highlight-code-line { */
