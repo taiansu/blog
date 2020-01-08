@@ -18,7 +18,7 @@ class Layout extends React.Component {
           <div className="mt-5 mr-3 text-gray-500">{ readingTime }</div>
         </header>
 
-        <main className="px-8 -mt-8 flex-1 flex-auto font-serif font-light">{children}</main>
+        <main className="px-8 -mt-8 flex-1 flex-auto font-light">{children}</main>
 
         <footer className="text-center text-white flex-shrink-0">
           <div className="flex flex-col items-center justify-center h-32 sm:h-48 lg:h-64 w-full bg-auto bg-right-bottom" style={{backgroundImage: `url(${banner})`}}>
@@ -28,7 +28,7 @@ class Layout extends React.Component {
               </h3>
             </Link>
             <Link to={"/"}>
-              <h2 className="font-display hidden sm:block text-2xl lg:text-4xl">{description}</h2>
+              <h2 className="font-serif hidden sm:block text-2xl lg:text-4xl">{description}</h2>
             </Link>
           </div>
         </footer>

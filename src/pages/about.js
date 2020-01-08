@@ -20,21 +20,23 @@ class AboutPage extends React.Component {
           <SocialIcons social={social} styles="mt-2 text-gray-800" showAbout={false}/>
 
           <ul className="mt-6 ml-4 text-sm list-disc leading-loose sm:ml-16 sm:text-lg lg:ml-24 lg:text-xl">
-            <li>software craftsman<span className="italic">, 10+ yrs</span></li>
+            <li>Software craftsman<span className="italic">, 10+ yrs</span></li>
               <ul id="about-lang" className="font-mono font-normal text-xs sm:text-base lg:text-lg">
+                <li className="-my-2 font-serif">use:</li>
                 <li className="inline-block">Elixir</li>
                 <li className="inline-block">Haskell</li>
-                <li className="inline-block">React</li>
+                <li className="inline-block">JavaScript/React</li>
                 <li className="inline-block">Ruby</li>
                 <li className="inline-block">Rust</li>
               </ul>
-            <li>magazine editor<span className="italic">, 3 yrs</span></li>
-            <li>pluviophile<span className="italic">, 20+ yrs</span></li>
-            <li>tango music lover<span className="italic">, 20+ yrs</span></li>
-            <li>bookworm<span className="italic">, 30+ yrs</span></li>
-            <li>husband and father<span className="italic">, not long enough.</span></li>
+            <li>Magazine editor<span className="italic">, 3 yrs</span></li>
+            <li>Pluviophile<span className="italic">, 20+ yrs</span></li>
+            <li>Tango music lover<span className="italic">, 20+ yrs</span></li>
+            <li>Bookworm<span className="italic">, 30+ yrs</span></li>
+            <li>Husband and father<span className="italic">, not long enough, forever.</span></li>
             <li>Co-orginazor of <a href="https://elixir.tw" className="text-blue-700">Elixir.tw</a></li>
-            <li>Teach JavaScript at <a href="https://astrocamp.tw" className="text-blue-700">AstroCamp</a>, 5xRuby</li>
+            <li>JavaScript teacher at <a href="https://astrocamp.tw" className="text-blue-700">AstroCamp</a>, 5xRuby</li>
+            <li>Software development consultant</li>
           </ul>
         </div>
       </Layout>

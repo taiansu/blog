@@ -24,7 +24,7 @@ class Layout extends React.Component {
             </Link>
           </h2>
 
-          <h1 className="mx-auto text-center tracking-wide font-display text-2xl sm:text-3xl lg:text-4xl">
+          <h1 className="mx-auto text-center tracking-wide font-serif text-2xl sm:text-3xl lg:text-4xl">
             {description}
           </h1>
 

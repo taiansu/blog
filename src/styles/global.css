@@ -88,7 +88,7 @@ pre tt:after {
 }
 
 .mdx-content p {
-  @apply my-4 font-serif;
+  @apply my-4;
 }
 
 .mdx-content a {
@@ -149,7 +149,7 @@ pre tt:after {
   @apply pt-4 pl-2;
 }
 
-#about-lang li:not:(:first-child):before {
+#about-lang li:not:(:first-child):not:(:last-child):after {
   content: ',\00a0'
 }
 
