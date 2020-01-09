@@ -50,7 +50,7 @@ class BlogPostTemplate extends React.Component {
 
             <div className="flex flex-col items-center">
               <div className="flex items-center justify-center mt-4">
-                <img src={authorImg} className="h-8 w-8 rounded-full border shadow mr-2" />
+                <img src={authorImg} alt="author-image" className="h-8 w-8 rounded-full border shadow mr-2" />
                 <div className="mr-2">{author},</div>
                 <div className="font-bold">{date}</div>
               </div>
