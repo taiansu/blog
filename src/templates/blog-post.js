@@ -30,7 +30,12 @@ class BlogPostTemplate extends React.Component {
                   className="rounded-full shadow mr-2 h-8 w-8 sm:shadow-md md:h-10 md:w-10 md:shadow-lg lg:h-12 lg:w-12 lg:shadow-xl"/>
               </Link>
               <span className="text-xs sm:text-base md:text-lg lg:text-xl">on{' '}<time>{date}</time></span>
-              { tags && tags.length ? <span className="text-xs sm:text-base md:text-lg lg:text-xl">：{tags.join(", ")}</span> : ""}
+              { tags && tags.length ? (
+                  <span className="text-xs sm:text-base md:text-lg lg:text-xl">
+                    <i className="fa fa-tags ml-3 mr-1" />
+                    {tags.join(", ")}
+                  </span>
+              ) : ""}
             </div>
           </header>
 
