@@ -19,33 +19,36 @@ class BlogIndex extends React.Component {
         description={description}
       >
         <SEO title="All posts" />
-        <div className="max-w-md mx-auto mt-4 md:max-w-lg md:mt-6 lg:max-w-xl lg:mt-8">
+        <div className="max-w-md mx-auto mt-6 md:max-w-lg md:mt-6 lg:max-w-xl lg:mt-8">
+          <ul className="ml-2 sm:ml-20 md:ml-24">
           {posts.map(({ node }, index) => {
             const title = node.frontmatter.title || node.fields.slug
             return (
-              <div key={node.fields.slug}>
-                { index === 0 ? "" : <hr /> }
-                <article className="my-6">
-                  <header className="mb-3">
-                    <h3 className="text-xl hover:text-gray-700 focus:text-gray-700 md:text-2xl">
-                      <Link to={node.fields.slug}>{title}</Link>
-                    </h3>
-                  </header>
-                  <section>
-                    <p className="text-xl font-light"
-                      dangerouslySetInnerHTML={{
-                        __html: node.frontmatter.description || node.excerpt,
-                      }}
-                    />
-                  </section>
-                  <div className="post-meta mt-3 text-gray-500 text-sm font-light">
+              <li key={node.fields.slug} className="mb-2 flex flex-col">
+                { index === 0 ? "" : <hr className="text-gray-900 mb-4 max-w-md"/> }
+                <div className="flex items-baseline mt-2">
+                  <h3 className="inline-block text-gray-700 text-xs uppercase tracking-widest w-1/3 sm:text-sm lg:text-base">
                     <time>{node.frontmatter.date}</time>
-                    <span>: {node.frontmatter.tags.join(", ")}</span>
+                  </h3>
+                  <h2 className="inline-block text-base sm:text-lg md:text-xl lg:text-2xl">
+                    <Link to={node.fields.slug}>{title}</Link>
+                  </h2>
+                </div>
+                <div className="hidden flex text-gray-700 mt-1 text-xs sm:inline-block">
+                  <div className="inline-block w-1/3"></div>
+                  <div className="inline-block w-2/3">
+                    { node.frontmatter.tags.length === 0 ?  ""
+                        : (<span className="">
+                            <i className="fa fa-tags text-gray-700 mr-2" />
+                          </span>)
+                    }
+                    <span className="w-2/3">{node.frontmatter.tags.join(", ")}</span>
                   </div>
-                </article>
-              </div>
+                </div>
+              </li>
             )
           })}
+          </ul>
         </div>
       </Layout>
     )
