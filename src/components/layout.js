@@ -14,8 +14,8 @@ class Layout extends React.Component {
         <div className="min-w-sm mt-0 mx-0 mb-3">
           <img src={banner} alt="banner background"  className="h-48 sm:h-64 lg:h-72 w-full object-cover object-center" />
 
-          <div className="-mt-12 flex items-center justify-around lg:-mt-16">
-            <img src={logo} alt="logo" className="h-24 w-24 rounded-full border-4 border-white shadow-md object-cover object-center lg:h-32 lg:w-32" />
+          <div className="-mt-8 flex items-center justify-around lg:-mt-12">
+            <img src={logo} alt="logo" className="h-16 w-16 rounded-full border border-white shadow-md object-cover object-center lg:h-24 lg:w-24" />
           </div>
 
           <h2 className="mx-auto mt-2 text-center text-gray-800 tracking-wide text-xl sm:text-2xl lg:text-3xl">
