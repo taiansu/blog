@@ -18,6 +18,11 @@ const SocialIcons = ({social, styles = "", showAbout = true})  => (
     <a href={`https://www.facebook.com/${social.facebook}`}>
       <i className="fab fa-facebook"></i>
     </a>
+    <span className="mx-2 sm:mx-3">·</span>
+    <a href="/rss.xml">
+      <i className="fas fa-rss ml-1"></i>
+    </a>
+
     {
       aboutLink(showAbout)
     }
@@ -32,7 +37,7 @@ function aboutLink(show) {
   return (
     <>
       <span className="mx-2 sm:mx-3">·</span>
-      <Link to={"/about"}> <span>about</span> </Link>
+      <Link to={"/about"}><i className="far fa-address-card"></i></Link>
     </>
   )
 }
