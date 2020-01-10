@@ -46,6 +46,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.17.0",
     "gatsby-plugin-s3": "^0.3.2",
+    "moment": "^2.24.0",
     "prettier": "^1.19.1"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
@@ -66,6 +67,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "deploy": "npm run build && gatsby-plugin-s3 deploy"
+    "deploy": "npm run build && gatsby-plugin-s3 deploy",
+    "post": "node ./utils/create-post.js"
   }
 }
