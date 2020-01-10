@@ -39,7 +39,7 @@ class BlogPostTemplate extends React.Component {
             </div>
           </header>
 
-          <div className="mdx-content mt-8 max-w-md mx-auto sm:max-w-sm md:max-w-md md:mt-10 md:max-w-lg lg:mt-12 lg:max-w-xl">
+          <div className="mdx-content mt-8 max-w-md mx-auto sm:max-w-sm md:max-w-lg md:mt-10 lg:mt-12 lg:max-w-2xl">
             <MDXRenderer>{body}</MDXRenderer>
           </div>
         </article>
