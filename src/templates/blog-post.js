@@ -52,7 +52,7 @@ class BlogPostTemplate extends React.Component {
               <div className="flex items-center justify-center mt-4">
                 <img src={authorImg} alt="author" className="h-8 w-8 rounded-full border shadow mr-2" />
                 <div className="mr-2">{author},</div>
-                <div className="font-bold">{date}</div>
+                <div>{date}</div>
               </div>
               <div className="mt-1">
                 <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
