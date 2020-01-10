@@ -72,15 +72,24 @@ pre tt:after {
 }
 
 .mdx-content h1 {
-  @apply my-6 font-bold font-sans text-2xl;
+  @apply my-6 font-sans text-2xl;
+}
+.mdx-content h1:before {
+  @apply border-l-6 border-blue-700 mr-2;
+  content: ''
 }
 
 .mdx-content h2 {
-  @apply my-6 font-bold font-sans text-xl;
+  @apply my-6 font-sans text-xl;
+}
+
+.mdx-content h2:before {
+  @apply border-l-3 border-blue-500 mr-4;
+  content: ''
 }
 
 .mdx-content h3 {
-  @apply my-5 font-semibold font-sans text-lg;
+  @apply my-5 font-sans text-lg;
 }
 
 .mdx-content h4 {
@@ -88,7 +97,7 @@ pre tt:after {
 }
 
 .mdx-content p {
-  @apply my-4;
+  @apply my-4 leading-relaxed;
 }
 
 .mdx-content a {
@@ -115,6 +124,14 @@ pre tt:after {
   @apply my-4;
 }
 
+.mdx-content pre {
+  @apply my-6;
+}
+
+.mdx-content video {
+  @apply my-4;
+}
+
 @screen md {
   .mdx-content h1 {
     @apply text-3xl;
@@ -133,7 +150,7 @@ pre tt:after {
   }
 
   .mdx-content p {
-    @apply text-lg;
+    @apply text-lg my-6;
   }
 
   .mdx-content .mjx-chtml {

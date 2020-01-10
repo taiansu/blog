@@ -11,28 +11,28 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext
     const {title: siteTitle, description: siteDescription, author, social} = this.props.data.site.siteMetadata
     const {frontmatter, excerpt, body, fields: {readingTime}} = this.props.data.mdx
-    const {title, description, image, date, tags} = frontmatter
+    const {title, description, date, tags} = frontmatter
 
     return (
-      <PostLayout location={this.props.location} title={siteTitle} description={siteDescription} image={image} social={social} readingTime={readingTime.text}>
+      <PostLayout location={this.props.location} title={siteTitle} description={siteDescription} social={social} readingTime={readingTime.text}>
         <SEO
           title={title}
           description={description || excerpt}
         />
         <article>
           <header className="text-center -mt-18">
-            <h1 className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+            <h1 className="font-sans text-2xl sm:text-3xl md:text-4xl">
               {title}
             </h1>
             <div className="mt-2 mb-4 flex justify-center items-center text-gray-500">
               <Link to={"/about"}>
                 <img src={authorImg} alt="logo"
-                  className="rounded-full shadow mr-2 h-8 w-8 sm:shadow-md md:h-10 md:w-10 md:shadow-lg lg:h-12 lg:w-12 lg:shadow-xl"/>
+                  className="rounded-full shadow mr-2 h-8 w-8 sm:shadow-md md:h-10 md:w-10 md:shadow-lg"/>
               </Link>
-              <span className="text-xs sm:text-base md:text-lg lg:text-xl">on{' '}<time>{date}</time></span>
+              <span className="text-xs sm:text-base md:text-lg">on{' '}<time>{date}</time></span>
               { tags && tags.length ? (
-                  <span className="text-xs sm:text-base md:text-lg lg:text-xl">
-                    <i className="fa fa-tags ml-3 mr-1" />
+                  <span className="text-xs sm:text-base md:text-lg">
+                    <i className="fa fa-tags ml-4 mr-1" />
                     {tags.join(", ")}
                   </span>
               ) : ""}
@@ -50,7 +50,7 @@ class BlogPostTemplate extends React.Component {
 
             <div className="flex flex-col items-center">
               <div className="flex items-center justify-center mt-4">
-                <img src={authorImg} alt="author-image" className="h-8 w-8 rounded-full border shadow mr-2" />
+                <img src={authorImg} alt="author" className="h-8 w-8 rounded-full border shadow mr-2" />
                 <div className="mr-2">{author},</div>
                 <div className="font-bold">{date}</div>
               </div>
@@ -111,7 +111,6 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         tags
-        image
       }
       fields {
         readingTime {
