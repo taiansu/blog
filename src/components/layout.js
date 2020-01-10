@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import SocialIcons from "./social-icons"
-import banner from "../../content/assets/banner.jpg"
+import banner from "../../content/assets/banner1.jpg"
 import logo from "../../content/assets/logo.png"
 import "../styles/global.css"
 
@@ -12,7 +12,7 @@ class Layout extends React.Component {
     return (
       <div className="font-sans">
         <div className="min-w-sm mt-0 mx-0 mb-3">
-          <img src={banner} alt="banner background"  className="h-32 sm:h-48 lg:h-64 w-full object-cover object-center" />
+          <img src={banner} alt="banner background"  className="h-32 sm:h-48 lg:h-64 w-full object-cover object-top" />
 
           <div className="-mt-8 flex items-center justify-around lg:-mt-12">
             <img src={logo} alt="logo" className="h-16 w-16 rounded-full border border-white shadow-md object-cover object-center lg:h-24 lg:w-24" />
