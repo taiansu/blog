@@ -33,7 +33,7 @@ class AboutPage extends React.Component {
             <li>Pluviophile<span className="italic">, 20+ yrs</span></li>
             <li>Tango music lover<span className="italic">, 20+ yrs</span></li>
             <li>Bookworm<span className="italic">, 30+ yrs</span></li>
-            <li>Husband and father<span className="italic">, not long enough, forever.</span></li>
+            <li>Husband and father<span className="italic">, not long enough, <span className="text-xs">and will never be</span>.</span></li>
             <li>Co-orginazor of <a href="https://elixir.tw" className="text-blue-700">Elixir.tw</a></li>
             <li>JavaScript teacher at <a href="https://astrocamp.tw" className="text-blue-700">AstroCamp</a>, 5xRuby</li>
             <li>Software development consultant</li>
