@@ -13,6 +13,12 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: `UA-31272622-1`
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,
@@ -68,12 +74,6 @@ module.exports = {
     `gatsby-remark-reading-time`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: `UA-31272622-1`,
-      },
-    },
     {
       resolve: `gatsby-plugin-feed`,
       options: {
