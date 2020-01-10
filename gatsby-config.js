@@ -1,9 +1,11 @@
+const siteAddress = new URL("https://taian.su")
+
 module.exports = {
   siteMetadata: {
     title: `Tai An, Su`,
     author: `taiansu`,
     description: `Mostly functional.`,
-    siteUrl: `https://taian.su`,
+    siteUrl: siteAddress.toString(),
     social: {
       default: `taiansu`,
       facebook: `sutaian`,
@@ -151,11 +153,13 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
     `gatsby-plugin-postcss`,
-    // {
-    //   resolve: `gatsby-transformer-remark`,
-    //   options: {
-    //     plugins: [`gatsby-remark-mathjax`],
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: "taian.su",
+        protocol: siteAddress.protocol.slice(0, -1),
+        hostname: siteAddress.hostname,
+      }
+    }
   ],
 }
