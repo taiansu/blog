@@ -132,6 +132,10 @@ pre tt:after {
   @apply my-4;
 }
 
+.mdx-content hr {
+  @apply my-6;
+}
+
 @screen md {
   .mdx-content h1 {
     @apply text-3xl;
