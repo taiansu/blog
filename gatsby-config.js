@@ -110,9 +110,9 @@ module.exports = {
             query: `
             {
               allMdx(
-                limit: 1000,
-                sort: { order: DESC, fields: [frontmatter___date] },
-                filter: { frontmatter: { published: { ne: false } } },
+                limit: 1000
+                sort: { order: DESC, fields: [frontmatter___date] }
+                filter: { frontmatter: { published: { ne: false } } }
               ) {
                 edges {
                   node {
