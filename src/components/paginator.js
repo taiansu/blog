@@ -4,8 +4,8 @@ import { Link } from "gatsby"
 const Paginator = ({pageContext: {currentPage, numPages}}) => {
   const isFirst = currentPage === 1
   const isLast = currentPage === numPages
-  const prevPage = currentPage - 1 === 1 ? '' : (currentPage - 1).toString()
-  const nextPage = (currentPage + 1).toString()
+  const prevPage = currentPage - 1 === 1 ? '' : pageUrl(currentPage - 1)
+  const nextPage = pageUrl(currentPage + 1)
 
   return (
     <div className="max-w-md mx-auto my-4 flex justify-between md:max-w-lg lg:max-w-xl">
@@ -16,3 +16,7 @@ const Paginator = ({pageContext: {currentPage, numPages}}) => {
 }
 
 export default Paginator
+
+function pageUrl(num) {
+  return `page${num.toString()}`
+}

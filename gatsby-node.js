@@ -59,7 +59,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   Array.from({length: numPages }).map((_, i) => {
     createPage({
-      path: i === 0 ? '/' : `/${i + 1}`,
+      path: i === 0 ? '/' : `/page${i + 1}`,
       component: blogIndex,
       context: {
         limit: postsPerPage,
