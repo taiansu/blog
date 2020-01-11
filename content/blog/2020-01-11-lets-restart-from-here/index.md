@@ -24,7 +24,7 @@ Gatsby 本身的文件也蠻完整的，雖然沒有整理的非常好，看起�
 $$
 PA1:  1\ \in \mathbb N \\\\
 PA2: \forall\ n\in\mathbb N\ [\ n'\in \mathbb N\ ] \\\\
-PA3: $\forall\ n\in \mathbb N \ [\ n' \neq 1\ ]$ \\\\
+PA3: \forall\ n\in \mathbb N \ [\ n' \neq 1\ ] \\\\
 PA4: \forall\ m \in \mathbb N\ \forall\ n \in \mathbb N\;[\ m' = n'\Rightarrow m = n\ ] \\\\
 PA5: (P(1) \land \forall\ k \in \mathbb N \; [\ P(k) \Rightarrow \ P(k')])\ \Rightarrow \forall\ n \in \mathbb N \; [\ P(n)\ ]
 $$
