@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Paginator from "../components/paginator"
 
 class BlogIndex extends React.Component {
   render() {
@@ -23,18 +24,17 @@ class BlogIndex extends React.Component {
         social={social}
         description={description}
       >
-        <SEO title="All posts" />
+        <SEO
+          title={siteTitle}
+          keywords={['taiansu', 'Tai An Su', 'mostly functional', 'elixir', 'functional']}/>
+
         <div className="max-w-md mx-auto mt-6 md:max-w-lg md:mt-6 lg:max-w-xl lg:mt-8">
           <ul>
             {posts.map(({ node }, index) => {
               const title = node.frontmatter.title || node.fields.slug
               return (
                 <li key={node.fields.slug} className="my-6 w-3/4 mx-auto">
-                  {index === 0 ? (
-                    ""
-                  ) : (
-                    <hr className="text-gray-900 mb-6" />
-                  )}
+
                   <div className="flex flex-col justify-start">
                     <div className="flex items-center text-gray-600">
                       <time className="text-base">{node.frontmatter.date}</time>
@@ -51,11 +51,14 @@ class BlogIndex extends React.Component {
                       <Link to={node.fields.slug}>{title}</Link>
                     </h2>
                   </div>
+
+                  <hr className="text-gray-900 mt-6" />
                 </li>
               )
             })}
           </ul>
         </div>
+        <Paginator pageContext={this.props.pageContext} />
       </Layout>
     )
   }
@@ -64,7 +67,7 @@ class BlogIndex extends React.Component {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query {
+  query($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
@@ -79,6 +82,8 @@ export const pageQuery = graphql`
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { published: { ne: false } } }
+      limit: $limit
+      skip: $skip
     ) {
       edges {
         node {
