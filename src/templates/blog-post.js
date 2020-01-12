@@ -20,7 +20,7 @@ class BlogPostTemplate extends React.Component {
           description={description || excerpt}
         />
         <article>
-          <header className="text-center -mt-18">
+          <hgroup className="text-center -mt-18">
             <h1 className="font-sans text-2xl sm:text-3xl md:text-4xl">
               {title}
             </h1>
@@ -37,14 +37,14 @@ class BlogPostTemplate extends React.Component {
                   </span>
               ) : ""}
             </div>
-          </header>
+          </hgroup>
 
-          <div className="mdx-content mt-8 max-w-md mx-auto sm:max-w-sm md:max-w-lg md:mt-10 lg:mt-12 lg:max-w-2xl">
+          <main className="mdx-content mt-8 max-w-md mx-auto sm:max-w-sm md:max-w-lg md:mt-10 lg:mt-12 lg:max-w-2xl">
             <MDXRenderer>{body}</MDXRenderer>
-          </div>
+          </main>
         </article>
 
-        <div className="flex items-start justify-center md:mb-4">
+        <footer className="flex items-start justify-center md:mb-4">
           <div className="w-3/4 border-t border-gray-300 py-3 sm:w-1/2">
             <div className="uppercase font-bold text-xs text-gray-400 -mt-2">written by</div>
 
@@ -63,7 +63,7 @@ class BlogPostTemplate extends React.Component {
             </div>
 
           </div>
-        </div>
+        </footer>
 
         <nav>
           <ul className="-mx-6 my-4 flex flex-wrap justify-between p-0 list-none text-sm sm:text-base sm:mx-0 lg:mx-4 lg:text-lg">

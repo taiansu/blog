@@ -35,7 +35,7 @@ class BlogIndex extends React.Component {
               return (
                 <li key={node.fields.slug} className="my-6 w-3/4 mx-auto">
 
-                  <div className="flex flex-col justify-start">
+                  <section className="flex flex-col justify-start">
                     <div className="flex items-center text-gray-600">
                       <time className="text-base">{node.frontmatter.date}</time>
 
@@ -50,7 +50,7 @@ class BlogIndex extends React.Component {
                     <h2 className="text-base sm:text-xl sm:mt-1">
                       <Link to={node.fields.slug}>{title}</Link>
                     </h2>
-                  </div>
+                  </section>
 
                   <hr className="text-gray-900 mt-6" />
                 </li>

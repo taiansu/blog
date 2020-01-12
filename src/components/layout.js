@@ -11,7 +11,7 @@ class Layout extends React.Component {
 
     return (
       <div className="font-sans">
-        <div className="min-w-sm mt-0 mx-0 mb-3">
+        <hgroup className="min-w-sm mt-0 mx-0 mb-3">
           <img src={banner} alt="banner background"  className="h-32 sm:h-48 lg:h-64 w-full object-cover object-top" />
 
           <div className="-mt-8 flex items-center justify-around lg:-mt-12">
@@ -30,7 +30,7 @@ class Layout extends React.Component {
 
           <SocialIcons social={social} styles="my-3 text-gray-500"/>
 
-        </div>
+        </hgroup>
 
         <main className="px-8">{children}</main>
 
