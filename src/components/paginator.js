@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 const Paginator = ({pageContext: {currentPage, numPages}}) => {
   const isFirst = currentPage === 1
   const isLast = currentPage === numPages
-  const prevPage = currentPage - 1 === 1 ? '' : pageUrl(currentPage - 1)
+  const prevPage = currentPage - 1 === 1 ? '/' : pageUrl(currentPage - 1)
   const nextPage = pageUrl(currentPage + 1)
 
   return (
@@ -18,5 +18,5 @@ const Paginator = ({pageContext: {currentPage, numPages}}) => {
 export default Paginator
 
 function pageUrl(num) {
-  return `page${num.toString()}`
+  return `/page${num.toString()}`
 }
