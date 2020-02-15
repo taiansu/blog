@@ -108,14 +108,18 @@ $ brew install erlang elixir
 $ brew cask install docker
 ```
 
-2. 拉官方 image。也可以不加 tag 直接拉預設版本，但是該版本有 1.08GB。相較之下 alpine 版只有 82 MB。
+2. 拉官方 image。
 ```bash
-$ docker pull elixir:1.8-otp-22-alpine
+$ docker pull elixir
 ```
 
 3. 跑起來
 ```bash
-$ docker run elixir:1.8-otp-22-alpine -it --rm iex
+$ docker run elixir -it --rm iex
+```
+
+4. 執行本機上的 elixir 檔案
+```bash
 ```
 
 ---
@@ -131,18 +135,66 @@ libncurses5-dev libwxgtk3.0-dev libgl1-mesa-dev libglu1-mesa-dev \
 libpng-dev libssh-dev unixodbc-dev
 ```
 
-2~6 步與 Mac 的做法相同
+接著參考 Mac 的 2 ~ 6 步
 
 ---
-
-以下待補完
 
 # Windows
 
 ## A. 使用 Linux Sub System (推薦)
 
-## B. 使用 scoop (第二優先選擇)
+1. 參考[微軟官方說明](https://docs.microsoft.com/zh-tw/windows/wsl/install-win10)，安裝 Linux 子系統。若不知道要用什麼的話，那就選 Ubuntu 吧。
+
+2. 啟動 Linux 子系統後，照著 Ubuntu/Debian 小節操作。
+
+## B. 使用 scoop
+
+參考 [Scoop]() 官網說明
+
+1. 用系統管理者權限打開 powershell
+
+2. 貼上以下指令並按 [Enter] 執行 (從官網 copy 會比較方便)
+
+```powershell
+iwr -useb get.scoop.sh | iex
+```
+
+3. 安裝 elixir
+
+```powershell
+scoop install elixir
+```
+
+4. 執行看看
+
+```powershell
+iex.bat
+```
+
 
 ## C. 使用 chocolatey
 
+參考 [chocolatey](https://chocolatey.org/install) 官網說明
+
+1. 用系統管理者權限打開 powershell
+
+2. 貼上以下指令並按 [Enter] 執行 (從官網 copy 會比較方便)
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+```
+
+3. 安裝 elixir
+
+```powershell
+choco install elixir
+```
+
+4. 執行看看
+
+```powershell
+iex.bat
+```
+
 ## D. 使用 Docker
+同 Mac -> C. 使用 Docker
