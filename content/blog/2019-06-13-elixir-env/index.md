@@ -113,13 +113,14 @@ $ brew cask install docker
 $ docker pull elixir
 ```
 
-3. 跑起來
+3. 跑起來試試看。按兩次 `Ctrl+C` 結束
 ```bash
-$ docker run elixir -it --rm iex
+$ docker run -it --rm elixir iex
 ```
 
 4. 執行本機上的 elixir 檔案
 ```bash
+$ docker run -it --rm -v (pwd):/tmp elixir elixir /tmp/my_elixir_file.ex
 ```
 
 ---
