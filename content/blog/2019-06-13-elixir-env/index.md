@@ -140,6 +140,33 @@ libpng-dev libssh-dev unixodbc-dev
 
 ---
 
+## CentOS 7
+
+```bash
+wget --no-verbose -P /tmp https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+yum install -q -y /tmp/epel-release-latest-7.noarch.rpm
+
+yum update -y -q
+
+yum upgrade -y -q --enablerepo=epel
+
+yum install -y -q wget curl unzip make git
+
+yum install -y -q automake autoconf readline-devel ncurses-devel openssl-devel libyaml-devel libxslt-devel libffi-devel libtool unixODBC-devel
+
+groupinstall -y 'Development Tools' 'C Development Tools and Libraries'
+
+yum install -y -q wxGTK3-devel wxBase3 openssl-devel libxslt \
+    java-1.8.0-openjdk-devel libiodbc unixODBC erlang-odbc
+
+yum install -y -q install gpg perl perl-Digest-SHA
+```
+
+接著參考 Mac 的 2 ~ 6 步
+
+---
+
 # Windows
 
 ## A. 使用 Linux Sub System (推薦)
@@ -150,11 +177,11 @@ libpng-dev libssh-dev unixodbc-dev
 
 ## B. 使用 scoop
 
-參考 [Scoop]() 官網說明
+參考 [Scoop](https://scoop.sh) 官網說明
 
 1. 用系統管理者權限打開 powershell
 
-2. 貼上以下指令並按 [Enter] 執行 (從官網 copy 會比較方便)
+2. 貼上以下指令並按 [Enter] 執行
 
 ```powershell
 iwr -useb get.scoop.sh | iex
