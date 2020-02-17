@@ -48,16 +48,16 @@ $ asdf plugin-add elixir
 5. 用 asdf 找到可用的 Erlang 版本並安裝。安裝 Erlang 需要很久，可以去聽個兩首歌再回來。
 ```bash
 asdf list-all erlang
-asdf install erlang 22.0.2
-asdf global erlang 22.0.2
+asdf install erlang 22.2.6
+asdf global erlang 22.2.6
 ```
 
 
 6. 用 asdf 找到可用的 Elixir 版本並安裝。由於 Elixir 是預編譯版本，所以可以選擇用符合自己 Erlang 版本編譯的版本。
 ```bash
 asdf list-all elixir
-asdf install elixir 1.8.2-otp-22
-asdf global elixir 1.8.2-otp-22
+asdf install elixir 1.10.0-otp-22
+asdf global elixir 1.10.0-otp-22
 ```
 
 ### Postgresql 及 NodeJs
@@ -120,7 +120,7 @@ $ docker run -it --rm elixir iex
 
 4. 執行本機上的 elixir 檔案
 ```bash
-$ docker run -it --rm -v (pwd):/tmp elixir elixir /tmp/my_elixir_file.ex
+$ docker run -it --rm -v $(pwd):/tmp elixir elixir /tmp/my_elixir_file.ex
 ```
 
 ---
