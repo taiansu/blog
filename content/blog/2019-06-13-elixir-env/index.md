@@ -70,7 +70,7 @@ $ brew install postgresql
 # 2. 安裝 asdf 的 nodejs plugin
 $ brew install gpg
 $ asdf plugin-add nodejs
-$ bash~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+$ bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
 
 # 3. 用 asdf 安裝 nodejs
 $ asdf list-all nodejs
