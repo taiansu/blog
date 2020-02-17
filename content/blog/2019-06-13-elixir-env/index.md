@@ -33,7 +33,7 @@ $ brew install \
 $ git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.7.2
 ```
 
-3. 將 asdf init script 加到 bashrc 中，這步之後需要重啟 shell。zsh 及 fish 參考[官方說明](https://asdf-vm.com/#/core-manage-asdf-vm)
+3. 將 asdf init script 加到 bashrc 中，若你用的是 zsh 及 fish 請參考[官方說明](https://asdf-vm.com/#/core-manage-asdf-vm?id=add-to-your-shell)。__這步之後需要重啟 shell__。
 ```bash
 $ echo -e '\n. $HOME/.asdf/asdf.sh' >> ~/.bashrc
 $ echo -e '\n. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
