@@ -25,7 +25,7 @@ class BlogIndex extends React.Component {
         description={description}
       >
         <SEO
-          title={siteTitle}
+          title={description}
           keywords={['taiansu', 'Tai An Su', 'mostly functional', 'elixir', 'functional']}/>
 
         <div className="max-w-md mx-auto mt-6 md:max-w-lg md:mt-6 lg:max-w-xl lg:mt-8">
@@ -33,7 +33,7 @@ class BlogIndex extends React.Component {
             {posts.map(({ node }, index) => {
               const title = node.frontmatter.title || node.fields.slug
               return (
-                <li key={node.fields.slug} className="my-6 w-3/4 mx-auto">
+                <li key={node.fields.slug} className="w-3/4 mx-auto my-6">
 
                   <section className="flex flex-col justify-start">
                     <div className="flex items-center text-gray-600">
@@ -41,7 +41,7 @@ class BlogIndex extends React.Component {
 
                       { node.frontmatter.tags.length === 0 ?  ""
                         : (<span className="hidden text-xs sm:inline-block">
-                              <i className="fa fa-tags ml-4 mr-2" />
+                              <i className="ml-4 mr-2 fa fa-tags" />
                             </span>)
                       }
                       <span className="hidden text-xs sm:inline-block">{node.frontmatter.tags.join(", ")}</span>
@@ -52,7 +52,7 @@ class BlogIndex extends React.Component {
                     </h2>
                   </section>
 
-                  <hr className="text-gray-900 mt-6" />
+                  <hr className="mt-6 text-gray-900" />
                 </li>
               )
             })}
