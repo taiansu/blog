@@ -1,29 +1,29 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
 
-class NotFoundPage extends React.Component {
-  render() {
-    const { data } = this.props
-    const { title: siteTitle, author, description, social } = data.site.siteMetadata
+const NotFoundPage = ({data, location}) => {
+  const { title: siteTitle, author, description, social } = data.site.siteMetadata
 
-    return (
-      <Layout
-        location={this.props.location}
-        title={siteTitle}
-        author={author}
-        social={social}
-        description={description}
-      >
+  return (
+    <Layout
+      location={location}
+      title={siteTitle}
+      author={author}
+      social={social}
+      description={description}
+    >
 
-        <SEO title="404: Not Found" />
-        <h1>Not Found</h1>
-        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-      </Layout>
-    )
-  }
+      <GatsbySeo
+        tilte="404: Not Found"
+        canonical={location}
+        />
+      <h1>Not Found</h1>
+      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    </Layout>
+  )
 }
 
 export default NotFoundPage

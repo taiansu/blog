@@ -1,9 +1,9 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import {MDXRenderer} from "gatsby-plugin-mdx"
+import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 import PostLayout from "../components/post-layout"
-import SEO from "../components/seo"
 import authorImg from "../../content/assets/author.png"
 
 const BlogPostTemplate = ({ pageContext, data, location }) => {
@@ -14,11 +14,23 @@ const BlogPostTemplate = ({ pageContext, data, location }) => {
 
   return (
     <PostLayout location={location} title={siteTitle} description={siteDescription} social={social} readingTime={readingTime.text}>
-      <SEO
-        title={title}
-        description={description || excerpt}
-        url={location.href}
-      />
+        <GatsbySeo
+          tilte={title}
+          canonical={location.href}
+          openGraph={{
+            url: location.href,
+            type: 'article',
+            title: title,
+            site_name: siteTitle,
+            description: description || excerpt,
+            image: []
+          }}
+          twitter={{
+            handle: '@taiansu',
+            site: '@taiansu',
+            cardType: 'summary'
+          }}
+          />
       <article>
         <hgroup className="text-center -mt-18">
           <h1 className="font-sans text-2xl sm:text-3xl md:text-4xl">

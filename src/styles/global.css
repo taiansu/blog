@@ -31,7 +31,7 @@ video {
 }
 
 a {
-  @apply bg-transparent no-underline;
+  @apply no-underline bg-transparent;
   -webkit-text-decoration-skip: objects;
 }
 a:active,
@@ -75,7 +75,7 @@ pre tt:after {
   @apply my-6 font-sans text-2xl;
 }
 .mdx-content h1:before {
-  @apply border-l-6 border-blue-700 mr-2;
+  @apply mr-2 border-blue-700 border-l-6;
   content: ''
 }
 
@@ -84,7 +84,7 @@ pre tt:after {
 }
 
 .mdx-content h2:before {
-  @apply border-l-3 border-blue-500 mr-4;
+  @apply mr-4 border-blue-500 border-l-3;
   content: ''
 }
 
@@ -93,7 +93,7 @@ pre tt:after {
 }
 
 .mdx-content h4 {
-  @apply my-4 underline font-sans text-lg;
+  @apply my-4 font-sans text-lg underline;
 }
 
 .mdx-content p {
@@ -105,7 +105,7 @@ pre tt:after {
 }
 
 .mdx-content blockquote {
-  @apply italic text-gray-700 leading-relaxed;
+  @apply italic leading-relaxed text-gray-700;
 }
 
 .mdx-content li {
@@ -113,11 +113,11 @@ pre tt:after {
 }
 
 .mdx-content ul {
-  @apply list-disc ml-8;
+  @apply ml-8 list-disc;
 }
 
 .mdx-content ol {
-  @apply list-decimal ml-8;
+  @apply ml-8 list-decimal;
 }
 
 .mdx-content .mjx-chtml {
@@ -154,7 +154,7 @@ pre tt:after {
   }
 
   .mdx-content p {
-    @apply text-lg my-6;
+    @apply my-6 text-lg;
   }
 
   .mdx-content .mjx-chtml {
@@ -170,7 +170,7 @@ pre tt:after {
   @apply pt-4 pl-2;
 }
 
-#about-lang li:not:(:first-child):not:(:last-child):after {
+#about-lang li:not:(:last-child):after {
   content: ',\00a0'
 }
 

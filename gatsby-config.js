@@ -2,7 +2,7 @@ const siteAddress = new URL("https://taian.su")
 
 module.exports = {
   siteMetadata: {
-    title: 'Mostly functional.',
+    title: 'Mostly functional',
     author: 'Tai An, Su',
     description: 'Careful random thoughts about coding, reading, music and stuffs about brains.',
     siteUrl: siteAddress.toString(),
@@ -160,6 +160,23 @@ module.exports = {
         protocol: siteAddress.protocol.slice(0, -1),
         hostname: siteAddress.hostname,
       }
-    }
+    },
+    {
+      resolve: 'gatsby-plugin-next-seo',
+      options: {
+        openGraph: {
+          type: 'website',
+          locale: 'zh-TW',
+          url: 'https://taian.su/',
+          site_name: 'Mostly Functional',
+        },
+        twitter: {
+          handle: '@taiansu',
+          site: '@taiansu',
+          cardType: 'summary_large_image',
+        },
+      },
+    },
+
   ],
 }
