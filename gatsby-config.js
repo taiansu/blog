@@ -63,7 +63,7 @@ module.exports = {
             resolve: `gatsby-remark-prismjs`,
             options: {
               inlineCodeMarker: '≠',
-              aliases: {js: 'javascript'},
+              aliases: { js: 'javascript' },
               showLineNumbers: true
             }
           },
@@ -166,17 +166,23 @@ module.exports = {
       options: {
         openGraph: {
           type: 'website',
-          locale: 'zh-TW',
+          locale: 'zh_TW',
           url: 'https://taian.su/',
           site_name: 'Mostly Functional',
         },
         twitter: {
           handle: '@taiansu',
-          site: '@taiansu',
-          cardType: 'summary_large_image',
+          cardType: 'summary',
         },
-      },
+      }
     },
-
+    {
+      resolve: 'gatsby-plugin-purgecss',
+      options: {
+        printRejected: false,
+        develop: false,
+        tailwind: true
+      }
+    }
   ],
 }

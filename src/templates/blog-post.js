@@ -1,36 +1,39 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import {MDXRenderer} from "gatsby-plugin-mdx"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import { GatsbySeo } from 'gatsby-plugin-next-seo'
 
 import PostLayout from "../components/post-layout"
 import authorImg from "../../content/assets/author.png"
 
-const BlogPostTemplate = ({ pageContext, data, location }) => {
-  const { previous, next } = pageContext
-  const {title: siteTitle, description: siteDescription, author, social} = data.site.siteMetadata
-  const {frontmatter, excerpt, body, fields: {readingTime}} = data.mdx
-  const {title, description, date, tags} = frontmatter
+const BlogPostTemplate = ({ pageContext, data }) => {
+  const { previous, next, slug } = pageContext
+  const { title: siteTitle, description: siteDescription, author, social, siteUrl } = data.site.siteMetadata
+  const { frontmatter, excerpt, body, fields: { readingTime } } = data.mdx
+  const { title, description, date, tags } = frontmatter
+  const location = `${siteUrl}${slug}`
 
   return (
     <PostLayout location={location} title={siteTitle} description={siteDescription} social={social} readingTime={readingTime.text}>
-        <GatsbySeo
-          tilte={title}
-          canonical={location.href}
-          openGraph={{
-            url: location.href,
-            type: 'article',
-            title: title,
-            site_name: siteTitle,
-            description: description || excerpt,
-            image: []
-          }}
-          twitter={{
-            handle: '@taiansu',
-            site: '@taiansu',
-            cardType: 'summary'
-          }}
-          />
+      <GatsbySeo
+        tilte={title}
+        canonical={location}
+        openGraph={{
+          url: location,
+          author: author,
+          local: 'zh_TW',
+          type: 'article',
+          title: title,
+          site_name: siteTitle,
+          description: description || excerpt,
+          image: []
+        }}
+        twitter={{
+          handle: '@taiansu',
+          site: '@taiansu',
+          cardType: 'summary'
+        }}
+      />
       <article>
         <hgroup className="text-center -mt-18">
           <h1 className="font-sans text-2xl sm:text-3xl md:text-4xl">
@@ -39,14 +42,14 @@ const BlogPostTemplate = ({ pageContext, data, location }) => {
           <div className="flex items-center justify-center mt-2 mb-4 text-gray-500">
             <Link to={"/about"}>
               <img src={authorImg} alt="logo"
-                className="w-8 h-8 mr-2 rounded-full shadow sm:shadow-md md:h-10 md:w-10 md:shadow-lg"/>
+                className="w-8 h-8 mr-2 rounded-full shadow sm:shadow-md md:h-10 md:w-10 md:shadow-lg" />
             </Link>
             <span className="text-xs sm:text-base md:text-lg">on{' '}<time>{date}</time></span>
-            { tags && tags.length ? (
-                <span className="text-xs sm:text-base md:text-lg">
-                  <i className="ml-4 mr-1 fa fa-tags" />
-                  {tags.join(", ")}
-                </span>
+            {tags && tags.length ? (
+              <span className="text-xs sm:text-base md:text-lg">
+                <i className="ml-4 mr-1 fa fa-tags" />
+                {tags.join(", ")}
+              </span>
             ) : ""}
           </div>
         </hgroup>
@@ -108,6 +111,7 @@ export const pageQuery = graphql`
         title
         author
         description
+        siteUrl
         social {
           default
           facebook

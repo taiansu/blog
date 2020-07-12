@@ -5,11 +5,12 @@ import { GatsbySeo } from 'gatsby-plugin-next-seo'
 import Layout from '../components/layout'
 import Paginator from "../components/paginator"
 
-const BlogIndex = ({data, location, pageContext}) => {
+const BlogIndex = ({ data, pageContext }) => {
   const {
     title: siteTitle,
+    siteUrl: location,
     author,
-    social,
+    social
   } = data.site.siteMetadata
   const posts = data.allMdx.edges
 
@@ -23,7 +24,7 @@ const BlogIndex = ({data, location, pageContext}) => {
       <GatsbySeo
         tilte={siteTitle}
         canonical={location}
-        />
+      />
 
       <div className="max-w-md mx-auto mt-6 md:max-w-lg md:mt-6 lg:max-w-xl lg:mt-8">
         <ul>
@@ -36,10 +37,10 @@ const BlogIndex = ({data, location, pageContext}) => {
                   <div className="flex items-center text-gray-600">
                     <time className="text-base">{node.frontmatter.date}</time>
 
-                    { node.frontmatter.tags.length === 0 ?  ""
+                    {node.frontmatter.tags.length === 0 ? ""
                       : (<span className="hidden text-xs sm:inline-block">
-                            <i className="ml-4 mr-2 fa fa-tags" />
-                          </span>)
+                        <i className="ml-4 mr-2 fa fa-tags" />
+                      </span>)
                     }
                     <span className="hidden text-xs sm:inline-block">{node.frontmatter.tags.join(", ")}</span>
 
@@ -69,6 +70,7 @@ export const pageQuery = graphql`
         title
         description
         author
+        siteUrl
         social {
           default
           facebook

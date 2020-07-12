@@ -5,36 +5,32 @@ import logo from "../../content/assets/logo.png"
 import banner from "../../content/assets/banner.jpg"
 import "../styles/global.css"
 
-class Layout extends React.Component {
-  render() {
-    const { children, title, description, image, readingTime } = this.props
+const Layout = ({ children, title, description, image, readingTime, location }) => {
+  return (
+    <div className="flex flex-col min-h-screen font-sans">
+      <header className="flex items-center justify-between h-32 mb-3 -mt-8 bg-center bg-cover " style={{ backgroundImage: `url(${image})` }}>
+        <Link to={"/"}>
+          <img src={logo} alt="logo" className="h-12 mt-3 ml-3 border-8 border-black" />
+        </Link>
+        <div className="mt-5 mr-3 text-gray-500">{readingTime}</div>
+      </header>
 
-    return (
-      <div className="font-sans flex flex-col min-h-screen">
-        <header className="mb-3 -mt-8 bg-center bg-cover flex items-center justify-between h-32 " style={{backgroundImage: `url(${image})`}}>
+      <main className="flex-1 flex-auto px-8 -mt-8">{children}</main>
+
+      <footer className="flex-shrink-0 text-center text-white">
+        <div className="flex flex-col items-center justify-center w-full h-32 bg-right-bottom sm:h-48" style={{ backgroundImage: `url(${banner})` }}>
           <Link to={"/"}>
-            <img src={logo} alt="logo" className="h-12 border-8 mt-3 ml-3 border-black" />
+            <h3 className="font-sans text-2xl font-bold sm:text-xl lg:text-2xl">
+              {title}
+            </h3>
           </Link>
-          <div className="mt-5 mr-3 text-gray-500">{ readingTime }</div>
-        </header>
-
-        <main className="px-8 -mt-8 flex-1 flex-auto">{children}</main>
-
-        <footer className="text-center text-white flex-shrink-0">
-          <div className="flex flex-col items-center justify-center h-32 sm:h-48 w-full bg-right-bottom" style={{backgroundImage: `url(${banner})`}}>
-            <Link to={"/"}>
-              <h3 className="font-sans font-bold text-2xl sm:text-xl lg:text-2xl">
-                {title}
-              </h3>
-            </Link>
-            <Link to={"/"}>
-              <h2 className="font-serif hidden sm:block text-2xl lg:text-4xl">{description}</h2>
-            </Link>
-          </div>
-        </footer>
-      </div>
-    )
-  }
+          <Link to={"/"}>
+            <h2 className="hidden font-serif text-2xl sm:block lg:text-4xl">{description}</h2>
+          </Link>
+        </div>
+      </footer>
+    </div>
+  )
 }
 
 export default Layout
