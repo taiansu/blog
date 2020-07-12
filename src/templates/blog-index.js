@@ -11,7 +11,6 @@ class BlogIndex extends React.Component {
     const {
       title: siteTitle,
       author,
-      description,
       social,
     } = data.site.siteMetadata
     const posts = data.allMdx.edges
@@ -22,10 +21,9 @@ class BlogIndex extends React.Component {
         title={siteTitle}
         author={author}
         social={social}
-        description={description}
       >
         <SEO
-          title={description}
+          title={title}
           keywords={['taiansu', 'Tai An Su', 'mostly functional', 'elixir', 'functional']}
           type='site' />
 

@@ -8,20 +8,20 @@ import SEO from "../components/seo"
 class AboutPage extends React.Component {
   render() {
     const { data } = this.props
-    const {title, author, description, social} = data.site.siteMetadata
+    const { title, author, description, social } = data.site.siteMetadata
 
     return (
       <Layout location={this.props.location} title={title} description={description} author={author} social={social}>
         <SEO title="Tai An Su: About" />
         <div className="flex flex-col items-center">
           <h3 className="text-xl font-bold text-gray-500">about</h3>
-          <h1 className="text-3xl mt-2">{title}</h1>
+          <h1 className="mt-2 text-3xl">{title}</h1>
 
           <SocialIcons social={social} styles="mt-2 text-gray-800" showAbout={false}/>
 
-          <ul className="mt-6 ml-4 text-sm list-disc leading-loose sm:ml-16 sm:text-lg lg:ml-24 lg:text-xl">
+          <ul className="mt-6 ml-4 text-sm leading-loose list-disc sm:ml-16 sm:text-lg lg:ml-24 lg:text-xl">
             <li>Software craftsman<span className="italic">, 10+ yrs</span></li>
-              <ul id="about-lang" className="font-mono font-normal text-xs sm:text-base lg:text-lg">
+              <ul id="about-lang" className="font-mono text-xs font-normal sm:text-base lg:text-lg">
                 <li className="-my-2 font-serif">use:</li>
                 <li className="inline-block">Elixir</li>
                 <li className="inline-block">Haskell</li>

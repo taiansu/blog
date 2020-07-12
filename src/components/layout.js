@@ -7,25 +7,25 @@ import "../styles/global.css"
 
 class Layout extends React.Component {
   render() {
-    const { children, author, title, description, social} = this.props
+    const { children, author, title, social} = this.props
 
     return (
       <div className="font-sans">
-        <hgroup className="min-w-sm mt-0 mx-0 mb-3">
-          <img src={banner} alt="banner background"  className="h-32 sm:h-48 lg:h-64 w-full object-cover object-top" />
+        <hgroup className="mx-0 mt-0 mb-3 min-w-sm">
+          <img src={banner} alt="banner background"  className="object-cover object-top w-full h-32 sm:h-48 lg:h-64" />
 
-          <div className="-mt-8 flex items-center justify-around lg:-mt-12">
-            <img src={logo} alt="logo" className="h-16 w-16 rounded-full border border-white shadow-md object-cover object-center lg:h-24 lg:w-24" />
+          <div className="flex items-center justify-around -mt-8 lg:-mt-12">
+            <img src={logo} alt="logo" className="object-cover object-center w-16 h-16 border border-white rounded-full shadow-md lg:h-24 lg:w-24" />
           </div>
 
-          <h2 className="mx-auto mt-2 text-center text-gray-800 tracking-wide text-xl sm:text-2xl lg:text-3xl">
-            <Link className="shadow-none no-underline" to={`/`}>
-              {title}
+          <h2 className="mx-auto mt-2 text-xl tracking-wide text-center text-gray-800 sm:text-2xl lg:text-3xl">
+            <Link className="no-underline shadow-none" to={`/`}>
+              {author}
             </Link>
           </h2>
 
-          <h1 className="mx-auto text-center tracking-wide font-serif text-2xl sm:text-3xl lg:text-4xl">
-            {description}
+          <h1 className="mx-auto font-serif text-2xl tracking-wide text-center sm:text-3xl lg:text-4xl">
+            {title}
           </h1>
 
           <SocialIcons social={social} styles="my-3 text-gray-500"/>
@@ -34,7 +34,7 @@ class Layout extends React.Component {
 
         <main className="px-8">{children}</main>
 
-        <footer className="mt-8 mb-5 mx-auto text-center text-gray-500">
+        <footer className="mx-auto mt-8 mb-5 text-center text-gray-500">
           <div>
             {author} © {new Date().getFullYear()}
             <span className="mx-3">·</span>
