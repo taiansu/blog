@@ -6,86 +6,85 @@ import PostLayout from "../components/post-layout"
 import SEO from "../components/seo"
 import authorImg from "../../content/assets/author.png"
 
-class BlogPostTemplate extends React.Component {
-  render() {
-    const { previous, next } = this.props.pageContext
-    const {title: siteTitle, description: siteDescription, author, social} = this.props.data.site.siteMetadata
-    const {frontmatter, excerpt, body, fields: {readingTime}} = this.props.data.mdx
-    const {title, description, date, tags} = frontmatter
+const BlogPostTemplate = ({ pageContext, data, location }) => {
+  const { previous, next } = pageContext
+  const {title: siteTitle, description: siteDescription, author, social} = data.site.siteMetadata
+  const {frontmatter, excerpt, body, fields: {readingTime}} = data.mdx
+  const {title, description, date, tags} = frontmatter
 
-    return (
-      <PostLayout location={this.props.location} title={siteTitle} description={siteDescription} social={social} readingTime={readingTime.text}>
-        <SEO
-          title={title}
-          description={description || excerpt}
-        />
-        <article>
-          <hgroup className="text-center -mt-18">
-            <h1 className="font-sans text-2xl sm:text-3xl md:text-4xl">
-              {title}
-            </h1>
-            <div className="mt-2 mb-4 flex justify-center items-center text-gray-500">
-              <Link to={"/about"}>
-                <img src={authorImg} alt="logo"
-                  className="rounded-full shadow mr-2 h-8 w-8 sm:shadow-md md:h-10 md:w-10 md:shadow-lg"/>
-              </Link>
-              <span className="text-xs sm:text-base md:text-lg">on{' '}<time>{date}</time></span>
-              { tags && tags.length ? (
-                  <span className="text-xs sm:text-base md:text-lg">
-                    <i className="fa fa-tags ml-4 mr-1" />
-                    {tags.join(", ")}
-                  </span>
-              ) : ""}
-            </div>
-          </hgroup>
-
-          <main className="mdx-content mt-8 max-w-md mx-auto sm:max-w-sm md:max-w-lg md:mt-10 lg:mt-12 lg:max-w-2xl">
-            <MDXRenderer>{body}</MDXRenderer>
-          </main>
-        </article>
-
-        <footer className="flex items-start justify-center md:mb-4">
-          <div className="w-3/4 border-t border-gray-300 py-3 sm:w-1/2">
-            <div className="uppercase font-bold text-xs text-gray-400 -mt-2">written by</div>
-
-            <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center mt-4">
-                <img src={authorImg} alt="author" className="h-8 w-8 rounded-full border shadow mr-2" />
-                <div className="mr-2">{author},</div>
-                <div>{date}</div>
-              </div>
-              <div className="mt-1">
-                <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
-              </div>
-              <div className="mt-1">
-                <a href="/rss.xml">Subscribe {` `}<i className="fas fa-rss ml-1"></i></a>
-              </div>
-            </div>
-
+  return (
+    <PostLayout location={location} title={siteTitle} description={siteDescription} social={social} readingTime={readingTime.text}>
+      <SEO
+        title={title}
+        description={description || excerpt}
+        url={location.href}
+      />
+      <article>
+        <hgroup className="text-center -mt-18">
+          <h1 className="font-sans text-2xl sm:text-3xl md:text-4xl">
+            {title}
+          </h1>
+          <div className="flex items-center justify-center mt-2 mb-4 text-gray-500">
+            <Link to={"/about"}>
+              <img src={authorImg} alt="logo"
+                className="w-8 h-8 mr-2 rounded-full shadow sm:shadow-md md:h-10 md:w-10 md:shadow-lg"/>
+            </Link>
+            <span className="text-xs sm:text-base md:text-lg">on{' '}<time>{date}</time></span>
+            { tags && tags.length ? (
+                <span className="text-xs sm:text-base md:text-lg">
+                  <i className="ml-4 mr-1 fa fa-tags" />
+                  {tags.join(", ")}
+                </span>
+            ) : ""}
           </div>
-        </footer>
+        </hgroup>
 
-        <nav>
-          <ul className="-mx-6 my-4 flex flex-wrap justify-between p-0 list-none text-sm sm:text-base sm:mx-0 lg:mx-4 lg:text-lg">
-            <li>
-              {previous && (
-                <Link to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
-                </Link>
-              )}
-            </li>
-            <li>
-              {next && (
-                <Link to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
-                </Link>
-              )}
-            </li>
-          </ul>
-        </nav>
-      </PostLayout>
-    )
-  }
+        <main className="max-w-md mx-auto mt-8 mdx-content sm:max-w-sm md:max-w-lg md:mt-10 lg:mt-12 lg:max-w-2xl">
+          <MDXRenderer>{body}</MDXRenderer>
+        </main>
+      </article>
+
+      <footer className="flex items-start justify-center md:mb-4">
+        <div className="w-3/4 py-3 border-t border-gray-300 sm:w-1/2">
+          <div className="-mt-2 text-xs font-bold text-gray-400 uppercase">written by</div>
+
+          <div className="flex flex-col items-center">
+            <div className="flex items-center justify-center mt-4">
+              <img src={authorImg} alt="author" className="w-8 h-8 mr-2 border rounded-full shadow" />
+              <div className="mr-2">{author},</div>
+              <div>{date}</div>
+            </div>
+            <div className="mt-1">
+              <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
+            </div>
+            <div className="mt-1">
+              <a href="/rss.xml">Subscribe {` `}<i className="ml-1 fas fa-rss"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </footer>
+
+      <nav>
+        <ul className="flex flex-wrap justify-between p-0 my-4 -mx-6 text-sm list-none sm:text-base sm:mx-0 lg:mx-4 lg:text-lg">
+          <li>
+            {previous && (
+              <Link to={previous.fields.slug} rel="prev">
+                ← {previous.frontmatter.title}
+              </Link>
+            )}
+          </li>
+          <li>
+            {next && (
+              <Link to={next.fields.slug} rel="next">
+                {next.frontmatter.title} →
+              </Link>
+            )}
+          </li>
+        </ul>
+      </nav>
+    </PostLayout>
+  )
 }
 
 export default BlogPostTemplate

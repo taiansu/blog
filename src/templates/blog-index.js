@@ -26,7 +26,8 @@ class BlogIndex extends React.Component {
       >
         <SEO
           title={description}
-          keywords={['taiansu', 'Tai An Su', 'mostly functional', 'elixir', 'functional']}/>
+          keywords={['taiansu', 'Tai An Su', 'mostly functional', 'elixir', 'functional']}
+          type='site' />
 
         <div className="max-w-md mx-auto mt-6 md:max-w-lg md:mt-6 lg:max-w-xl lg:mt-8">
           <ul>

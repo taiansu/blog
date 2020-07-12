@@ -2,9 +2,9 @@ const siteAddress = new URL("https://taian.su")
 
 module.exports = {
   siteMetadata: {
-    title: `Tai An, Su`,
+    title: `Mostly functional.`,
     author: `taiansu`,
-    description: `Mostly functional.`,
+    description: `Careful random thoughts about coding, reading, music and stuffs about brains.`,
     siteUrl: siteAddress.toString(),
     social: {
       default: `taiansu`,
