@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import logo from "../../content/assets/logo.png"
 import banner from "../../content/assets/banner.jpg"
 import "../styles/global.css"
+import "../styles/article.css"
 
 const Layout = ({ children, title, description, image, readingTime, location }) => {
   return (

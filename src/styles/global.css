@@ -162,18 +162,6 @@ pre tt:after {
   }
 }
 
-/* prismjs syntax highlighting */
-.gatsby-highlight pre[class*="language-"].line-numbers {
-  @apply pl-10;
-}
-.gatsby-highlight pre[class*="language-"] .line-numbers-rows {
-  @apply pt-4 pl-2;
-}
-
-#about-lang li:not:(:last-child):after {
-  content: ',\00a0'
-}
-
 /* .gatsby-highlight-code-line { */
 /*   background-color: #feb; */
 /*   display: block; */

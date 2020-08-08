@@ -180,8 +180,9 @@ module.exports = {
       resolve: 'gatsby-plugin-purgecss',
       options: {
         printRejected: false,
-        develop: false,
-        tailwind: true
+        develop: true,
+        tailwind: true,
+        ignore: ["/src/styles/article.css", "prismjs/"],
       }
     }
   ],
