@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+<title>
+    
+    在 Linux 安裝 Rails 環境 | Mostly Functional
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/2012-10-27-linux-rails/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/2012-10-27-linux-rails/">
+	<meta property="og:site_name" content="Mostly Functional">
+	<meta property="og:title" content="在 Linux 安裝 Rails 環境">
+	<meta property="og:description" content="安裝必要元件 # 開啟「終端機模擬程式」(在 Menu 裡)，分別輸入底下每一行指令後按Enter。先不要整塊複制貼上，得一行行輸入。如果指令很長懶得打的話，在 Linux裡開瀏覽器 (Menu -&gt; 網際網路)，找這篇文章一步步複製貼上。">
+	<meta property="og:locale" content="zh_tw">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2012-10-27T06:47:00+08:00">
+		<meta property="article:modified_time" content="2012-10-27T06:47:00+08:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.28d9b342d60b6964cad0e9a24256ab1a810cb5e23640573a1ca6253ae0c77292.css" media="all">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Mostly Functional</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /首頁
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /文章
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /關於我
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+
+
+<div >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">在 Linux 安裝 Rails 環境</h1>
+    
+
+
+
+    
+
+    <p class="single-readtime">
+      
+
+      
+      
+      
+      <time datetime="2012-10-27T06:47:00&#43;08:00">October 27, 2012</time>
+      
+
+      
+    </p>
+
+
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="single-content">
+    <h2 class="heading" id="安裝必要元件">
+  安裝必要元件
+  <a href="#%e5%ae%89%e8%a3%9d%e5%bf%85%e8%a6%81%e5%85%83%e4%bb%b6">#</a>
+</h2>
+<p>開啟「終端機模擬程式」(在 Menu 裡)，分別輸入底下每一行指令後按<kbd>Enter</kbd>。先不要整塊複制貼上，得一行行輸入。如果指令很長懶得打的話，在 Linux裡開瀏覽器 (Menu -&gt; 網際網路)，找這篇文章一步步複製貼上。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get update
+</span></span></code></pre></div><p>按下<kbd>Enter</kbd>後會要求你輸入密碼，按密碼時螢幕沒有反應是正常的，就打進去按<kbd>Enter</kbd>。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get upgrade
+</span></span></code></pre></div><p>完成後中間若有要求取代檔案的訊息，一直按<kbd>Enter</kbd>同意。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt-get install curl build-essential zlib1g-dev libssl-dev libreadline-dev xclip git
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">echo</span> <span style="color:#666;font-style:italic">&#34;alias clipboard=&#39;clip -sel clip&#39;&#34;</span> &gt;&gt; ~/.bashrc
+</span></span></code></pre></div><p>上面的 zlib1g 請拼對，前面是<code>L</code>後面是<code>1</code>，在這裡卡關就太冤了。</p>
+<hr>
+<h2 class="heading" id="安裝-rbenv">
+  安裝 rbenv
+  <a href="#%e5%ae%89%e8%a3%9d-rbenv">#</a>
+</h2>
+<p>首先安裝 rbenv</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone git://github.com/sstephenson/rbenv.git .rbenv
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">echo</span> <span style="color:#666;font-style:italic">&#34;export PATH=&#39;</span><span style="color:#666;font-weight:bold;font-style:italic">$HOME</span><span style="color:#666;font-style:italic">/.rbenv/bin:</span><span style="color:#666;font-weight:bold;font-style:italic">$PATH</span><span style="color:#666;font-style:italic">&#39;&#34;</span> &gt;&gt; ~/.bashrc
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">echo</span> <span style="color:#666;font-style:italic">&#39;eval &#34;$(rbenv init -)&#34;&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">exec</span> <span style="color:#666;font-weight:bold;font-style:italic">$SHELL</span>
+</span></span></code></pre></div><p>再安裝 ruby-build</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p ~/.rbenv/plugins
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">cd</span> ~/.rbenv/plugins
+</span></span><span style="display:flex;"><span>git clone git://github.com/sstephenson/ruby-build.git
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">echo</span> <span style="color:#666;font-style:italic">&#39;export PATH=&#34;$HOME/.rbenv/plugins/ruby-build/bin:$PATH&#34;&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">exec</span> <span style="color:#666;font-weight:bold;font-style:italic">$SHELL</span>
+</span></span></code></pre></div><p>總算要開始裝 Ruby 跟 Rails 了。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbenv install 2.1.2
+</span></span><span style="display:flex;"><span>rbenv rehash
+</span></span><span style="display:flex;"><span>rbenv global 2.1.2
+</span></span><span style="display:flex;"><span>ruby -v
+</span></span><span style="display:flex;"><span>gem install bundler rails
+</span></span><span style="display:flex;"><span>rbenv rehash
+</span></span><span style="display:flex;"><span>rails -v
+</span></span></code></pre></div>
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/2012-10-23-virtualbox-linux/">
+                        在 VirtualBox 安裝 Linux
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/2013-06-05-os-x-git/">
+                        在 OS X 安裝 git 環境
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

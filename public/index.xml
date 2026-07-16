@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Home on Mostly Functional</title>
+		<link>http://localhost:1313/</link>
+		<description>Recent content in Home on Mostly Functional</description>
+		<generator>Hugo</generator>
+		<language>zh-tw</language>
+		
+		
+		
+		
+			<lastBuildDate>Thu, 12 Dec 2024 04:00:56 +0800</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Handling N-dimensional Lists in Elixir with Ndim</title>
+				<link>http://localhost:1313/posts/2024-10-18-type-in-elixir/</link>
+				<pubDate>Thu, 12 Dec 2024 04:00:56 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2024-10-18-type-in-elixir/</guid>
+				<description>&lt;h2 class=&#34;heading&#34; id=&#34;process-the-n-dimensional-list&#34;&gt;&#xA;  Process the n-dimensional list&#xA;  &lt;a href=&#34;#process-the-n-dimensional-list&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;In data processing, I constantly have to work with the n-dimensional list, which something looks like these:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-elixir&#34; data-lang=&#34;elixir&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#888;font-style:italic&#34;&gt;# 2 dimensional list (matrix)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  [1, 2],&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  [3, 4]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;As an elixir alchemist, use &lt;code&gt;Enum.map/2&lt;/code&gt; to transform list is our second nature.&#xA;However, when dealing with nested lists, transforming elements at specific depths requires&#xA;multiple nested mapping operations. Consider these approaches:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-elixir&#34; data-lang=&#34;elixir&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[[1, 2], [3, 4]]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;|&amp;gt; &lt;span style=&#34;color:#666;font-weight:bold;font-style:italic&#34;&gt;Enum&lt;/span&gt;.map(&lt;span style=&#34;font-weight:bold;text-decoration:underline&#34;&gt;fn&lt;/span&gt; row -&amp;gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     &lt;span style=&#34;color:#666;font-weight:bold;font-style:italic&#34;&gt;Enum&lt;/span&gt;.map(row, &lt;span style=&#34;font-weight:bold;text-decoration:underline&#34;&gt;fn&lt;/span&gt; i -&amp;gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;       i * 10&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     &lt;span style=&#34;font-weight:bold;text-decoration:underline&#34;&gt;end&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;font-weight:bold;text-decoration:underline&#34;&gt;end&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;&#34;&gt;$&lt;/span&gt;&amp;gt; [[10, 20], [30, 40]]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And the things get worse when we like to work with 3-dimensional list or deeper:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>聊聊 Elixir 中的 type</title>
+				<link>http://localhost:1313/posts/2022-10-18-type-in-elixir/</link>
+				<pubDate>Wed, 19 Oct 2022 00:57:56 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2022-10-18-type-in-elixir/</guid>
+				<description>&lt;p&gt;最近有幾位朋友分別來問 Elixir 的 type 的問題，想說中文世界好像沒有比較完整的東西，就把知道的東西整理出來。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Elixir.tw online meetup 指南</title>
+				<link>http://localhost:1313/posts/2020-04-05-elixirtw-online-meetup/</link>
+				<pubDate>Sun, 05 Apr 2020 02:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2020-04-05-elixirtw-online-meetup/</guid>
+				<description>&lt;h2 class=&#34;heading&#34; id=&#34;meetup-形式與主題&#34;&gt;&#xA;  Meetup 形式與主題&#xA;  &lt;a href=&#34;#meetup-%e5%bd%a2%e5%bc%8f%e8%88%87%e4%b8%bb%e9%a1%8c&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;每次預計 45min ~ 1hr 主題 talks, 另外有 30min 左右的發問與閒聊時間。而每次聚會的talks 部份會測錄並上線。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Steam 上的程式教學類遊戲</title>
+				<link>http://localhost:1313/posts/2020-02-25-programming-games-on-steam/</link>
+				<pubDate>Tue, 25 Feb 2020 07:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2020-02-25-programming-games-on-steam/</guid>
+				<description>&lt;p&gt;農曆年期間比較有空，玩了一些之前買的遊戲。這次特別試了幾個標榜讓不會寫程式的人學寫程式的遊戲。分享一下試玩的心得。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Let&#39;s (re)start from here.</title>
+				<link>http://localhost:1313/posts/2020-01-11-lets-restart-from/</link>
+				<pubDate>Sat, 11 Jan 2020 11:12:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2020-01-11-lets-restart-from/</guid>
+				<description>&lt;p&gt;最近的時間大半都花在這上面了。&lt;/p&gt;&#xA;&lt;p&gt;算算應該是第五次弄部落格系統。算一下扣除上古時期用現成的之外，每個系統平均各寫六篇文章，也都撐不過兩年。前幾個分別用了 Refinery CMS -&amp;gt; jekyll -&amp;gt; middleman -&amp;gt; jekyll。想來架系統的總時數應該超過寫文章的時間 XD&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>安裝 Elixir 環境</title>
+				<link>http://localhost:1313/posts/2019-06-13-install-elixir-env/</link>
+				<pubDate>Thu, 13 Jun 2019 09:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2019-06-13-install-elixir-env/</guid>
+				<description>&lt;p&gt;本文介紹幾種在電腦上安裝 Elixir / Erlang 環境的方法。&lt;/p&gt;&#xA;&lt;!-- read more --&gt;&#xA;&lt;h2 class=&#34;heading&#34; id=&#34;mac&#34;&gt;&#xA;  Mac&#xA;  &lt;a href=&#34;#mac&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 class=&#34;heading&#34; id=&#34;a-使用-asdf-推薦&#34;&gt;&#xA;  A. 使用 asdf (推薦)&#xA;  &lt;a href=&#34;#a-%e4%bd%bf%e7%94%a8-asdf-%e6%8e%a8%e8%96%a6&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/asdf-vm/asdf&#34;&gt;asdf&lt;/a&gt; 是類 unix 作業系統上類似 rvm, rbenv 或 nvm 的語言版本管理套件。特別之處在於它可以安裝不同的 plugin 來管理&lt;a href=&#34;https://github.com/asdf-vm/asdf-plugins&#34;&gt;多種不同的語言&lt;/a&gt;。&lt;/p&gt;&#xA;&lt;h3 class=&#34;heading&#34; id=&#34;pre-request&#34;&gt;&#xA;  pre request&#xA;  &lt;a href=&#34;#pre-request&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;homebrew&lt;/li&gt;&#xA;&lt;li&gt;git&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h4 class=&#34;heading&#34; id=&#34;install&#34;&gt;&#xA;  Install&#xA;  &lt;a href=&#34;#install&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h4&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;安裝 asdf 及 erlang 需要的元件&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ brew install &lt;span style=&#34;color:#666;font-style:italic&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  coreutils automake autoconf openssl &lt;span style=&#34;color:#666;font-style:italic&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  libyaml readline libxslt libtool unixodbc &lt;span style=&#34;color:#666;font-style:italic&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  unzip curl wxmac asdf&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;&#xA;&lt;li&gt;將 asdf init script 加到 zshrc 中，若你用的是 bash 或 fish 請參考&lt;a href=&#34;https://asdf-vm.com/#/core-manage-asdf-vm?id=add-to-your-shell&#34;&gt;官方說明&lt;/a&gt;。&lt;strong&gt;這步之後需要重啟 shell&lt;/strong&gt;。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ &lt;span style=&#34;font-weight:bold;font-style:italic&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color:#666;font-style:italic&#34;&gt;&amp;#39;\n. /opt/homebrew/opt/asdf/libexec/asdf.sh&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; ~/.zshrc&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ &lt;span style=&#34;font-weight:bold;font-style:italic&#34;&gt;echo&lt;/span&gt; -e &lt;span style=&#34;color:#666;font-style:italic&#34;&gt;&amp;#39;\n. /opt/homebrew/share/zsh/site-functions&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; ~/.zshrc&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;3&#34;&gt;&#xA;&lt;li&gt;安裝 asdf 的 elixir 及 erlang plugin&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ asdf plugin-add erlang&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;$ asdf plugin-add elixir&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;4&#34;&gt;&#xA;&lt;li&gt;用 asdf 安裝最新版的 Erlang。這一步一般來說需要很久，可以去聽個兩首歌再回來。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asdf install erlang latest&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ol start=&#34;5&#34;&gt;&#xA;&lt;li&gt;用 asdf 安裝最新版的 Elixir。由於 Elixir 是預編譯版本，所以可以選擇用符合自己 Erlang 版本編譯的版本。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asdf install latest elixir&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 class=&#34;heading&#34; id=&#34;postgresql-及-nodejs&#34;&gt;&#xA;  Postgresql 及 NodeJs&#xA;  &lt;a href=&#34;#postgresql-%e5%8f%8a-nodejs&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h4&gt;&#xA;&lt;p&gt;如果想試試 phoenix，那麼需要安裝 postgresql 及 nodejs 5.5 以上的版本。這裡一樣使用 asdf 來安裝 nodejs，若你的系統中已存在其它 nodejs 版本，可以省略後面兩步。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Phoenix LiveView 概念篇</title>
+				<link>http://localhost:1313/posts/2019-03-25-phoenix-liveview/</link>
+				<pubDate>Mon, 25 Mar 2019 11:10:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2019-03-25-phoenix-liveview/</guid>
+				<description>&lt;p&gt;在 2018 九月 &lt;a href=&#34;https://elixirconf.com/&#34;&gt;ElixirConf&lt;/a&gt; 的 ending keynote 中，Phoenix 的作者 Chris McCord 發表了正在開發中的新套件，Phoenix LiveView。而上週五 (3 月 15 日) 這個套件終於在  GitHub 上&lt;a href=&#34;https://github.com/phoenixframework/phoenix_live_view&#34;&gt;公開&lt;/a&gt;了。 本篇將介紹 Phoenix LiveView 的想解決的問題、基本概念，以及一些個人的想法。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Ruby 2.6 的新功能</title>
+				<link>http://localhost:1313/posts/2019-01-26-ruby-26/</link>
+				<pubDate>Sat, 26 Jan 2019 11:30:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2019-01-26-ruby-26/</guid>
+				<description>&lt;p&gt;Ruby 2.6 除了&lt;del&gt;主打的&lt;/del&gt; JIT 之外，還引進了一些有趣的新功能。其中有一些可以讓 Ruby 在函數式風格的寫法上更加自然流暢。想來稍微展示一下這些功能的用法。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Elixir 的並行機制：基礎部份</title>
+				<link>http://localhost:1313/posts/2018-12-03-concurrent-in-elixir/</link>
+				<pubDate>Mon, 03 Dec 2018 11:30:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2018-12-03-concurrent-in-elixir/</guid>
+				<description>&lt;p&gt;前陣子有幸可以亂入 &lt;a href=&#34;https://www.facebook.com/events/261681544537519/&#34;&gt;Functional Thursday 介紹 Elixir 及 Erlang&lt;/a&gt; 。Q&amp;amp;A 時穆老師問了個「有沒有 lock 機制」的問題，覺得那時沒有回答好，想說寫篇文章來說明。也希望藉此機會，試著逐篇記錄一下我目前對 Erlang /Elixir 中並行機制的理解。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Beyond Caps lock</title>
+				<link>http://localhost:1313/posts/2018-01-21-beyond-caps-lock/</link>
+				<pubDate>Sun, 21 Jan 2018 03:10:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2018-01-21-beyond-caps-lock/</guid>
+				<description>&lt;p&gt;應該不只一次跟別人提起：「如果這幾年用 mac 有學到些什麼的話，最重要的一件事肯定是&lt;strong&gt;把 Caps lock&#xA;改成 Ctrl&lt;/strong&gt;」。是的，Caps lock 這麼重要的位置，居然放了這麼無用的鍵。把它換成 Ctrl 會讓你的生活品質大大提升。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>List 操作小技巧</title>
+				<link>http://localhost:1313/posts/2017-11-11-list-tricks/</link>
+				<pubDate>Sat, 11 Nov 2017 03:10:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2017-11-11-list-tricks/</guid>
+				<description>&lt;p&gt;最近寫 Elixir 時，有個慣用的 functional 小手法，順手記錄一下。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Elixir 的 &amp; 運算子</title>
+				<link>http://localhost:1313/posts/2017-08-23-elixir-capture-operator/</link>
+				<pubDate>Wed, 23 Aug 2017 08:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2017-08-23-elixir-capture-operator/</guid>
+				<description>&lt;p&gt;在跟朋友討論 Elixir 的過程中，發現常會需要解釋 &lt;code&gt;&amp;amp;&lt;/code&gt; 運算子的用法，決定寫篇完整的來科普一下。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Pipe of JavaScript: _.chain()</title>
+				<link>http://localhost:1313/posts/2016-01-26-pipe-of-javascript/</link>
+				<pubDate>Tue, 26 Jan 2016 10:35:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2016-01-26-pipe-of-javascript/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;Update: 後來發現這個解法有一些缺點。目前大多用 Ramda 的 &lt;code&gt;pipe&lt;/code&gt; 或 &lt;code&gt;compose&lt;/code&gt; 來處理。不然就等 tc39&#xA;上的 proposal 吧。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;不知道從什麼時候開始，愈來愈喜歡用 functional 的寫法來處理問題。在看完 &lt;a href=&#34;https://leanpub.com/javascriptallongesix&#34;&gt;JavaScript&#xA;Allonge&lt;/a&gt; 之後更是一發不可收拾。上次的 &lt;a href=&#34;http://localhost:1313/2014-07-26-a_sip_of_elixir/&#34;&gt;Elixir 文章&lt;/a&gt;提到了愉快的 &lt;code&gt;|&amp;gt;&lt;/code&gt; Pipe operator。一直想著怎麼 JavaScript 沒有類似的東西，但試過各種關鍵字就是找不到。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>復活節特價 Ruby 書敗家指南</title>
+				<link>http://localhost:1313/posts/2014-11-26-080000/</link>
+				<pubDate>Wed, 26 Nov 2014 08:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2014-11-26-080000/</guid>
+				<description>&lt;p&gt;&lt;a href=&#34;https://twitter.com/juanitofatas&#34;&gt;@JuanitoFatas&lt;/a&gt; 今天分享了 &lt;a href=&#34;http://www.slideshare.net/katehuang0320/ss-42007998&#34;&gt;紅寶石鐵道漫遊指南&lt;/a&gt;，&lt;/p&gt;&#xA;&lt;p&gt;適逢本週感恩節特價，有人問起，就來快速列一些可以趁機入手的書。如果有閒的話，我再來補每本書的簡介。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>淺嚐 Elixir</title>
+				<link>http://localhost:1313/posts/2014-07-26-a-sip-of-elixir/</link>
+				<pubDate>Sat, 26 Jul 2014 08:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2014-07-26-a-sip-of-elixir/</guid>
+				<description>&lt;p&gt;來聊一下最近在唸的新玩具： &lt;a href=&#34;http://elixir-lang.org&#34;&gt;Elixir&lt;/a&gt;。&#xA;發音是：「ㄦ利ㄎ洗爾」&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Listen Jazz: Improvisation</title>
+				<link>http://localhost:1313/posts/2014-05-29-listen-jazz-improvisation/</link>
+				<pubDate>Thu, 29 May 2014 08:00:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2014-05-29-listen-jazz-improvisation/</guid>
+				<description>&lt;p&gt;話說幾年前有個部落格叫「爵士道 (Jazztao)」，雖然生性散漫的只寫了三、五篇文章。最後還因為閃神不小心砍掉整個 Google 帳號而從此沉沒。但有時想起還是會好奇著：「要是那時繼續寫下去，會是怎麼樣子呢?」&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Meta and meta-programming</title>
+				<link>http://localhost:1313/posts/2013-06-29-meta-and-meta-programming/</link>
+				<pubDate>Sat, 29 Jun 2013 01:49:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2013-06-29-meta-and-meta-programming/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;「我的語言的界限，就是我的世界的界限。」  &amp;ndash; Ludwig Wittgenstein&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+			</item>
+			<item>
+				<title>客製 Mac 的 CLI</title>
+				<link>http://localhost:1313/posts/2013-06-06-mac-cli/</link>
+				<pubDate>Thu, 06 Jun 2013 08:42:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2013-06-06-mac-cli/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;:&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;後來我改用 &lt;a href=&#34;https://github.com/sorin-ionescu/prezto&#34;&gt;prezto&lt;/a&gt; 來取代 ohmyzsh，功能跟佈景主題比較少，但啟動速度較快.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Further Update:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;再後來就用純 zshrc + zshenv 改了。可以參考 &lt;a href=&#34;https://github.com/taiansu/dotfiles&#34;&gt;我的 dotfiles&lt;/a&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+			</item>
+			<item>
+				<title>在 OS X 安裝 git 環境</title>
+				<link>http://localhost:1313/posts/2013-06-05-os-x-git/</link>
+				<pubDate>Wed, 05 Jun 2013 09:15:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2013-06-05-os-x-git/</guid>
+				<description>&lt;p&gt;基本上就是&lt;a href=&#34;http://localhost:1313/201210/setup-rails-environment-on-mountain-lion-from-scratch&#34;&gt;某篇文章&lt;/a&gt;的片段翻譯。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>在 Linux 安裝 Rails 環境</title>
+				<link>http://localhost:1313/posts/2012-10-27-linux-rails/</link>
+				<pubDate>Sat, 27 Oct 2012 06:47:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2012-10-27-linux-rails/</guid>
+				<description>&lt;h2 class=&#34;heading&#34; id=&#34;安裝必要元件&#34;&gt;&#xA;  安裝必要元件&#xA;  &lt;a href=&#34;#%e5%ae%89%e8%a3%9d%e5%bf%85%e8%a6%81%e5%85%83%e4%bb%b6&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;開啟「終端機模擬程式」(在 Menu 裡)，分別輸入底下每一行指令後按&lt;kbd&gt;Enter&lt;/kbd&gt;。先不要整塊複制貼上，得一行行輸入。如果指令很長懶得打的話，在 Linux裡開瀏覽器 (Menu -&amp;gt; 網際網路)，找這篇文章一步步複製貼上。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>在 VirtualBox 安裝 Linux</title>
+				<link>http://localhost:1313/posts/2012-10-23-virtualbox-linux/</link>
+				<pubDate>Tue, 23 Oct 2012 09:58:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2012-10-23-virtualbox-linux/</guid>
+				<description>&lt;ol&gt;&#xA;&lt;li&gt;下載 &lt;a href=&#34;http://www.linuxmint.com/download.php&#34;&gt;Linux Mint&lt;/a&gt;。或是你喜歡 &lt;a href=&#34;http://www.ubuntu-tw.org/modules/tinyd0/&#34;&gt;Ubuntu&lt;/a&gt;，也可以下載桌面版本，但是我在 VirtualBox 上跑 Ubuntu 12.04 的安裝程式慢到令人髮指，所以就裝 Linux Mint 13 Xfce, 64 bit 了…&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+			</item>
+			<item>
+				<title>Robert Nyman: 解釋 JavaScript 的 scope 及 closures</title>
+				<link>http://localhost:1313/posts/2012-10-18-robert-nyman-javascript/</link>
+				<pubDate>Thu, 18 Oct 2012 07:23:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2012-10-18-robert-nyman-javascript/</guid>
+				<description>&lt;p&gt;當發現我沒辦法向別人清楚的解釋一件事的時候，就會有一種「其實我自己也沒有弄的非常清楚」的認知。前陣子想解釋 JavaScript 裡的 closures 以慘敗收場。網路上翻到一篇文章看了之後有點「啊原來是這樣」。細讀之餘就順手翻譯一下，也許有人能用得上。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>An Apple Hotkey a day</title>
+				<link>http://localhost:1313/posts/2012-10-12-an-apple-hotkey/</link>
+				<pubDate>Fri, 12 Oct 2012 06:01:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2012-10-12-an-apple-hotkey/</guid>
+				<description>&lt;p&gt;Update daily? Well, it&amp;rsquo;s just a slogan.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Setup Rails on Mountain Lion</title>
+				<link>http://localhost:1313/posts/2012-10-04-setup-rails-on/</link>
+				<pubDate>Thu, 04 Oct 2012 18:37:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2012-10-04-setup-rails-on/</guid>
+				<description>&lt;p&gt;A humble (*caught) guide for helping setup Rails environment on Mountain Lion with rbenv.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>The beauty of Ruby: Array Tricks</title>
+				<link>http://localhost:1313/posts/2012-09-13-the-beauty-of/</link>
+				<pubDate>Thu, 13 Sep 2012 08:36:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2012-09-13-the-beauty-of/</guid>
+				<description>&lt;p&gt;首先呢, 有兩個陣列&amp;hellip;&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Tango Lesson</title>
+				<link>http://localhost:1313/posts/2012-06-22-tango-lesson/</link>
+				<pubDate>Fri, 22 Jun 2012 07:07:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2012-06-22-tango-lesson/</guid>
+				<description>&lt;p&gt;記憶裡，那是升高三的暑假最後幾天，把身上最後一些零用錢湊下來去逛了唱片行。現在想想，真不知道那時候的我，怎麼會想到要買這樣的東西。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>JavaScript vs CoffeeScript 2: splats</title>
+				<link>http://localhost:1313/posts/2012-06-20-javascript-vs-coffeescript-2/</link>
+				<pubDate>Wed, 20 Jun 2012 07:10:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2012-06-20-javascript-vs-coffeescript-2/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;Update: 嗯… 當 2018 ES6 普及後， coffeescript 變成要花費心思去移掉的東西了…&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+			</item>
+			<item>
+				<title>JavaScript vs CoffeeScript 1: arguments</title>
+				<link>http://localhost:1313/posts/2012-05-27-javascript-vs-coffeescript-1/</link>
+				<pubDate>Sun, 27 May 2012 00:51:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2012-05-27-javascript-vs-coffeescript-1/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;Update: 嗯… 當 2018 ES6 普及後， coffeescript 變成要花費心思去移掉的東西了…&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+			</item>
+			<item>
+				<title>在 Windows 7 安裝 Guard</title>
+				<link>http://localhost:1313/posts/2012-05-12-windows-guard/</link>
+				<pubDate>Sat, 12 May 2012 09:13:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2012-05-12-windows-guard/</guid>
+				<description>&lt;p&gt;寫Rails的人都知道 &lt;a href=&#34;https://github.com/guard/guard&#34;&gt;Guard&lt;/a&gt; 實在好用的要命，修改檔案後按下存檔的那一瞬間，就幫你跑 RSpec/jasmine/spork 測試、還能自動重新整理頁面。&lt;/p&gt;&#xA;&lt;p&gt;之前撐在 PC 下寫 Rails 時，著實花了一些功夫才讓 Guard, Guard-Livereload 在 Windows 7 64-bit 上跑起來，以下是錯誤嘗試後的快速通關教學。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>RubyMotion: iOS app in Ruby</title>
+				<link>http://localhost:1313/posts/2012-05-10-rubymotion-ios-app/</link>
+				<pubDate>Thu, 10 May 2012 09:12:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2012-05-10-rubymotion-ios-app/</guid>
+				<description>&lt;p&gt;故事是這樣的，2007 年的某個時刻，Apple 公司的 Laurent Sansonetti 公佈了 MacRuby，一個 Object-C 執行期的開源動態解析器。能夠用 Ruby 直接操作 Cocoa API。稍稍的降低了開發 OS X 桌面程式的痛苦程度。當然 Ruby 社群們殷殷期盼的,就是能夠在 iOS 上如法泡製。&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>The kid (back) in town.</title>
+				<link>http://localhost:1313/posts/2012-04-29-the-kid-back/</link>
+				<pubDate>Sun, 29 Apr 2012 11:35:00 +0800</pubDate>
+				<guid>http://localhost:1313/posts/2012-04-29-the-kid-back/</guid>
+				<description>&lt;p&gt;Hello, world of blog. Again.&lt;/p&gt;&#xA;&lt;p&gt;I know, it&amp;rsquo;s been a pretty while.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>關於我</title>
+				<link>http://localhost:1313/about/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/about/</guid>
+				<description></description>
+			</item>
+	</channel>
+</rss>

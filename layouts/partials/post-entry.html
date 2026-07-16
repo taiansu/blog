@@ -1,0 +1,34 @@
+<div class="post-line">
+
+    {{ $dateFormat := "2 Jan 2006"}}
+    {{ with .Site.Params.listDateFormat }}
+    {{ $dateFormat = .}}
+    {{ end }}
+
+    <p class="line-date">{{ .Date | time.Format $dateFormat }}</p>
+
+    <div>
+        <p class="line-title">
+            <a href="{{ .RelPermalink }}">
+                {{ .Title }}
+            </a>
+        </p>
+
+        {{ if .Site.Params.listSummaries }}
+        {{ $summary := .Summary }}
+        {{/* Truncate at first code block */}}
+        {{ $byPre := index (split $summary "<pre") 0 }}
+        {{ $byHl  := index (split $summary "<div class=\"highlight\"") 0 }}
+        {{ if lt (len $byPre) (len $byHl) }}{{ $summary = $byPre }}{{ else }}{{ $summary = $byHl }}{{ end }}
+        {{/* Strip lists and blockquotes */}}
+        {{ $summary = $summary | replaceRE "(?s)<ul[^>]*>.*?</ul>" "" }}
+        {{ $summary = $summary | replaceRE "(?s)<ol[^>]*>.*?</ol>" "" }}
+        {{ $summary = $summary | replaceRE "(?s)<blockquote[^>]*>.*?</blockquote>" "" }}
+        {{/* Remove empty paragraphs left behind */}}
+        {{ $summary = $summary | replaceRE "(?s)<p[^>]*>\\s*</p>" "" }}
+        {{ with $summary }}
+        <div class="line-summary">{{ . | safeHTML }}</div>
+        {{ end }}
+        {{ end }}
+    </div>
+</div>

@@ -1,0 +1,11 @@
+/* Place custom css here */
+.single-readtime {
+  font-size: small;
+  margin-top: 0.5rem;
+  color: var(--content-secondary);
+}
+
+.single-tags {
+  font-size: small;
+  color: var(--content-secondary);
+}

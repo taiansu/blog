@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+<title>
+    
+    Elixir 的 &amp; 運算子 | Mostly Functional
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/2017-08-23-elixir-capture-operator/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/2017-08-23-elixir-capture-operator/">
+	<meta property="og:site_name" content="Mostly Functional">
+	<meta property="og:title" content="Elixir 的 & 運算子">
+	<meta property="og:description" content="在跟朋友討論 Elixir 的過程中，發現常會需要解釋 &amp; 運算子的用法，決定寫篇完整的來科普一下。">
+	<meta property="og:locale" content="zh_tw">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2017-08-23T08:00:00+08:00">
+		<meta property="article:modified_time" content="2017-08-23T08:00:00+08:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.28d9b342d60b6964cad0e9a24256ab1a810cb5e23640573a1ca6253ae0c77292.css" media="all">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Mostly Functional</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /首頁
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /文章
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /關於我
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+
+
+<div >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">Elixir 的 &amp; 運算子</h1>
+    
+
+
+
+    
+
+    <p class="single-readtime">
+      
+
+      
+      
+      
+      <time datetime="2017-08-23T08:00:00&#43;08:00">August 23, 2017</time>
+      
+
+      
+    </p>
+
+
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="single-content">
+    <p>在跟朋友討論 Elixir 的過程中，發現常會需要解釋 <code>&amp;</code> 運算子的用法，決定寫篇完整的來科普一下。</p>
+<p>因為特殊符號很難 google 到正確的結果，<code>&amp;</code> 在官方文件中的稱呼是 capture operator。它最主要的作用，就是補獲或是生成匿名函式。</p>
+<h2 class="heading" id="eta-conversion">
+  Eta conversion
+  <a href="#eta-conversion">#</a>
+</h2>
+<p>在 JavaScript 中，具名函式也是一級公民，可以直接傳遞。所以遇到在 lambda 中將接收到的參數原封不動傳給具名函式，並回傳其結果的情況下，可以直接傳遞具名函式。這在數學上叫 Eta conversion。講起來很拗口，看範例就很直覺：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>[-1, -2, 3].map(i =&gt; <span style="font-weight:bold;font-style:italic">Math</span>.abs(i))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">// 等同於
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[-1, -2, 3].map(<span style="font-weight:bold;font-style:italic">Math</span>.abs)
+</span></span></code></pre></div><p>但在 Elixir 中，具名函式不加括號視同零參數的呼叫，因此我們需要有辦法將具名函式轉換成 lambda。這就是 <code>&amp;</code> 的第一個用法。在轉換其它 module 的函式 (正式名稱叫 <em>remote function</em>) 時，語法是 <code>&amp;Module.function/arity</code>，記得斜線後要帶上參數的個數。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">Enum</span>.map([<span style="color:#666;font-style:italic">:a</span>, <span style="color:#666;font-style:italic">:b</span>, <span style="color:#666;font-style:italic">:c</span>], <span style="font-weight:bold;text-decoration:underline">fn</span> a -&gt; <span style="color:#666;font-weight:bold;font-style:italic">Atom</span>.to_string(a) <span style="font-weight:bold;text-decoration:underline">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"># 等同於</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">Enum</span>.map([<span style="color:#666;font-style:italic">:a</span>, <span style="color:#666;font-style:italic">:b</span>, <span style="color:#666;font-style:italic">:c</span>], &amp;<span style="color:#666;font-weight:bold;font-style:italic">Atom</span>.to_string/1)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">#=&gt; [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"># 不能這樣寫</span>
+</span></span><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">Enum</span>.map([<span style="color:#666;font-style:italic">:a</span>, <span style="color:#666;font-style:italic">:b</span>, <span style="color:#666;font-style:italic">:c</span>], <span style="color:#666;font-weight:bold;font-style:italic">Atom</span>.to_string)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"># 因為上一句會被解析成這樣：</span>
+</span></span><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">Enum</span>.map([<span style="color:#666;font-style:italic">:a</span>, <span style="color:#666;font-style:italic">:b</span>, <span style="color:#666;font-style:italic">:c</span>], <span style="color:#666;font-weight:bold;font-style:italic">Atom</span>.to_string())
+</span></span></code></pre></div><p>當然轉換 local fucntion 或 imported function 也沒問題，不加 Module 名稱就可以。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic;text-decoration:underline">def</span> double(i), <span style="color:#666;font-style:italic">do</span>: i * 2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">Enum</span>.map([1, 2, 3], &amp;double/1)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">#=&gt; [2, 4, 6]</span>
+</span></span></code></pre></div><p>順帶一提，用 <code>&amp;</code> 補獲/生成的函式不一定要寫在高階函式中，也可以另外指派給變數。由於被轉換成 lambda 了，所以呼叫時要用 <code>.()</code>。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span>f = &amp;<span style="color:#666;font-weight:bold;font-style:italic">Kernel</span>.is_atom/1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f.(<span style="color:#666;font-style:italic">:atom</span>) <span style="color:#888;font-style:italic">#=&gt; true</span>
+</span></span></code></pre></div><h2 class="heading" id="匿名函式">
+  匿名函式
+  <a href="#%e5%8c%bf%e5%90%8d%e5%87%bd%e5%bc%8f">#</a>
+</h2>
+<p>Elixir/Erlang 裡，匿名函式的宣告比較冗長。因此遇到函式本體很短的情況下會覺得麻煩。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">Enum</span>.map([1, 2, 3], <span style="font-weight:bold;text-decoration:underline">fn</span> i -&gt; i * 2 <span style="font-weight:bold;text-decoration:underline">end</span>)
+</span></span></code></pre></div><p>這種情況就是 <code>&amp;</code> 運算子派上用場的另一個地方，這也是最多人感到困惑的用法。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">Enum</span>.map([1, 2, 3], &amp;(&amp;1 * 2))
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">#=&gt; [2, 4, 6]</span>
+</span></span></code></pre></div><p>換句話說，<code>fn i -&gt; i * 2 end</code> 跟 <code>&amp;(&amp;1 * 2)</code> 是一樣的意思。</p>
+<h2 class="heading" id="生成-list-或-tuple">
+  生成 List 或 Tuple
+  <a href="#%e7%94%9f%e6%88%90-list-%e6%88%96-tuple">#</a>
+</h2>
+<p>若用 <code>[]</code> 或 <code>{}</code> 代替圓括號，呼叫後的結果會分別是 <code>List</code> 及 <code>Tuple</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span>l = &amp;[&amp;1, &amp;2]
+</span></span><span style="display:flex;"><span>l.(1, 2)
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">#=&gt; [1, 2]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>t = &amp;{&amp;1, &amp;2}
+</span></span><span style="display:flex;"><span>t.(1, 2)
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">#=&gt; {1, 2}</span>
+</span></span></code></pre></div><h2 class="heading" id="更多參數及使用判準">
+  更多參數及使用判準
+  <a href="#%e6%9b%b4%e5%a4%9a%e5%8f%83%e6%95%b8%e5%8f%8a%e4%bd%bf%e7%94%a8%e5%88%a4%e6%ba%96">#</a>
+</h2>
+<p><code>&amp;1</code> 是匿名函式接收到的第一個參數，多個參數也是可以的，就是 <code>&amp;2</code>、<code>&amp;3</code> 遞增下去。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">fn</span> = &amp;(&amp;1 + &amp;2 + &amp;3)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">fn</span>.(1, 2, 3) <span style="color:#888;font-style:italic">#=&gt; 6</span>
+</span></span></code></pre></div><p>不過濫用 <code>&amp;()</code> 語法的話，程式很容易就會變得難讀。個人的判準是內部超過 10 個字元，或是有三個以上的運算子，就寧願用 <code>fn -&gt; end</code> 來宣告了。</p>
+<p>那麼要做出 Haskell 的 <a href="https://www.haskell.org/hoogle/?hoogle=id">identity</a> 就簡單了： <code>&amp;(&amp;1)</code>。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">Enum</span>.group_by([<span style="color:#666;font-style:italic">&#34;a&#34;</span>, <span style="color:#666;font-style:italic">&#34;b&#34;</span>, <span style="color:#666;font-style:italic">&#34;c&#34;</span>, <span style="color:#666;font-style:italic">&#34;a&#34;</span>, <span style="color:#666;font-style:italic">&#34;b&#34;</span>], &amp;(&amp;1))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"># =&gt; %{&#34;a&#34; =&gt; [&#34;a&#34;, &#34;a&#34;], &#34;b&#34; =&gt; [&#34;b&#34;, &#34;b&#34;], &#34;c&#34; =&gt; [&#34;c&#34;]}</span>
+</span></span></code></pre></div><h2 class="heading" id="partial-application">
+  Partial application
+  <a href="#partial-application">#</a>
+</h2>
+<p>綜合上面兩個語法，有種文件上沒寫清楚，很少人提，卻相當有用的用法。送了 PR 但還沒併進去。用 <code>&amp;1</code> 及 <code>&amp;Module.function</code> 作出 partially applied 的 remote function：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span>take_five = &amp;<span style="color:#666;font-weight:bold;font-style:italic">Enum</span>.take(&amp;1, 5)
+</span></span><span style="display:flex;"><span>take_five.(1..100)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"># =&gt; [1, 2, 3, 4, 5]</span>
+</span></span></code></pre></div><p>local function 也是一樣的:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span>first_elem = &amp;elem(&amp;1, 0)
+</span></span><span style="display:flex;"><span>first_elem.({1, 2, 3})
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">#=&gt; 1</span>
+</span></span></code></pre></div><p>大概就是這樣了。Happy hacking!</p>
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/2016-01-26-pipe-of-javascript/">
+                        Pipe of JavaScript: _.chain()
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/2017-11-11-list-tricks/">
+                        List 操作小技巧
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

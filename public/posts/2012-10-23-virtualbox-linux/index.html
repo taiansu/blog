@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+<title>
+    
+    在 VirtualBox 安裝 Linux | Mostly Functional
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/2012-10-23-virtualbox-linux/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/2012-10-23-virtualbox-linux/">
+	<meta property="og:site_name" content="Mostly Functional">
+	<meta property="og:title" content="在 VirtualBox 安裝 Linux">
+	<meta property="og:description" content="下載 Linux Mint。或是你喜歡 Ubuntu，也可以下載桌面版本，但是我在 VirtualBox 上跑 Ubuntu 12.04 的安裝程式慢到令人髮指，所以就裝 Linux Mint 13 Xfce, 64 bit 了…">
+	<meta property="og:locale" content="zh_tw">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2012-10-23T09:58:00+08:00">
+		<meta property="article:modified_time" content="2012-10-23T09:58:00+08:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.28d9b342d60b6964cad0e9a24256ab1a810cb5e23640573a1ca6253ae0c77292.css" media="all">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Mostly Functional</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /首頁
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /文章
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /關於我
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+
+
+<div >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">在 VirtualBox 安裝 Linux</h1>
+    
+
+
+
+    
+
+    <p class="single-readtime">
+      
+
+      
+      
+      
+      <time datetime="2012-10-23T09:58:00&#43;08:00">October 23, 2012</time>
+      
+
+      
+    </p>
+
+
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="single-content">
+    <ol>
+<li>下載 <a href="http://www.linuxmint.com/download.php">Linux Mint</a>。或是你喜歡 <a href="http://www.ubuntu-tw.org/modules/tinyd0/">Ubuntu</a>，也可以下載桌面版本，但是我在 VirtualBox 上跑 Ubuntu 12.04 的安裝程式慢到令人髮指，所以就裝 Linux Mint 13 Xfce, 64 bit 了…</li>
+</ol>
+<ol>
+<li>
+<p>下載 <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>，這兩個要下載好一陣子，吃個午餐再回來吧…</p>
+</li>
+<li>
+<p>安裝 VirtualBox 後執行，按下[新增]，名稱隨便你打，類型是 [Linux]，版本都是 [Ubuntu (64 bit)]。[繼續]~</p>
+</li>
+<li>
+<p>記憶體設 1024MB* -&gt; 立即建立虛擬硬碟 -&gt; VDI -&gt; 動態配置 -&gt; 磁碟 30GB* -&gt; 建立。</p>
+<ul>
+<li>打*的是跟預設值不同的。</li>
+</ul>
+</li>
+<li>
+<p>在左邊清單找到剛剛建好的機器，在上面按滑鼠右鍵，選擇右鍵選單裡的【設定值】，按上面的[顯示]，把「視訊記憶體」調到最高。</p>
+</li>
+<li>
+<p>再按上面的[存放裝置]，在「IDE 控制器」底下的「空」上面按一下滑鼠左鍵，在右邊「屬性」區塊裡找到光碟圖示，再按下滑鼠左鍵，按【選擇虛擬 CD / DVD 光碟檔案】。接著在檔案總管裡找到剛下載的 Ubuntu 或是 Linux Mint 的 iso 檔。把光碟檔掛載好之後，按下[確定]關閉對話盒。</p>
+</li>
+<li>
+<p>回到 VirtualBox，按下上方的[啟動]，等機器開機之後，用滑鼠雙擊桌面上的「Install Linux Mint」(Ubuntu 不需要點光碟，直接就會進安裝畫面)，接著在左邊的語言清單捲到最下面，選[中文(繁體)]，原則上接下來就像你每次重灌那樣不斷的按[繼續]，就會裝好了。()<em>什麼?你不會重灌?你確定你用的是 Windows 嗎?</em>)過程中請注意設定帳戶名稱及密碼時，一定要選個好記的密碼。就算勾選了自動登入，以後還是會很常用到這組密碼，弄丟了可是很麻煩的。</p>
+</li>
+<li>
+<p>重新開機之後，記得電腦要接上網路，點選桌面右下角工作區像是盾牌的圖示，輸入密碼後會出現「更新管理員」，點選上面的「安裝更新」，你就可以先去睡一覺，醒來之後就裝完了。(這步會非常久)</p>
+</li>
+</ol>
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/2012-10-18-robert-nyman-javascript/">
+                        Robert Nyman: 解釋 JavaScript 的 scope 及 closures
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/2012-10-27-linux-rails/">
+                        在 Linux 安裝 Rails 環境
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

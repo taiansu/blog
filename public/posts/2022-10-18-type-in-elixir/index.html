@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+<title>
+    
+    聊聊 Elixir 中的 type | Mostly Functional
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/2022-10-18-type-in-elixir/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/2022-10-18-type-in-elixir/">
+	<meta property="og:site_name" content="Mostly Functional">
+	<meta property="og:title" content="聊聊 Elixir 中的 type">
+	<meta property="og:description" content="最近有幾位朋友分別來問 Elixir 的 type 的問題，想說中文世界好像沒有比較完整的東西，就把知道的東西整理出來。">
+	<meta property="og:locale" content="zh_tw">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2022-10-19T00:57:56+08:00">
+		<meta property="article:modified_time" content="2022-10-19T00:57:56+08:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.28d9b342d60b6964cad0e9a24256ab1a810cb5e23640573a1ca6253ae0c77292.css" media="all">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Mostly Functional</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /首頁
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /文章
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /關於我
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+
+
+<div >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">聊聊 Elixir 中的 type</h1>
+    
+
+
+
+    
+
+    <p class="single-readtime">
+      
+
+      
+      
+      
+      <time datetime="2022-10-19T00:57:56&#43;08:00">October 19, 2022</time>
+      
+
+      
+    </p>
+
+
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="single-content">
+    <p>最近有幾位朋友分別來問 Elixir 的 type 的問題，想說中文世界好像沒有比較完整的東西，就把知道的東西整理出來。</p>
+<h2 class="heading" id="目前-elixir-的-type-能做什麼">
+  (目前) Elixir 的 type 能做什麼？
+  <a href="#%e7%9b%ae%e5%89%8d-elixir-%e7%9a%84-type-%e8%83%bd%e5%81%9a%e4%bb%80%e9%ba%bc">#</a>
+</h2>
+<p>tl;dr: 最主要是文件，然後在某種程度下防止錯誤。</p>
+<p>我覺得這應該是在研究 Elixir 的 type 時最需要知道的事情了。不像 Haskell 及 F# 這種以型別著稱的 ML 系語言，Elixir / Erlang 本質上是個動態語言，所有與型別有關的標註都會被編譯器忽略。而 Erlang 內建的型別檢查工具 dialyzer 是採用 success typing，在型別 <em>有可能</em> 是正確的時候就視為通過 (等一下會看到有趣的範例)，所以目前在 Elixir 中撰寫型別標注最主要還是用做於程式相互操作間的文件溝通使用。</p>
+<p>我自己個人的習慣通常是剛開始寫 code 時不會標注型別，然後在寫測試程式時把 public 的函式都標上型別。當然也有專注在資料結構的情況，這時候才會一開始就對型別比較講究。</p>
+<h2 class="heading" id="elixir-的型別標注語法">
+  Elixir 的型別標注語法
+  <a href="#elixir-%e7%9a%84%e5%9e%8b%e5%88%a5%e6%a8%99%e6%b3%a8%e8%aa%9e%e6%b3%95">#</a>
+</h2>
+<p>Elixir 的型別語法主要就看官方文件的 <a href="https://hexdocs.pm/elixir/1.12/typespecs.html">typespecs 這一頁</a>。比較值得另外提的就是 sum type (union type) 跟 product type 的標記方式。在 Elixir 裡 sum type 是用 <code>|</code> 這個符號來分隔。而 product type 就是用 tuple 語法了。來個範例：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic;text-decoration:underline">defmodule</span> <span style="color:#666;font-weight:bold;font-style:italic">Card</span> <span style="font-weight:bold;text-decoration:underline">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#888;font-style:italic"># 自定義的型別用 @type</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#888;font-style:italic"># 四種 atom 中的一種</span>
+</span></span><span style="display:flex;"><span>  @type suit() :: <span style="color:#666;font-style:italic">:clubs</span> | <span style="color:#666;font-style:italic">:diamonds</span> | <span style="color:#666;font-style:italic">:hearts</span> | <span style="color:#666;font-style:italic">:spades</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#888;font-style:italic"># 2 到 10 的數字或是四種 atom 中的一種</span>
+</span></span><span style="display:flex;"><span>  @type rank() :: 2..10 | <span style="color:#666;font-style:italic">:jack</span> | <span style="color:#666;font-style:italic">:queen</span> | <span style="color:#666;font-style:italic">:king</span> | <span style="color:#666;font-style:italic">:ace</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#888;font-style:italic"># product type 用 {}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#888;font-style:italic"># t 表示 Remote type。這個會變成 Card module 本身的 type，</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#888;font-style:italic"># 可以用 Card 或是 Card.t() 來指涉這個型別</span>
+</span></span><span style="display:flex;"><span>  @type t :: {rank(), suit()}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#888;font-style:italic"># 標注函式型別用 spec</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#888;font-style:italic"># 接收 list of cards, 回傳 card</span>
+</span></span><span style="display:flex;"><span>  @spec deal([<span style="color:#666;font-weight:bold;font-style:italic">Card</span>]) :: <span style="color:#666;font-weight:bold;font-style:italic">Card</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#888;font-style:italic"># 同一個模組下也可以直接用 t 表示，改成這樣：</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#888;font-style:italic"># @spec deal([t]) :: t</span>
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold;font-style:italic;text-decoration:underline">def</span> deal(cards) <span style="font-weight:bold;text-decoration:underline">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#888;font-style:italic"># not implement yet</span>
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold;text-decoration:underline">end</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">end</span>
+</span></span></code></pre></div><h2 class="heading" id="比較有用有趣的內建-type">
+  比較有用/有趣的內建 type
+  <a href="#%e6%af%94%e8%bc%83%e6%9c%89%e7%94%a8%e6%9c%89%e8%b6%a3%e7%9a%84%e5%85%a7%e5%bb%ba-type">#</a>
+</h2>
+<p>數字的話有 <code>neg_integer()</code>、<code>non_neg_integer()</code> 跟 <code>pos_integer()</code> 可以用。</p>
+<p>高階函式可以用 <code>(type1 -&gt; type2)</code> 等箭號系列當做參數或是回傳值的型別標注。</p>
+<p>有 <code>nonempty_list</code> 表示不為空的串列，跟 <code>maybe_improper_list</code>，用來表示中間階段，其結尾還不是 <code>[]</code> 的 list，那麼就有延伸的 <code>nonempty_improper_list</code>、<code>nonempty_maybe_improper_list</code></p>
+<p>在 map 的部份可以做出非常細緻的定義，需要有什麼 key，對應的值的型別是什麼，還有可以有 optional 的選項。這些就請看文件了。</p>
+<p><code>mfa</code> 代表 <code>{module, funciton_name, arity}</code> 的 tuple，這個在做 meta-programming 的時候蠻好用的。</p>
+<h2 class="heading" id="其它的標註屬性">
+  其它的標註屬性
+  <a href="#%e5%85%b6%e5%ae%83%e7%9a%84%e6%a8%99%e8%a8%bb%e5%b1%ac%e6%80%a7">#</a>
+</h2>
+<p><code>@typep</code> 用來表示這個自定義的型別只在目前的 module 中可見，而 <code>@opaque</code> 則是外界看得到這個型別，但是無法知道裡面的結構。</p>
+<p>而 <code>@callback</code> 跟 <code>@macrocallback</code> 則是在操作 Behaviour 的時候使用的，常見的情況就是在實作 GenServer 或其它的 Behaviour 時，標註 <code>@callback</code> 就會幫你檢查是否所需要的 callback 都有妥善的依規格實作。</p>
+<h2 class="heading" id="success-typing-是什麼">
+  Success typing 是什麼
+  <a href="#success-typing-%e6%98%af%e4%bb%80%e9%ba%bc">#</a>
+</h2>
+<p>我們來寫一個 compare 的例子，給兩張牌，回傳第一張跟第二張相比的大小。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span>@spec compare(<span style="color:#666;font-weight:bold;font-style:italic">Card</span>, <span style="color:#666;font-weight:bold;font-style:italic">Card</span>) :: <span style="color:#666;font-style:italic">:gt</span> | <span style="color:#666;font-style:italic">:eq</span> | <span style="color:#666;font-style:italic">:lt</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic;text-decoration:underline">def</span> compare(_c1, _c2) <span style="font-weight:bold;text-decoration:underline">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#666;font-style:italic">&#34;opps&#34;</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">end</span>
+</span></span></code></pre></div><p>在無視輸入直接回傳一個錯誤的型別， 如果你的編輯器有裝 language server protocol，那麼就會跳出有問題的提示：</p>
+<img src="uploads/2022/47762f8538.png" alt="Wrong spec" title="spec_wrong.png" border="0" width="598" height="128" />
+<p>或是你也可以在 project 中安裝 <a href="https://github.com/jeremyjh/dialyxir">dialyxir</a>，這是 Erlang 內建的型別檢查工具 dialyzer (唸 di-a-lai-zer) 的 wrapper，按其說明 compile 並執行，就會開心的看到如下的錯誤訊息：</p>
+<img src="uploads/2022/9c692aa581.png" alt="Dialyzer error" title="dialyzer_error.png" border="0" width="599" height="339" />
+<p>那麼把型別改成正確的回傳就沒問題了：</p>
+<img src="uploads/2022/df28e3b443.png" alt="Type correct" title="type_correct.png" border="0" width="581" height="242" />
+<p>那如果不是固定的值，而是計算的結果呢？回傳 <code>1 + 1</code>，一樣可以看到型別錯誤的提示。</p>
+<img src="uploads/2022/e256aaed6c.png" alt="Calc type error" title="calc_type_error.png" border="0" width="597" height="180" />
+<p>不過我們高興的太早了。如果我們這樣寫的話， success typing 會認為這段程式碼是 <em>合法的</em>。</p>
+<img src="uploads/2022/4a2bd0026c.png" alt="wat" title="type_wat.png" border="0" width="566" height="211" />
+<p>原因是因為雖然&quot;我們&quot;知道這段程式碼只會回傳 &ldquo;wat&rdquo; 字串，但是 Elixir 不知道。在型別檢查階段，只能確認 <code>Enum.random/1</code> 函式的回傳型別是 <code>any()</code>，所以 dialyzer 覺得呼叫 <code>Enum.random/1</code> 回傳 <code>:eq | :gt | :lt</code> 其中一個的機率不為零，所以就放行了…這段程式碼只接收了 list of string 的這個事實，要到編譯階段才會知道，但那時型別標注都已經被移掉了。</p>
+<p>看到這裡應該就可以理解為什麼 Elixir / Erlang dev 一直以來沒有非常認真的看待 type 的原因了。</p>
+<h2 class="heading" id="還有一些其它的">
+  還有一些其它的
+  <a href="#%e9%82%84%e6%9c%89%e4%b8%80%e4%ba%9b%e5%85%b6%e5%ae%83%e7%9a%84">#</a>
+</h2>
+<p>不過只要是會長期維護的專案，我個人的習慣還是都會加上 dialyxir 並設到 CI 裡。經驗上我還是有好幾次在修改了程式碼後，unit test 通過但是型別檢查噴了錯誤訊息救到我的案例出現。</p>
+<p>而在社群的關注下， José Valim 在 ElixirConf EU 2022 講了很久的 typing 的議題，也宣布了有想要朝 gradual typing 進行認真的研究的方向。在上個月也在官網發了文章把 talk 的內容匯整起來：</p>
+<p><a href="https://elixir-lang.org/blog/2022/10/05/my-future-with-elixir-set-theoretic-types">https://elixir-lang.org/blog/2022/10/05/my-future-with-elixir-set-theoretic-types/</a></p>
+<p>不過官方目前的態度是不知道這個研究會產生什麼結果，所以也只能等著看看了…</p>
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/2020-04-05-elixirtw-online-meetup/">
+                        Elixir.tw online meetup 指南
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/2024-10-18-type-in-elixir/">
+                        Handling N-dimensional Lists in Elixir with Ndim
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

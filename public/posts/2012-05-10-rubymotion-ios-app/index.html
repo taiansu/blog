@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+<title>
+    
+    RubyMotion: iOS app in Ruby | Mostly Functional
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/2012-05-10-rubymotion-ios-app/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/2012-05-10-rubymotion-ios-app/">
+	<meta property="og:site_name" content="Mostly Functional">
+	<meta property="og:title" content="RubyMotion: iOS app in Ruby">
+	<meta property="og:description" content="故事是這樣的，2007 年的某個時刻，Apple 公司的 Laurent Sansonetti 公佈了 MacRuby，一個 Object-C 執行期的開源動態解析器。能夠用 Ruby 直接操作 Cocoa API。稍稍的降低了開發 OS X 桌面程式的痛苦程度。當然 Ruby 社群們殷殷期盼的,就是能夠在 iOS 上如法泡製。">
+	<meta property="og:locale" content="zh_tw">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2012-05-10T09:12:00+08:00">
+		<meta property="article:modified_time" content="2012-05-10T09:12:00+08:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.28d9b342d60b6964cad0e9a24256ab1a810cb5e23640573a1ca6253ae0c77292.css" media="all">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Mostly Functional</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /首頁
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /文章
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /關於我
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+
+
+<div >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">RubyMotion: iOS app in Ruby</h1>
+    
+
+
+
+    
+
+    <p class="single-readtime">
+      
+
+      
+      
+      
+      <time datetime="2012-05-10T09:12:00&#43;08:00">May 10, 2012</time>
+      
+
+      
+    </p>
+
+
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="single-content">
+    <p>故事是這樣的，2007 年的某個時刻，Apple 公司的 Laurent Sansonetti 公佈了 MacRuby，一個 Object-C 執行期的開源動態解析器。能夠用 Ruby 直接操作 Cocoa API。稍稍的降低了開發 OS X 桌面程式的痛苦程度。當然 Ruby 社群們殷殷期盼的,就是能夠在 iOS 上如法泡製。</p>
+<p>五年後的現在，Laurent 剛剛從工作了七年的 Apple 愉快的(?)離職了幾個月,發表了橫空出世的新作品: <a href="http://www.rubymotion.com/">RubyMotion</a>。</p>
+<p>除了能將 Ruby 語言編譯成 iOS native byte code 外,不依賴 Xcode IDE，改用 Ruby 界習慣的 Rake 模式建立及開發。令人更加驚豔的是能在終端機中直接與模擬器互動，即時修改 =&gt; 測試:</p>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/rejYKzLglSE" frameborder="0" allowfullscreen></iframe>
+<p>Pragmatic Studio 更破天荒的錄製了<a href="http://pragmaticstudio.com/screencasts/rubymotion"> 50 分鐘的基礎教學</a>。這影片就是本篇的重點了。</p>
+<p>目前擁有的優勢:</p>
+<blockquote>
+<ol>
+<li>Ruby，Ruby，Ruby。</li>
+</ol>
+</blockquote>
+<ol>
+<li>可以用自己習慣的editor，習慣的rake，習慣的SourceControl。</li>
+<li>提供了連Xcode都沒有的即時修改模式。</li>
+<li>Ruby社群等很久了…</li>
+</ol>
+<p>可能會阻止你的點:</p>
+<blockquote>
+<ol>
+<li>商業軟體: USD<strike>199</strike>149,即使早鳥價也不太輕鬆。</li>
+</ol>
+</blockquote>
+<ol>
+<li>沒有 OpenSource。</li>
+<li>你還是得學會 Cocoa&hellip;</li>
+<li>把 View 寫在 controller 裡，沒有拖拉界面的 GUI (聽說有人送 Patch 了…)</li>
+<li>市面上有經營一段時間的 Titanium(JavaScript)，及即將發佈的 MobiRuby 兩個免費解決方案。</li>
+</ol>
+<p><del>有閒情逸致的話，再來比較 Titanium 及 RubyMotion的優劣囉。</del></p>
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/2012-04-29-the-kid-back/">
+                        The kid (back) in town.
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/2012-05-12-windows-guard/">
+                        在 Windows 7 安裝 Guard
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

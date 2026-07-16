@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+<title>
+    
+    List 操作小技巧 | Mostly Functional
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/2017-11-11-list-tricks/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/2017-11-11-list-tricks/">
+	<meta property="og:site_name" content="Mostly Functional">
+	<meta property="og:title" content="List 操作小技巧">
+	<meta property="og:description" content="最近寫 Elixir 時，有個慣用的 functional 小手法，順手記錄一下。">
+	<meta property="og:locale" content="zh_tw">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2017-11-11T03:10:00+08:00">
+		<meta property="article:modified_time" content="2017-11-11T03:10:00+08:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.28d9b342d60b6964cad0e9a24256ab1a810cb5e23640573a1ca6253ae0c77292.css" media="all">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Mostly Functional</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /首頁
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /文章
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /關於我
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+
+
+<div >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">List 操作小技巧</h1>
+    
+
+
+
+    
+
+    <p class="single-readtime">
+      
+
+      
+      
+      
+      <time datetime="2017-11-11T03:10:00&#43;08:00">November 11, 2017</time>
+      
+
+      
+    </p>
+
+
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="single-content">
+    <p>最近寫 Elixir 時，有個慣用的 functional 小手法，順手記錄一下。</p>
+<h2 class="heading" id="1-無差別包裝-list">
+  1. 無差別包裝 List
+  <a href="#1-%e7%84%a1%e5%b7%ae%e5%88%a5%e5%8c%85%e8%a3%9d-list">#</a>
+</h2>
+<p>當處理的對象可能是 <code>nil</code>， <code>list</code>，或是單個元素時，可以直接將它們包裝成單層的 list 進行後續操作。</p>
+<p>Elixir 提供了 <code>List.wrap</code> 讓你直接將 <code>nil</code> 及 單個元素包裝成 list。對於原本就是 list 的對象則直接回傳：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span><span style="color:#888;font-style:italic"># Elixir</span>
+</span></span><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">List</span>.wrap(<span style="color:#666;font-weight:bold;font-style:italic">nil</span>)    <span style="color:#888;font-style:italic"># =&gt; []</span>
+</span></span><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">List</span>.wrap(1)      <span style="color:#888;font-style:italic"># =&gt; [1]</span>
+</span></span><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">List</span>.wrap([2, 3]) <span style="color:#888;font-style:italic"># =&gt; [2, 3]</span>
+</span></span></code></pre></div><p>值得一提的是包裝 <code>nil</code> 會回傳空的 list，這對稍後要介紹的連續技起了重要的作用。</p>
+<p>Ruby 則可以用 <code>Array()</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#888;font-style:italic"># Ruby</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">Array</span>(<span style="font-weight:bold;text-decoration:underline">nil</span>)    <span style="color:#888;font-style:italic"># =&gt; []</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">Array</span>(1)      <span style="color:#888;font-style:italic"># =&gt; [1]</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">Array</span>([2, 3]) <span style="color:#888;font-style:italic"># =&gt; [2, 3]</span>
+</span></span></code></pre></div><p>在 JavaScript 裡就得要自己拼了，以 <code>Ramda</code> 為例：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic;text-decoration:underline">let</span> wrap = R.compose(R.filter(R.identity), R.unnest, R.<span style="font-weight:bold;text-decoration:underline">of</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wrap(<span style="font-weight:bold;text-decoration:underline">null</span>)    <span style="color:#888;font-style:italic">// =&gt; []
+</span></span></span><span style="display:flex;"><span>wrap(1)       <span style="color:#888;font-style:italic">// =&gt; [1]
+</span></span></span><span style="display:flex;"><span>wrap([2, 3])  <span style="color:#888;font-style:italic">// =&gt; [2, 3]
+</span></span></span></code></pre></div><p>這裡用 <code>R.unnest</code> 而非
+<code>R.flatten</code>，是因為它不會把串列全部攤平至只剩一層。這個特性在你想要處理的「元素」本身就是一個陣列時會排上用場。</p>
+<h2 class="heading" id="2-攤開-map-的結果">
+  2. 攤開 <code>map</code> 的結果。
+  <a href="#2-%e6%94%a4%e9%96%8b-map-%e7%9a%84%e7%b5%90%e6%9e%9c">#</a>
+</h2>
+<p><code>flat_map</code> 可以將 map 的結果攤開到外層串列中。這個看範例會比較好懂：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span>[1, 2, 3]
+</span></span><span style="display:flex;"><span>|&gt; <span style="color:#666;font-weight:bold;font-style:italic">Enum</span>.flat_map(<span style="font-weight:bold;text-decoration:underline">fn</span> x -&gt; [x, x] <span style="font-weight:bold;text-decoration:underline">end</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"># =&gt; [1, 1, 2, 2, 3, 3]</span>
+</span></span></code></pre></div><p>flat_map 是函數式語言/函式庫基本的操作之一，應該都找得到。<code>Ramda</code> 裡叫 <code>R.chain</code>。</p>
+<h2 class="heading" id="3-連續技優雅的消失">
+  3. 連續技：優雅的消失
+  <a href="#3-%e9%80%a3%e7%ba%8c%e6%8a%80%e5%84%aa%e9%9b%85%e7%9a%84%e6%b6%88%e5%a4%b1">#</a>
+</h2>
+<p>結合上面兩個函式，先把含有 <code>nil</code> 的集合 <code>wrap</code> 成一個個的串列，再用 <code>flat_map</code> 或 <code>flatten</code> 攤開。這個時候就會發現 <code>nil</code> 在操作過程中直接消失了，不需要 <code>filter</code>，更不用 <code>if/else</code> 判斷。例如：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elixir" data-lang="elixir"><span style="display:flex;"><span>class = %{
+</span></span><span style="display:flex;"><span>  <span style="color:#666;font-style:italic">teacher</span>: %{<span style="color:#666;font-style:italic">name</span>: <span style="color:#666;font-style:italic">&#34;John&#34;</span>, <span style="color:#666;font-style:italic">age</span>: 40},
+</span></span><span style="display:flex;"><span>  <span style="color:#666;font-style:italic">assistant</span>: <span style="color:#666;font-weight:bold;font-style:italic">nil</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#666;font-style:italic">students</span>: [%{<span style="color:#666;font-style:italic">name</span>: <span style="color:#666;font-style:italic">&#34;Amber&#34;</span>, <span style="color:#666;font-style:italic">age</span>: 20}, %{<span style="color:#666;font-style:italic">name</span>: <span style="color:#666;font-style:italic">&#34;William&#34;</span>, <span style="color:#666;font-style:italic">age</span>: 22}]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class
+</span></span><span style="display:flex;"><span>|&gt; <span style="color:#666;font-weight:bold;font-style:italic">Map</span>.values
+</span></span><span style="display:flex;"><span>|&gt; <span style="color:#666;font-weight:bold;font-style:italic">Enum</span>.flat_map(&amp;<span style="color:#666;font-weight:bold;font-style:italic">List</span>.wrap/1)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"># =&gt; [%{age: 20, name: &#34;Amber&#34;}, %{age: 22, name: &#34;William&#34;}, %{age: 40, name: &#34;John&#34;}]</span>
+</span></span></code></pre></div><p>實際應用時，通常會直接將上層集合傳到 <code>flat_map</code> 裡，並將處理的函式拿出來另外宣告，這樣可以用 pattern matching 對上層結構做更細緻的處理。</p>
+<p>Happy hacking!</p>
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/2017-08-23-elixir-capture-operator/">
+                        Elixir 的 &amp; 運算子
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/2018-01-21-beyond-caps-lock/">
+                        Beyond Caps lock
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

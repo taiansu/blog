@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+<title>
+    
+    Beyond Caps lock | Mostly Functional
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/2018-01-21-beyond-caps-lock/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/2018-01-21-beyond-caps-lock/">
+	<meta property="og:site_name" content="Mostly Functional">
+	<meta property="og:title" content="Beyond Caps lock">
+	<meta property="og:description" content="應該不只一次跟別人提起：「如果這幾年用 mac 有學到些什麼的話，最重要的一件事肯定是把 Caps lock 改成 Ctrl」。是的，Caps lock 這麼重要的位置，居然放了這麼無用的鍵。把它換成 Ctrl 會讓你的生活品質大大提升。">
+	<meta property="og:locale" content="zh_tw">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2018-01-21T03:10:00+08:00">
+		<meta property="article:modified_time" content="2018-01-21T03:10:00+08:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.28d9b342d60b6964cad0e9a24256ab1a810cb5e23640573a1ca6253ae0c77292.css" media="all">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Mostly Functional</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /首頁
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /文章
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /關於我
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+
+
+<div >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">Beyond Caps lock</h1>
+    
+
+
+
+    
+
+    <p class="single-readtime">
+      
+
+      
+      
+      
+      <time datetime="2018-01-21T03:10:00&#43;08:00">January 21, 2018</time>
+      
+
+      
+    </p>
+
+
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="single-content">
+    <p>應該不只一次跟別人提起：「如果這幾年用 mac 有學到些什麼的話，最重要的一件事肯定是<strong>把 Caps lock
+改成 Ctrl</strong>」。是的，Caps lock 這麼重要的位置，居然放了這麼無用的鍵。把它換成 Ctrl 會讓你的生活品質大大提升。</p>
+<p>但是最近跟其它人推廣這個小技巧時，有時會得到這樣的反應：「但是我都用 Caps lock 來切換輸入法」。顯然 macOS 有想要改進這個無用的鍵，讓它多發揮一些功能。macOS 目前的設計是，如果你快速的按下 Caps lock 放開，那麼就會觸發<strong>切換輸入法</strong>的行為。如果你按久一點，那就是原先的 Caps lock。</p>
+<p>讓我們來從行為模式來思考一下幾個情況：</p>
+<ol>
+<li>Ctrl 是個綴詞鍵(或稱裝飾鍵)，當我們按下 Ctrl 時，必然是配合另一個鍵才會觸發我們想要的行為。</li>
+<li>切換輸入法則是一個鍵就可以觸發的行為。</li>
+</ol>
+<p>所以如果我們可以做到這樣的事就完美了：</p>
+<ol>
+<li>當快速按下 Caps lock 並放開，觸發<strong>切換輸入法</strong></li>
+<li>如果按著 Caps lock，並按下另一顆鍵，則視為 <strong>Ctrl + key</strong></li>
+</ol>
+<p>是的，這是辦得到的。但需要 <a href="https://pqrs.org/osx/karabiner/">Karabiner</a> 這個免費軟體，並稍加修改。</p>
+<br />
+1. 首先到 [https://pqrs.org/osx/karabiner/index.html](https://pqrs.org/osx/karabiner/index.html)
+下載並依指示安裝，執行後會看到底下的畫面(記得要到**系統偏好設定 > 安全性與隱私權**打開相應的權限)：
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div>
+        <img loading="lazy" alt="" src="./bcp1.png" >
+    </div>
+
+    
+</figure>
+</p>
+<ol start="2">
+<li>接著切換到 [Complex Modifications]，並按下左下角的 [Add rule]</li>
+</ol>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div>
+        <img loading="lazy" alt="" src="./bcp2.png" >
+    </div>
+
+    
+</figure>
+</p>
+<ol start="3">
+<li>按下上方的 [import more rules from the Internet]</li>
+</ol>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div>
+        <img loading="lazy" alt="" src="./bcp3.png" >
+    </div>
+
+    
+</figure>
+</p>
+<ol start="4">
+<li>這時瀏覽器會開啟，列入可以匯入的各種規則，找到 <strong>Modify Keys</strong> 區塊下的 <strong>Change caps_lock
+key</strong>，按下右邊的 [Import]</li>
+</ol>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div>
+        <img loading="lazy" alt="" src="./bcp4.png" >
+    </div>
+
+    
+</figure>
+</p>
+<ol start="5">
+<li>回到 Karabiner 視窗，就可以看到多出一些可用的規則。找到 <strong>Change caps_lock to control if pressed
+with other keys, to escape if pressed alone.</strong>，按下右邊的 [Enable]。這個設定會在單獨按下時觸發
+[ESC]，而跟其它鍵一起按的時候變成 [Ctrl + key]</li>
+</ol>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div>
+        <img loading="lazy" alt="" src="./bcp5.png" >
+    </div>
+
+    
+</figure>
+</p>
+<ol start="6">
+<li>雖然上面的設定也很不錯，但是我還是想要切換輸入法。這就要動用到編輯器了，用你喜歡的編輯器打開
+&ldquo;~/.config/karabiner/karabiner.json&rdquo;，找到我們匯入的規則區塊，也就是寫著 &ldquo;description&rdquo;: &ldquo;Change caps_lock to control&hellip;&rdquo; 的那個 JSON object (花括號)。</li>
+</ol>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div>
+        <img loading="lazy" alt="" src="./bcp6.png" >
+    </div>
+
+    
+</figure>
+</p>
+<ol start="7">
+<li>將底下的 &ldquo;to_if_alone&rdquo; 裡的 <strong>key_code</strong> 從 &ldquo;esc&rdquo; 改成 &ldquo;caps_lock&rdquo;，為了避免誤解，也順便將上方說明改成 &ldquo;&hellip;to caps_lock if press alone.&rdquo;</li>
+</ol>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div>
+        <img loading="lazy" alt="" src="./bcp7.png" >
+    </div>
+
+    
+</figure>
+</p>
+<ol start="8">
+<li>要切換輸入法，記得要在 macOS 的<strong>系統偏好設定 &gt; 鍵盤 &gt; 輸入方式</strong> ，將<strong>使用大寫鎖定鍵來切換&hellip;</strong> 核取方塊打勾</li>
+</ol>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div>
+        <img loading="lazy" alt="" src="./bcp8-compress.png" >
+    </div>
+
+    
+</figure>
+</p>
+<p><em>Note:</em> 這個方式在切換到 macOS 內建的輸入法，如注音或是雙拼等都運作的很好。而我個人慣用的嘸蝦米，則是第一次要用 [Ctrl + Space] 切換到嘸蝦米之後，按下 [Ctrl] 可以輸入英文，再按一次回到嘸蝦米。不過右上角的輸入法則始終都會顯示嘸蝦米。</p>
+<p><em>Note2:</em> 我的系統有裝 Better touch tool，本來想用它來改，但目前似乎不提供這種功能。但 BTT 跟 Karabiner 一起運用目前都蠻正常的。</p>
+<p>Happy hacking!</p>
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/2017-11-11-list-tricks/">
+                        List 操作小技巧
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/2018-12-03-concurrent-in-elixir/">
+                        Elixir 的並行機制：基礎部份
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

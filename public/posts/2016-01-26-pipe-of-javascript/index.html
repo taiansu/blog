@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+<title>
+    
+    Pipe of JavaScript: _.chain() | Mostly Functional
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/2016-01-26-pipe-of-javascript/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/2016-01-26-pipe-of-javascript/">
+	<meta property="og:site_name" content="Mostly Functional">
+	<meta property="og:title" content="Pipe of JavaScript: _.chain()">
+	<meta property="og:description" content="Update: 後來發現這個解法有一些缺點。目前大多用 Ramda 的 pipe 或 compose 來處理。不然就等 tc39 上的 proposal 吧。
+不知道從什麼時候開始，愈來愈喜歡用 functional 的寫法來處理問題。在看完 JavaScript Allonge 之後更是一發不可收拾。上次的 Elixir 文章提到了愉快的 |&gt; Pipe operator。一直想著怎麼 JavaScript 沒有類似的東西，但試過各種關鍵字就是找不到。">
+	<meta property="og:locale" content="zh_tw">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2016-01-26T10:35:00+08:00">
+		<meta property="article:modified_time" content="2016-01-26T10:35:00+08:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.28d9b342d60b6964cad0e9a24256ab1a810cb5e23640573a1ca6253ae0c77292.css" media="all">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Mostly Functional</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /首頁
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /文章
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /關於我
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+
+
+<div >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">Pipe of JavaScript: _.chain()</h1>
+    
+
+
+
+    
+
+    <p class="single-readtime">
+      
+
+      
+      
+      
+      <time datetime="2016-01-26T10:35:00&#43;08:00">January 26, 2016</time>
+      
+
+      
+    </p>
+
+
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="single-content">
+    <blockquote>
+<p>Update: 後來發現這個解法有一些缺點。目前大多用 Ramda 的 <code>pipe</code> 或 <code>compose</code> 來處理。不然就等 tc39
+上的 proposal 吧。</p>
+</blockquote>
+<hr>
+<p>不知道從什麼時候開始，愈來愈喜歡用 functional 的寫法來處理問題。在看完 <a href="https://leanpub.com/javascriptallongesix">JavaScript
+Allonge</a> 之後更是一發不可收拾。上次的 <a href="/2014-07-26-a_sip_of_elixir/">Elixir 文章</a>提到了愉快的 <code>|&gt;</code> Pipe operator。一直想著怎麼 JavaScript 沒有類似的東西，但試過各種關鍵字就是找不到。</p>
+<p>直到前陣子因<a href="/posts/2016-01-26-pipe-of-javascript/#1">工作需要</a>，認真的翻了 Lodash 文件，才發現真是踏破鐵鞋無覓處，那 function 就是接下來要介紹的 <code>_.chain()</code> 及 <code>_()</code>。找了一下中文世界似乎沒有什麼說明，寫個小心得看看是不是真的只有我 Lag 了 XD</p>
+<p>先從問題開始，手邊有如下的資料結構：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">const</span> poData =
+</span></span><span style="display:flex;"><span>  [
+</span></span><span style="display:flex;"><span>    { poNumber: <span style="color:#666;font-style:italic">&#39;FA1234-1&#39;</span>, designName: <span style="color:#666;font-style:italic">&#39;A&#39;</span>,,,, },
+</span></span><span style="display:flex;"><span>    { poNumber: <span style="color:#666;font-style:italic">&#39;FA1234-5&#39;</span>, designName: <span style="color:#666;font-style:italic">&#39;B&#39;</span>,,,, },
+</span></span><span style="display:flex;"><span>    { poNumber: <span style="color:#666;font-style:italic">&#39;FB2234-1&#39;</span>, designName: <span style="color:#666;font-style:italic">&#39;C&#39;</span>,,,, },
+</span></span><span style="display:flex;"><span>    { poNumber: <span style="color:#666;font-style:italic">&#39;FC3141-1&#39;</span>, designName: <span style="color:#666;font-style:italic">&#39;D&#39;</span>,,,, },
+</span></span><span style="display:flex;"><span>  ]
+</span></span></code></pre></div><p>想要拿到不重複的 <code>poNumber</code> 的前半段。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>[<span style="color:#666;font-style:italic">&#39;FA1234&#39;</span>, <span style="color:#666;font-style:italic">&#39;FB2234&#39;</span>, <span style="color:#666;font-style:italic">&#39;FC3141&#39;</span>]
+</span></span></code></pre></div><p>函數式的分解動作解法如下：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">const</span> poNumbers     = _.map(poData, <span style="color:#666;font-style:italic">&#39;poNumber&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">const</span> poNumberParts = _.map(poNumbers, num =&gt; num.split(<span style="color:#666;font-style:italic">&#39;-&#39;</span>)[0])
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">const</span> result        = _.unique(poNumberParts)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">// =&gt; [&#39;FA1234&#39;, &#39;FB2234&#39;, &#39;FC3141&#39;]
+</span></span></span></code></pre></div><p>但其實我們不需要中間那些臨時變數，所以可以寫成這種 Wirte only 風格來累積仇恨值：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">const</span> result = _.unique(_.map(_.map(poData, <span style="color:#666;font-style:italic">&#39;poNumber&#39;</span>), num =&gt; num.split(<span style="color:#666;font-style:italic">&#39;-&#39;</span>)[0]))
+</span></span></code></pre></div><p>縮排一下，看起來有點像 Lisp 了。但問題是執行順序是由內到外的，相當反直覺。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">const</span> result = _.unique(
+</span></span><span style="display:flex;"><span>                  _.map(
+</span></span><span style="display:flex;"><span>                    _.map(poData, <span style="color:#666;font-style:italic">&#39;poNumber&#39;</span>),
+</span></span><span style="display:flex;"><span>                    num =&gt; num.split(<span style="color:#666;font-style:italic">&#39;-&#39;</span>)[0]
+</span></span><span style="display:flex;"><span>                  )
+</span></span><span style="display:flex;"><span>                )
+</span></span></code></pre></div><p>我們想要的，其實就是把函式執行的結果，當成呼叫下一個函數時的第一個參數。
+而 Lodash 的 <code>_.chain()</code> 的功能正是如此：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">const</span> result = _.chain(poData)
+</span></span><span style="display:flex;"><span>                .map(<span style="color:#666;font-style:italic">&#39;poNumber&#39;</span>)
+</span></span><span style="display:flex;"><span>                .map(num =&gt; num.split(<span style="color:#666;font-style:italic">&#39;-&#39;</span>)[0])
+</span></span><span style="display:flex;"><span>                .unique()
+</span></span><span style="display:flex;"><span>                .value()
+</span></span></code></pre></div><p>由於 <code>_.chain()</code> 是 lazy evaluation，所以要在最後方加上 <code>.value()</code> 才會開始調用。否則只會回傳一個未調用的嵌套函式。 Lazy evaluation 的好處是上例中的兩個 <code>_.map</code> 及一個 <code>_.unique</code>，在實際執行時陣列只會遍歷一次，效能可能會比原先的寫法好一點。</p>
+<p>另外 Lodash 還提供了 <code>_()</code>，如果在 chaining 過程中出現了 <code>_.reduce()</code>，<code>_.merge()</code>
+等等會處理成單一結果，或是會回傳 primitive value 的函式調用，就會自動 unwrap。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">const</span> data = [
+</span></span><span style="display:flex;"><span>  {name: <span style="color:#666;font-style:italic">&#39;A&#39;</span>, usdPrice: 10},
+</span></span><span style="display:flex;"><span>  {name: <span style="color:#666;font-style:italic">&#39;B&#39;</span>, usdPrice: 20},
+</span></span><span style="display:flex;"><span>  {name: <span style="color:#666;font-style:italic">&#39;C&#39;</span>, usdPrice: 30},
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold;text-decoration:underline">const</span> twdTotal = _(data)
+</span></span><span style="display:flex;"><span>                .map(<span style="color:#666;font-style:italic">&#39;usdPrice&#39;</span>)
+</span></span><span style="display:flex;"><span>                .map(num =&gt; num * 31)
+</span></span><span style="display:flex;"><span>                .reduce(_.add)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> <span style="color:#888;font-style:italic">// 呼叫了 _.reduce() ，所以不需要呼叫 _.value() 就會回傳數值
+</span></span></span><span style="display:flex;"><span> <span style="color:#888;font-style:italic">// 這是個很假的範例不過你知道我意思。
+</span></span></span></code></pre></div><p>要注意雖然這個寫法看起來也是<em>一路點下去</em>，但是他的思路跟運作機制都與 jQuery 那種回傳 <code>self</code> 以繼續在同一個(變形過的) 物件上操作方法的 fluent style 是完全不同的。這種 chaining call 的運作方式是回傳一個用後方函式包裹前方函式的函式，讓你可以繼續包下去或調用。這概念及用法與 Rx.js 的 Observable 非常類似。</p>
+<p>另外 underscore 也有 <code>_.chain()</code>，沒有仔細看但是印象中用法雷同。</p>
+<hr className="my-4" />
+<ul>
+<li>即便是離開的資訊圈到南洋島國上做印刷，還是要處理傳產的 Excel 惡夢。反正沒有人要看 code，索性變本加厲的用上了 Rx.js。</li>
+<li>呼叫函式 =&gt; call the function，函式調用 =&gt; function invocation。兩者同義，依行文流暢擇用。</li>
+<li>最近繼續唸 Elixir/Erlang，OTP 好有趣啊。</li>
+</ul>
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/2014-11-26-080000/">
+                        復活節特價 Ruby 書敗家指南
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/2017-08-23-elixir-capture-operator/">
+                        Elixir 的 &amp; 運算子
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

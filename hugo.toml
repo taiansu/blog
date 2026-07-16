@@ -1,0 +1,102 @@
+baseURL = 'https://taiansu.tw/'
+locale = 'zh-tw'
+title = 'Mostly Functional'
+theme = 'typo'
+
+[taxonomies]
+tag = 'tags'
+
+# Google analytics code
+# googleAnalytics = "${GOOGLE_ANALYTICS_ID}"
+
+[params]
+# Meta description
+description = "Tai An Su's blog since 2012, was taian.su before."
+
+# Appearance settings
+theme = 'auto'
+colorPalette = 'default'
+hideHeader = false
+
+# Intro on main page, content is markdown
+homeIntroTitle = 'Tai An Su'
+homeIntroContent = """
+A father, a bookworm, a pluviophile. /.(ex|jsx?|rb|hs|rs|py)/.
+Co-organizer of http://elixir.tw
+"""
+
+# Collection to display on home
+homeCollectionTitle = 'Posts'
+homeCollection = 'posts'
+
+# Lists parameters
+paginationSize = 100
+listSummaries = true
+listDateFormat = 'Jan 2 2006'
+
+# Breadcrumbs
+breadcrumbs = false
+
+# CJK lanugage
+hasCJKLanguage = true
+
+# Social icons
+[[params.social]]
+name = "facebook"
+url = "https://www.facebook.com/sutaian"
+
+[[params.social]]
+name = "x"
+url = "https://www.x.com/taiansu"
+
+[[params.social]]
+name = "threads"
+url = "https://threads.com/@taiansu"
+
+# Main menu pages
+[[params.menu]]
+name = "首頁"
+url = "/"
+
+[[params.menu]]
+name = "文章"
+url = "/posts"
+
+[[params.menu]]
+name = "關於我"
+url = "/about"
+
+# Syntax highligth on code blocks
+[markup]
+[markup.highlight]
+style = 'algol'
+[markup.goldmark.renderer]
+unsafe = true
+
+## ReadingTime
+[languages]
+[languages.en]
+contentDir = 'content/en'
+language = 'en-US'
+label = 'English'
+weight = 2
+[languages.en.params]
+reading_speed = 228
+[languages.zh]
+contentDir = 'content'
+locale = 'zh-TW'
+label = '繁體中文'
+weight = 1
+[languages.zh.params]
+reading_speed = 500
+
+## Giscus comments
+[params.giscus]
+enable = false
+repo = "taiansu/taiansu.github.io"
+repoid = "${GISCUS_REPO_ID}"
+category = "Announcements"
+categoryid = "${GISCUS_CATEGORY_ID}"
+mapping = "pathname"
+theme = "preferred_color_scheme"
+datalang = "zh-TW"

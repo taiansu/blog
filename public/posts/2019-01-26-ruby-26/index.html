@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+<title>
+    
+    Ruby 2.6 的新功能 | Mostly Functional
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/2019-01-26-ruby-26/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/2019-01-26-ruby-26/">
+	<meta property="og:site_name" content="Mostly Functional">
+	<meta property="og:title" content="Ruby 2.6 的新功能">
+	<meta property="og:description" content="Ruby 2.6 除了主打的 JIT 之外，還引進了一些有趣的新功能。其中有一些可以讓 Ruby 在函數式風格的寫法上更加自然流暢。想來稍微展示一下這些功能的用法。">
+	<meta property="og:locale" content="zh_tw">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2019-01-26T11:30:00+08:00">
+		<meta property="article:modified_time" content="2019-01-26T11:30:00+08:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.28d9b342d60b6964cad0e9a24256ab1a810cb5e23640573a1ca6253ae0c77292.css" media="all">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Mostly Functional</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /首頁
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /文章
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /關於我
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+
+
+<div >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">Ruby 2.6 的新功能</h1>
+    
+
+
+
+    
+
+    <p class="single-readtime">
+      
+
+      
+      
+      
+      <time datetime="2019-01-26T11:30:00&#43;08:00">January 26, 2019</time>
+      
+
+      
+    </p>
+
+
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="single-content">
+    <p>Ruby 2.6 除了<del>主打的</del> JIT 之外，還引進了一些有趣的新功能。其中有一些可以讓 Ruby 在函數式風格的寫法上更加自然流暢。想來稍微展示一下這些功能的用法。</p>
+<h2 class="heading" id="1-compose-operator-proc-及-proc">
+  1. Compose operator:<br /> <code>Proc.&gt;&gt;</code> 及 <code>Proc.&lt;&lt;</code>
+  <a href="#1-compose-operator-proc-%e5%8f%8a-proc">#</a>
+</h2>
+<p>雖然 Ruby 天生在某些用法上就採用了函數式風格(例如沒有 for 迴圈，而是用 each + block)，但由於高階函式接受的是 block 而非 lambda，lambda 本身也無法簡單組合起來。所以一直以來匿名函式在 Ruby 中除了拿來當參數傳遞之外，用法相當受限。</p>
+<p>在正統的函數式編程中，用 function composition 的方式將多個小函式組合在一起是很基本的操作，舉個之前的例子，假設你想要這樣的連續調用：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#888;font-style:italic"># 注意，因為假設這些函數都是 lambda，所以要用 `.()` 調用</span>
+</span></span><span style="display:flex;"><span>request = generate_request.()
+</span></span><span style="display:flex;"><span>response = get_response.(request)
+</span></span><span style="display:flex;"><span>body = parse_body.(response)
+</span></span><span style="display:flex;"><span>html = render.(body)
+</span></span></code></pre></div><p>其實除了 <code>html</code> 這個最終結果外，我們不需要中間的臨時變數，而可以改寫成這樣(然後被同事記恨)：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>html = render.(parse_body.(get_response.(generate_request.())))
+</span></span></code></pre></div><p>Ruby 2.6 開始你可以用 <code>&lt;&lt;</code> (compose) 或是 <code>&gt;&gt;</code> (pipe) 來組合 Proc (或 lambda)。假設我們有兩個 lambda <code>f</code> 與 <code>g</code>，這兩個運算子的作用如下：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>(f &gt;&gt; g).(x)
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"># 等同於</span>
+</span></span><span style="display:flex;"><span>g(f(x))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(f &lt;&lt; g).(x)
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"># 等同於</span>
+</span></span><span style="display:flex;"><span>f(g(x))
+</span></span></code></pre></div><p>我自己的記憶方式是把這兩個 operator 看成函式呼叫流程的箭頭。<code>f &gt;&gt; g</code> 就是先調用 <code>f</code> ，再將結果傳進 <code>g</code>。反之 <code>f &lt;&lt; g</code> 則是先調用 <code>g</code> 再傳給 <code>f</code>。</p>
+<p>那麼之前的例子就可以改成下列兩者之一：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>get_html = generate_request &gt;&gt; get_response &gt;&gt; parse_body &gt;&gt; render
+</span></span><span style="display:flex;"><span>html = get_html.()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic"># 或是</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>get_html = render &lt;&lt; parse_body &lt;&lt; get_response &lt;&lt; generate_request
+</span></span><span style="display:flex;"><span>html = get_html.()
+</span></span></code></pre></div><p>Ruby 2.6 的文件範例如下：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>f = <span style="font-weight:bold;font-style:italic">proc</span> {|x| x * x}
+</span></span><span style="display:flex;"><span>g = <span style="font-weight:bold;font-style:italic">proc</span> {|x| x + x}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(f &lt;&lt; g).call(2) <span style="color:#888;font-style:italic"># =&gt; 16</span>
+</span></span><span style="display:flex;"><span>(f &gt;&gt; g).call(2) <span style="color:#888;font-style:italic"># =&gt; 8</span>
+</span></span></code></pre></div><p>再進階一點配合 Ruby 原本就有的 <code>Object#method</code> 及 <code>Method#curry</code>，想來可以組合出非常有意思的寫法。</p>
+<h2 class="heading" id="2-enumerablefilter">
+  2. Enumerable#filter
+  <a href="#2-enumerablefilter">#</a>
+</h2>
+<p>函數式編程最著名的三個高階函式就屬 <code>map</code>、<code>reduce</code> 及 <code>filter</code> 了。但在 Ruby 中，<code>filter</code> 這個高階函式被改名為 <code>select</code>，這一版加上了 <code>filter</code> 的別名，跟其它語言的慣用法一致，再也不會等到測試爆掉才想起函式名稱不一樣了。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>[1, 2, 3, 4].filter {|i| i % 2 == 0} <span style="color:#888;font-style:italic"># =&gt; [2, 4]</span>
+</span></span></code></pre></div><h2 class="heading" id="3-endless-range">
+  3. Endless range
+  <a href="#3-endless-range">#</a>
+</h2>
+<p>現在範圍運算子 <code>..</code> 可以不加結束的參數：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>[<span style="color:#666;font-style:italic">:a</span>, <span style="color:#666;font-style:italic">:b</span>, <span style="color:#666;font-style:italic">:c</span>, <span style="color:#666;font-style:italic">:d</span>][2..] <span style="color:#888;font-style:italic"># =&gt; [:b, :c, :d]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>(<span style="color:#666;font-style:italic">:b</span>..).lazy.zip(10..).first(3) <span style="color:#888;font-style:italic"># =&gt; [[:b, 10], [:c, 11], [:d, 12]]</span>
+</span></span></code></pre></div><h2 class="heading" id="4-arrayunion-and-arraydifference">
+  4. Array#union and Array#difference
+  <a href="#4-arrayunion-and-arraydifference">#</a>
+</h2>
+<p><code>Array#union</code> 是聯集，<code>Array#difference</code> 是差集。直接上範例：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>[1].union([2, 3], [1, 2, 4, 5]) <span style="color:#888;font-style:italic"># =&gt; [1, 2, 3, 4, 5]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[1, 1, 2, 2, 3, 3, 4, 5].difference([1, 2, 4]) <span style="color:#888;font-style:italic"># =&gt; [3, 3, 5]</span>
+</span></span></code></pre></div><h2 class="heading" id="結語">
+  結語
+  <a href="#%e7%b5%90%e8%aa%9e">#</a>
+</h2>
+<p>除了這些之外，<code>Proc.call</code> 調用快了大約 1.4 倍。另外還有 <code>Object#then</code>、<code>Hash#merge</code>、<code>Enumerable#to_h</code> 等等，就找機會試玩看看吧。Happy hacking!</p>
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/2018-12-03-concurrent-in-elixir/">
+                        Elixir 的並行機制：基礎部份
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/2019-03-25-phoenix-liveview/">
+                        Phoenix LiveView 概念篇
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

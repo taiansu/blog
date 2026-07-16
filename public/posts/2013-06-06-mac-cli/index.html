@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+<title>
+    
+    客製 Mac 的 CLI | Mostly Functional
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/2013-06-06-mac-cli/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/2013-06-06-mac-cli/">
+	<meta property="og:site_name" content="Mostly Functional">
+	<meta property="og:title" content="客製 Mac 的 CLI">
+	<meta property="og:description" content="UPDATE:
+後來我改用 prezto 來取代 ohmyzsh，功能跟佈景主題比較少，但啟動速度較快.
+Further Update:
+再後來就用純 zshrc &#43; zshenv 改了。可以參考 我的 dotfiles">
+	<meta property="og:locale" content="zh_tw">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2013-06-06T08:42:00+08:00">
+		<meta property="article:modified_time" content="2013-06-06T08:42:00+08:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.28d9b342d60b6964cad0e9a24256ab1a810cb5e23640573a1ca6253ae0c77292.css" media="all">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Mostly Functional</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /首頁
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /文章
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /關於我
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+
+
+<div >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">客製 Mac 的 CLI</h1>
+    
+
+
+
+    
+
+    <p class="single-readtime">
+      
+
+      
+      
+      
+      <time datetime="2013-06-06T08:42:00&#43;08:00">June 6, 2013</time>
+      
+
+      
+    </p>
+
+
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="single-content">
+    <blockquote>
+<p><strong>UPDATE</strong>:</p>
+</blockquote>
+<blockquote>
+<p>後來我改用 <a href="https://github.com/sorin-ionescu/prezto">prezto</a> 來取代 ohmyzsh，功能跟佈景主題比較少，但啟動速度較快.</p>
+</blockquote>
+<blockquote>
+<p><strong>Further Update:</strong></p>
+</blockquote>
+<blockquote>
+<p>再後來就用純 zshrc + zshenv 改了。可以參考 <a href="https://github.com/taiansu/dotfiles">我的 dotfiles</a></p>
+</blockquote>
+<hr>
+<p>之前答應的事欠很久，就用這篇來還吧。</p>
+<p>身為 Ruby/Rails 開發者，每天跟 <a href="http://zh.wikipedia.org/wiki/%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%95%8C%E9%9D%A2">Command Line Interface (CLI)</a> 混在一起是再正常也不過的了。</p>
+<p>之所以買 Mac，就是因為 Mac 的 CLI 跟 Windows 渣一般的命令提示字元不是同一個等級的東西。即使如此，要是每次打開內建的終端機，都看到是下圖這個樣子，也很難不心生畏懼一下的。</p>
+<p><a href="https://taiansu.micro.blog/uploads/2022/875b2e4113.jpg">
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div>
+        <img loading="lazy" alt="Original OSX CLI" src="https://taiansu.micro.blog/uploads/2022/875b2e4113.jpg" >
+    </div>
+
+    
+</figure>
+</a></p>
+<p>既然是每天拿來吃飯的工具，我自己用了 iTerm2，Oh My ZSH，再選一個喜歡的 <a href="http://zh.wikipedia.org/wiki/%E7%AD%89%E5%AE%BD%E5%AD%97%E4%BD%93">monospace 字體</a>，把它弄成這樣:</p>
+<p><a href="https://taiansu.micro.blog/uploads/2022/433f952d16.jpg">
+
+
+
+
+
+
+
+
+
+
+
+<figure class="">
+
+    <div>
+        <img loading="lazy" alt="Prettier OSX CLI" src="https://taiansu.micro.blog/uploads/2022/433f952d16.jpg" >
+    </div>
+
+    
+</figure>
+</a></p>
+<h2 class="heading" id="monospace-字體">
+  monospace 字體
+  <a href="#monospace-%e5%ad%97%e9%ab%94">#</a>
+</h2>
+<p>好用的 monospace 字體其實蠻多的，可以從<a href="http://www.slant.co/topics/67/~what-are-the-best-programming-fonts">這裡</a>挑一個。基本上就是 <code>1</code>，<code>l</code>，<code>I</code> 及 <code>0</code>，<code>o</code>，<code>O</code> 要分的清楚，其它就是個人喜好了。我目前用的是 Source Code Pro，之前則是 <a href="http://www.dafont.com/bitstream-vera-mono.font">Bitstream vara sans mono</a>。</p>
+<h2 class="heading" id="iterm2">
+  iTerm2
+  <a href="#iterm2">#</a>
+</h2>
+<p>iTerm2 不是必要的，但它提供了原生的 Terminal.app 所沒有的幾個好用功能：</p>
+<ol>
+<li><kbd>command</kbd> + click to open file</li>
+<li>Split pane view</li>
+<li>Hotkey Instant terminal anywhere</li>
+<li>Highlight word when searching</li>
+<li>Mouseless copy</li>
+<li>Paste history</li>
+</ol>
+<p>到<a href="http://www.iterm2.com/downloads/stable/iTerm2_v1_0_0.zip">官網</a>下載後解壓縮，然後丟到 Application 裡。</p>
+<p>執行 iTerm2，到 Preference 改 Profiles =&gt; Default =&gt; Text 選擇你剛裝好的字體。</p>
+<h4 class="heading" id="進階自訂選項">
+  進階自訂選項
+  <a href="#%e9%80%b2%e9%9a%8e%e8%87%aa%e8%a8%82%e9%81%b8%e9%a0%85">#</a>
+</h4>
+<p><a href="http://color.smyck.org/">SMYCK</a>，<a href="https://github.com/rickharris/vim-railscasts">railscasts theme</a> 都是蠻不錯的配色。下載後點兩下匯入，再去 Preference 改 Profiles =&gt; Default =&gt; Colors。</p>
+<h2 class="heading" id="oh-my-zsh">
+  oh-my-zsh
+  <a href="#oh-my-zsh">#</a>
+</h2>
+<p>oh-my-zsh 讓你可以不用再辛苦的手刻 config file，就內建一堆好用的 plugin(*註)， 還提供一堆主題讓你挑選。因為我比較喜歡 zsh 的補完功能，如果你還是想用 Mac 預設的 bash，<a href="https://github.com/revans/bash-it">bash-it</a> 看來可以做到類似的事。但因為我沒用過，所以請自行踩雷。</p>
+<p>安裝 oh-my-zsh 的方式，就是打開剛剛裝好的 iTerm2 ( Terminal.app 也可以)，貼上這行指令:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -L http://install.ohmyz.sh | sh
+</span></span></code></pre></div><p>更多 Oh My ZSH 的設定可以參考 RailsCasts 的<a href="http://railscasts.com/episodes/308-oh-my-zsh">影片</a></p>
+<h3 class="heading" id="進階自訂選項-1">
+  進階自訂選項
+  <a href="#%e9%80%b2%e9%9a%8e%e8%87%aa%e8%a8%82%e9%81%b8%e9%a0%85-1">#</a>
+</h3>
+<p>到 <a href="http://zshthem.es/all/">zshthem</a> 挑一個順眼的主題，記下上方的名字。(裡面沒有列出全部可用的主題，像是很多人愛用，但是需要特殊字體的 agnoster)。我用的是 af-magic。</p>
+<p>修改 <code>~/.zshrc</code> ，把 <code>ZSH-THEME=&quot;xxxxx&quot;</code> 的xxxxx改成你剛剛記下來的字，儲存。然後回到 iTerm2，輸入 <code>source ~/.zshrc</code></p>
+<hr>
+<p><strong>提醒</strong>：</p>
+<ul>
+<li>
+<p><code>~/.zshrc</code> 底下的 <code>plugins=&quot;(.....)&quot;</code> 千萬要慎選。看清楚 <code>~/.oh-my-zsh/plugins/</code> 裡的相應的檔案內容。我曾經被 bundler plugin 搞掉好幾個小時。</p>
+</li>
+<li>
+<p>指令上色是用 <a href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-syntax-highlighting</a> 做的。 想要的話就參考連結裡的說明。</p>
+</li>
+</ul>
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/2013-06-05-os-x-git/">
+                        在 OS X 安裝 git 環境
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/2013-06-29-meta-and-meta-programming/">
+                        Meta and meta-programming
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

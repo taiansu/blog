@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+<title>
+    
+    Setup Rails on Mountain Lion | Mostly Functional
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/2012-10-04-setup-rails-on/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/2012-10-04-setup-rails-on/">
+	<meta property="og:site_name" content="Mostly Functional">
+	<meta property="og:title" content="Setup Rails on Mountain Lion">
+	<meta property="og:description" content="A humble (*caught) guide for helping setup Rails environment on Mountain Lion with rbenv.">
+	<meta property="og:locale" content="zh_tw">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2012-10-04T18:37:00+08:00">
+		<meta property="article:modified_time" content="2012-10-04T18:37:00+08:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.28d9b342d60b6964cad0e9a24256ab1a810cb5e23640573a1ca6253ae0c77292.css" media="all">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Mostly Functional</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /首頁
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /文章
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /關於我
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+
+
+<div >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">Setup Rails on Mountain Lion</h1>
+    
+
+
+
+    
+
+    <p class="single-readtime">
+      
+
+      
+      
+      
+      <time datetime="2012-10-04T18:37:00&#43;08:00">October 4, 2012</time>
+      
+
+      
+    </p>
+
+
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="single-content">
+    <p>A humble (*caught) guide for helping setup Rails environment on Mountain Lion with rbenv.</p>
+<h2 class="heading" id="install-xcode-and-its-friends">
+  Install Xcode and it&rsquo;s friends&hellip;
+  <a href="#install-xcode-and-its-friends">#</a>
+</h2>
+<p>First we need Xcode&rsquo;s Command Line Tools for install copies of the core command line tools and system headers into system folders.</p>
+<p>If you don&rsquo;t need Xcode, you can download &ldquo;Command Line Tools for Mountain Lion&rdquo; from <a href="https://developer.apple.com/downloads/index.action">Apple developer site</a> and install that, it&rsquo;s free but need an registed apple developer account. You can save about 4GB diskspace for doing so. Otherwise follow the steps below:</p>
+<ol>
+<li>
+<p>Download and install Xcode from App Store first.</p>
+</li>
+<li>
+<p>Open Xcode, press <kbd>Xcode</kbd> -&gt; <kbd>preferences</kbd> on the menu bar.</p>
+</li>
+<li>
+<p>Switch to <kbd>Downloads</kbd> -&gt; <kbd>Components</kbd> section,</p>
+</li>
+<li>
+<p><kbd>install</kbd> &ldquo;Command Line Tools&rdquo;.</p>
+</li>
+</ol>
+<hr>
+<h2 class="heading" id="install-homebrew">
+  Install Homebrew
+  <a href="#install-homebrew">#</a>
+</h2>
+<p>We choose <strong>Homebrew</strong> as our package manager, just like <em>apt</em> or <em>yum</em> for linux. After this step, you can use <code>brew install something</code> to install lots of useful tools, e.g.,  MySql, imagemagick and Node.js. Then we use Homebrew to install <em>apple-gcc</em> for compile ruby from the source, <em>Git</em> for up-to-date version control.</p>
+<p>Open Terminal, paste this command beneath than <kbd>Enter</kbd></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ruby -e <span style="color:#666;font-style:italic">&#34;</span><span style="font-weight:bold;text-decoration:underline">$(</span>curl -fsSkL raw.github.com/mxcl/homebrew/go<span style="font-weight:bold;text-decoration:underline">)</span><span style="color:#666;font-style:italic">&#34;</span>
+</span></span></code></pre></div><hr>
+<h2 class="heading" id="essential-components">
+  Essential components
+  <a href="#essential-components">#</a>
+</h2>
+<ul>
+<li>Execute each command followed:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install git
+</span></span></code></pre></div><ul>
+<li>Optional</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install mysql imagemagick
+</span></span></code></pre></div><hr>
+<h2 class="heading" id="rbenv-with-shell-configs">
+  rbenv with Shell configs
+  <a href="#rbenv-with-shell-configs">#</a>
+</h2>
+<p>Then we use <em>rbenv</em> and <em>ruby-build</em> for install multiple ruby version. But if you&rsquo;re kind of RVM&rsquo;s guy, just skip this section and go for it.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install rbenv ruby-build
+</span></span></code></pre></div><p>After install the rbenv, we need to adjust our shell config to execute rbenv while system boot up.</p>
+<ul>
+<li>In Terminal, execute each commands followed. (<strong>Note</strong>: if you&rsquo;re using <em>ZSH</em>, execute the ZSH part instead.)</li>
+</ul>
+<p>BASH:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">echo</span> <span style="color:#666;font-style:italic">&#39;if which rbenv &gt; /dev/null; then eval &#34;$(rbenv init -)&#34;; fi&#39;</span> &gt;&gt; ~/.bash_profile &amp;&amp; <span style="font-weight:bold;font-style:italic">source</span> ~/.bash_profile
+</span></span></code></pre></div><p>ZSH:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic">echo</span> <span style="color:#666;font-style:italic">&#39;if which rbenv &gt; /dev/null; then eval &#34;$(rbenv init - zsh)&#34;; fi&#39;</span> &gt;&gt; ~/.zshenv; <span style="font-weight:bold;font-style:italic">source</span> ~/.zshenv
+</span></span></code></pre></div><hr>
+<h2 class="heading" id="install-ruby">
+  Install Ruby
+  <a href="#install-ruby">#</a>
+</h2>
+<p>Whoa, the goal is just few steps far. Let&rsquo;s install all the ruby versions we need. Aren&rsquo;t we struggle all the way, just for that?  Cross the fingers, guys.</p>
+<ul>
+<li>In Terminal, execute each commands followed.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rbenv install 2.0.0-p247; rbenv rehash; rbenv global 2.0.0-p247
+</span></span></code></pre></div><ul>
+<li>Optional: If you need Ruby Enterprise Edition, execute the commands followed.</li>
+</ul>
+<p><strong>Replace <code>;</code> wich <code>&amp;&amp;</code> in bash</strong></p>
+<h2 class="heading" id="install-apple-gcc">
+  Install Apple GCC
+  <a href="#install-apple-gcc">#</a>
+</h2>
+<ul>
+<li>In Terminal, execute each commands followed.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chown -R <span style="color:#666;font-style:italic">`</span>whoami<span style="color:#666;font-style:italic">`</span> /usr/local &amp;&amp; brew update &amp;&amp; brew tap homebrew/dupes &amp;&amp; brew install apple-gcc42
+</span></span></code></pre></div><hr>
+<h2 class="heading" id="if-you-need-ruby-enterprise-edition">
+  If you need Ruby Enterprise Edition
+  <a href="#if-you-need-ruby-enterprise-edition">#</a>
+</h2>
+<ul>
+<li>install <a href="http://xquartz.macosforge.org/landing/">XQuartz</a> first.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">CPPFLAGS</span>=-I/opt/X11/include <span style="color:#666;font-style:italic">\
+</span></span></span><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">CC</span>=/usr/local/bin/gcc-4.2 <span style="color:#666;font-style:italic">\
+</span></span></span><span style="display:flex;"><span>rbenv install ree-1.8.7-2012.02; rbenv rehash
+</span></span></code></pre></div><h3 class="heading" id="install-important-gems">
+  Install important gems
+  <a href="#install-important-gems">#</a>
+</h3>
+<p>Finally, it&rsquo;s done! Buy yourself a drink, you worth it! At the end let&rsquo;s install some gems and prepare for the party on Rails!</p>
+<ul>
+<li>In Terminal, execute each commands followed.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gem install bundler rails
+</span></span></code></pre></div>
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/2012-09-13-the-beauty-of/">
+                        The beauty of Ruby: Array Tricks
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/2012-10-12-an-apple-hotkey/">
+                        An Apple Hotkey a day
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

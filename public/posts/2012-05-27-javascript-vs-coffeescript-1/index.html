@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-tw"
+  dir="ltr">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+
+<link rel="icon" type="image/ico" href="http://localhost:1313//favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313//favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313//favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313//android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313//apple-touch-icon.png">
+
+<meta name="description" content=""/>
+
+<title>
+    
+    JavaScript vs CoffeeScript 1: arguments | Mostly Functional
+    
+</title>
+
+<link rel="canonical" href="http://localhost:1313/posts/2012-05-27-javascript-vs-coffeescript-1/"/>
+
+<meta property="og:url" content="http://localhost:1313/posts/2012-05-27-javascript-vs-coffeescript-1/">
+	<meta property="og:site_name" content="Mostly Functional">
+	<meta property="og:title" content="JavaScript vs CoffeeScript 1: arguments">
+	<meta property="og:description" content="Update: 嗯… 當 2018 ES6 普及後， coffeescript 變成要花費心思去移掉的東西了…">
+	<meta property="og:locale" content="zh_tw">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2012-05-27T00:51:00+08:00">
+		<meta property="article:modified_time" content="2012-05-27T00:51:00+08:00">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/assets/combined.min.28d9b342d60b6964cad0e9a24256ab1a810cb5e23640573a1ca6253ae0c77292.css" media="all">
+
+
+
+
+
+  </head>
+
+  
+
+  
+  
+  
+
+  <body class="auto">
+
+    <div class="content">
+      <header>
+        
+
+<div class="header">
+
+    
+
+    <h1 class="header-title">
+        <a href="http://localhost:1313/">Mostly Functional</a>
+    </h1>
+
+    <div class="flex">
+        
+
+        
+        
+      
+        <p class="small ">
+            <a href="/" >
+                /首頁
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/posts" >
+                /文章
+            </a>
+        </p>
+        
+      
+        <p class="small ">
+            <a href="/about" >
+                /關於我
+            </a>
+        </p>
+        
+        
+    </div>
+
+    
+
+</div>
+
+      </header>
+
+      <main class="main">
+        
+
+
+
+
+
+
+
+<div >
+
+  <div class="single-intro-container">
+
+    
+
+    <h1 class="single-title">JavaScript vs CoffeeScript 1: arguments</h1>
+    
+
+
+
+    
+
+    <p class="single-readtime">
+      
+
+      
+      
+      
+      <time datetime="2012-05-27T00:51:00&#43;08:00">May 27, 2012</time>
+      
+
+      
+    </p>
+
+
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  <div class="single-content">
+    <blockquote>
+<p>Update: 嗯… 當 2018 ES6 普及後， coffeescript 變成要花費心思去移掉的東西了…</p>
+</blockquote>
+<hr>
+<p>當 JavaScript 的函式宣告時，其括號中定義的參數並不是限制，而是方便存取引數物件的變數名稱捷徑。在呼叫時傳入但沒有宣告的引數， 我們可以用 <code>arguments[i]</code> 來操作該參數。</p>
+<blockquote>
+<p>無論一個 JavaScript 的函式如何宣告，呼叫該函式時，都可以傳入任意數量的引數。</p>
+</blockquote>
+<p>如同底下的範例，我們先宣告一個有兩個參數的函式 <code>f</code>，接著依序用 1 到 3 個引數來呼叫這個函式。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic;text-decoration:underline">var</span> f = <span style="font-weight:bold;font-style:italic;text-decoration:underline">function</span>(a, b){
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold;font-style:italic;text-decoration:underline">var</span> args = <span style="font-weight:bold;font-style:italic">Array</span>.prototype.slice.call(arguments);
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#666;font-style:italic">&#34;arguments: &#34;</span> +  args.join(<span style="color:#666;font-style:italic">&#34;,&#34;</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold;text-decoration:underline">for</span>(<span style="font-weight:bold;font-style:italic;text-decoration:underline">var</span> i = 0; i &lt; arguments.length; i++){
+</span></span><span style="display:flex;"><span>        console.log(i.toString() + <span style="color:#666;font-style:italic">&#34;: &#34;</span> + arguments[i]);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f(<span style="color:#666;font-style:italic">&#34;ruby&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">//&#34;ruby&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">//&#34;0: ruby&#34;
+</span></span></span><span style="display:flex;"><span>f(<span style="color:#666;font-style:italic">&#34;ruby&#34;</span>, <span style="color:#666;font-style:italic">&#34;coffeescript&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;ruby&#34;,&#34;coffeescript&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;0: ruby&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;1: coffeescript&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">*/</span>
+</span></span><span style="display:flex;"><span>f(<span style="color:#666;font-style:italic">&#34;ruby&#34;</span>, <span style="color:#666;font-style:italic">&#34;coffeescript&#34;</span>, <span style="color:#666;font-style:italic">&#34;lisp&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;ruby&#34;,&#34;coffeescript&#34;, &#34;lisp&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;0: ruby&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;1: coffeescript&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;2: lisp&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">*/</span>
+</span></span></code></pre></div><p>雖然 <code>arguments</code> 的行為看起來很像陣列，但其實它是一個特殊的物件。缺乏了許多陣列會有的行為，物件型別也不屬於 Array。如果要像陣列一樣使用 <code>join()</code> 來組裝字串，必需要像上例第二行一樣，用 <code>Array.prototype.splice.call(arguments)</code> 先轉成一個值陣列。</p>
+<blockquote>
+<p>在 CoffeeScript 中，則習慣用 Splats 來宣告一個可變的參數陣列。</p>
+</blockquote>
+<p>在 CoffeeScript 裡，除了直接操作 <code>arguments</code> 之外，更偏好使用類似 Ruby 的 splats，宣告一個可取得任意數量引數值的變數，用陣列的方式來進行處理。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-coffeescript" data-lang="coffeescript"><span style="display:flex;"><span><span style="color:#666;font-weight:bold;font-style:italic">f = </span><span style="color:#666;font-weight:bold;font-style:italic">(a, b, c...) -&gt;</span>
+</span></span><span style="display:flex;"><span>  console.log <span style="color:#666;font-style:italic">&#34;arguments: </span><span style="color:#666;font-style:italic">#{</span>a<span style="color:#666;font-style:italic">}</span><span style="color:#666;font-style:italic">, </span><span style="color:#666;font-style:italic">#{</span>b<span style="color:#666;font-style:italic">}</span><span style="color:#666;font-style:italic">, </span><span style="color:#666;font-style:italic">#{</span>c<span style="color:#666;font-style:italic">}</span><span style="color:#666;font-style:italic">&#34;</span>.replace(<span style="color:#666;font-style:italic">/, $/</span>,<span style="color:#666;font-style:italic">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold;text-decoration:underline">for</span> arg, i <span style="font-weight:bold;text-decoration:underline">in</span> arguments
+</span></span><span style="display:flex;"><span>    console.log <span style="color:#666;font-style:italic">&#34;</span><span style="color:#666;font-style:italic">#{</span>i<span style="color:#666;font-style:italic">}</span><span style="color:#666;font-style:italic">: </span><span style="color:#666;font-style:italic">#{</span>arg<span style="color:#666;font-style:italic">}</span><span style="color:#666;font-style:italic">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f <span style="color:#666;font-style:italic">&#34;ruby&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">#&#34;ruby&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">#&#34;0: ruby&#34;
+</span></span></span><span style="display:flex;"><span>f <span style="color:#666;font-style:italic">&#34;ruby&#34;</span>, <span style="color:#666;font-style:italic">&#34;coffeescript&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">###
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;ruby&#34;,&#34;coffeescript&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;0: ruby&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;1: coffeescript&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">###</span>
+</span></span><span style="display:flex;"><span>f <span style="color:#666;font-style:italic">&#34;ruby&#34;</span>, <span style="color:#666;font-style:italic">&#34;coffeescript&#34;</span>, <span style="color:#666;font-style:italic">&#34;lisp&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">###
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;ruby&#34;,&#34;coffeescript&#34;, &#34;lisp&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;0: ruby&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;1: coffeescript&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">&#34;2: lisp&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#888;font-style:italic">###</span>
+</span></span></code></pre></div><p>在第一行宣告 <code>c...</code> 參數之後，呼叫此函式時，多餘的引數會被存成一個真正的陣列，在函式中就可以用 <code>c</code> 操作此陣列。由於 CoffeeScript 內建了許多方便的陣列操作方式，像是第三行中的 <code>for...in</code> ，同時取得陣列索引及值。若是引數少於三個，則 <code>c</code> 會是一個空陣列。</p>
+<p>編譯出來的 JavaScript 長成這個樣子：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="font-weight:bold;font-style:italic;text-decoration:underline">var</span> f,
+</span></span><span style="display:flex;"><span>  __slice = [].slice;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f = <span style="font-weight:bold;font-style:italic;text-decoration:underline">function</span>() {
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold;font-style:italic;text-decoration:underline">var</span> a, arg, b, c, i, _i, _len, _results;
+</span></span><span style="display:flex;"><span>  a = arguments[0],
+</span></span><span style="display:flex;"><span>  b = arguments[1],
+</span></span><span style="display:flex;"><span>  c = 3 &lt;= arguments.length ? __slice.call(arguments, 2) : [];
+</span></span><span style="display:flex;"><span>  console.log((<span style="color:#666;font-style:italic">&#34;arguments: &#34;</span> + a + <span style="color:#666;font-style:italic">&#34;, &#34;</span> + b + <span style="color:#666;font-style:italic">&#34;, &#34;</span> + c).replace(<span style="color:#666;font-style:italic">/, $/</span>, <span style="color:#666;font-style:italic">&#34;&#34;</span>));
+</span></span><span style="display:flex;"><span>  _results = [];
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold;text-decoration:underline">for</span> (i = _i = 0, _len = arguments.length; _i &lt; _len; i = ++_i) {
+</span></span><span style="display:flex;"><span>    arg = arguments[i];
+</span></span><span style="display:flex;"><span>    _results.push(console.log(<span style="color:#666;font-style:italic">&#34;&#34;</span> + i + <span style="color:#666;font-style:italic">&#34;: &#34;</span> + arg));
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold;text-decoration:underline">return</span> _results;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>f(<span style="color:#666;font-style:italic">&#34;ruby&#34;</span>);
+</span></span><span style="display:flex;"><span>f(<span style="color:#666;font-style:italic">&#34;ruby&#34;</span>, <span style="color:#666;font-style:italic">&#34;coffeescript&#34;</span>);
+</span></span><span style="display:flex;"><span>f(<span style="color:#666;font-style:italic">&#34;ruby&#34;</span>, <span style="color:#666;font-style:italic">&#34;coffeescript&#34;</span>, <span style="color:#666;font-style:italic">&#34;lisp&#34;</span>);
+</span></span></code></pre></div><p>在第 6 行中，可以看到 CoffeeScript 處理 splats 陣列的方式。第 9 行的迴圈宣告中，CoffeeScript 用 <code>i</code> 及 <code>__i</code> 宣告了索引值及迴圈次數兩個異名同值變數。而第 13 行的部份顯示 CoffeeScript 的總是會以最後一個運算式的結果做為函式回傳值，若是迴圈運算，則會回傳一個陣列。</p>
+    
+  </div>
+
+  
+
+
+  
+
+  
+  
+
+<div class="single-pagination">
+    <hr />
+
+    <div class="flex">
+
+        <div class="single-pagination-prev">
+            
+            <div class="single-pagination-container-prev">
+                <div class="single-pagination-text">←</div>
+                <div class="single-pagination-text">
+                    <a href="/posts/2012-05-12-windows-guard/">
+                        在 Windows 7 安裝 Guard
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="single-pagination-next">
+            
+            <div class="single-pagination-container-next">
+                <div class="single-pagination-text">
+                    <a href="/posts/2012-06-20-javascript-vs-coffeescript-2/">
+                        JavaScript vs CoffeeScript 2: splats
+                    </a>
+                </div>
+                <div class="single-pagination-text">→</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="back-to-top">
+    <a href="#top">
+      back to top
+    </a>
+  </div>
+  
+
+</div>
+
+
+      </main>
+    </div>
+
+    <footer>
+      
+
+    
+    <p>Powered by
+        <a href="https://gohugo.io/">Hugo</a>
+        and
+        <a href="https://github.com/tomfran/typo">tomfran/typo</a>
+    </p>
+    
+    
+    
+
+
+    </footer>
+
+    
+
+  </body>
+
+  <script>
+
+  function isAuto() {
+    return document.body.classList.contains("auto");
+  }
+
+  function setTheme() {
+    if (!isAuto()) {
+      return
+    }
+
+    document.body.classList.remove("auto");
+    let cls = "light";
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      cls = "dark";
+    }
+
+    document.body.classList.add(cls);
+  }
+
+  function invertBody() {
+    document.body.classList.toggle("dark");
+    document.body.classList.toggle("light");
+  }
+
+  if (isAuto()) {
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(invertBody);
+  }
+
+  setTheme();
+
+</script>
+
+</html>

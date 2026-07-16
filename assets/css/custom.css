@@ -1,0 +1,100 @@
+:root {
+  --main-width: 900px;
+}
+
+/* Carry over theme's custom.css rules */
+.single-readtime {
+  font-size: small;
+  margin-top: 0.5rem;
+  color: var(--content-secondary);
+}
+
+.single-tags {
+  font-size: small;
+  color: var(--content-secondary);
+}
+
+/* Article content: scale headings down from their global sizes */
+.single-content h1 { font-size: 1.5em; }
+.single-content h2 { font-size: 1.3em; }
+.single-content h3,
+.single-content h4,
+.single-content h5,
+.single-content h6 { font-size: 1.1em; }
+
+/* List layout: more space between posts */
+.post-line {
+  align-items: flex-start;
+  margin-bottom: 1.8rem;
+}
+
+/* Date: larger, align with top of title */
+.line-date {
+  font-size: 1.3em;
+  padding-top: 0.1em;
+}
+
+/* Title: h1 size — .line-title IS the <p>, target it directly */
+.line-title {
+  font-size: var(--h2-font-size);
+  font-weight: normal;
+  line-height: 1.1;
+  margin-top: 0;
+}
+
+.line-title a {
+  text-decoration: none;
+}
+
+.line-title a::after {
+  content: " →";
+  font-weight: normal;
+  color: var(--content-secondary);
+}
+
+/* Summary: body font size, secondary colour, gap from title */
+.line-summary {
+  font-size: var(--p-font-size);
+  color: var(--content-secondary);
+  padding-top: 0.7rem;
+}
+
+.line-summary p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+/* Summary headings: h2/h3 bold only, all reset to body size */
+.line-summary h1,
+.line-summary h2,
+.line-summary h3,
+.line-summary h4,
+.line-summary h5,
+.line-summary h6 {
+  font-size: 1em;
+  margin-top: 0.2rem;
+  margin-bottom: 0.1rem;
+}
+
+.line-summary h2,
+.line-summary h3 {
+  font-weight: bold;
+}
+
+.line-summary h1,
+.line-summary h4,
+.line-summary h5,
+.line-summary h6 {
+  font-weight: normal;
+}
+
+/* Fallback: hide any code/list/quote that slips through */
+.line-summary pre,
+.line-summary .highlight,
+.line-summary ul,
+.line-summary ol,
+.line-summary blockquote,
+.line-summary hr
+{
+  display: none;
+}
