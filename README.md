@@ -1,4 +1,4 @@
-[![Deploy Hugo site to Pages](https://github.com/codejourneytw/codejourneytw.github.io/actions/workflows/hugo.yaml/badge.svg?branch=main)](https://github.com/codejourneytw/codejourneytw.github.io/actions/workflows/hugo.yaml)
+[![Deploy to GitHub Pages](https://github.com/taiansu/blog/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/taiansu/blog/actions/workflows/deploy.yml)
 
 # CodeJourney Taiwan's blog
 
