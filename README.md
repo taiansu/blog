@@ -2,6 +2,9 @@
 
 # CodeJourney Taiwan's blog
 
+Production builds include GA4 (`G-PB380CGWQ9`) through Hugo's built-in
+Google Analytics template. Local preview does not load the tracking script.
+
 ## How to Contribute
 
 ### Prerequisite
